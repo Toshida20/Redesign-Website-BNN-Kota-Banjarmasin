@@ -147,6 +147,67 @@ body {
     flex-shrink: 0;
 }
 
+.pembatas {
+    height: 100px;
+}
+
+.hero-video {
+    position: relative;
+    width: 100%; 
+    height: 500px;
+    overflow: hidden;
+}
+
+.background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 92, 196, 0.509);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 0.70;
+}
+
+.hero-content p {
+    font-size: 15px;
+    line-height: 0.70;
+}
+
+.hero-line {
+    width: 520px;
+    height: 1px;
+    background-color: white;
+    margin-top: 8px;
+}
+
 .container-fluid {
     padding: 0 20px;
 }

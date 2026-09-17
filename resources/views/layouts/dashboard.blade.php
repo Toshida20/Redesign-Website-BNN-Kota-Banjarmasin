@@ -104,7 +104,7 @@
             </a>
             </div>
         </div>
-
+        
         <div class="login-user">
                 <a href="#" clsss="dropdown-toggle">
                 <div class="login-arrow">
@@ -128,6 +128,23 @@
         </div>    
     </nav>
 </div>
+
+<div class="pembatas"></div>
+
+<section class="hero-video">
+    
+    <video autoplay muted loop playsinline class="background-video">
+        <source src="{{ asset('videos/bg-dna.mp4') }}" type="video/mp4">
+    </video>
+
+    <div class="video-overlay"></div>
+
+    <div class="hero-content">
+        <image src="{{ asset('images/logo-bnn.png') }}" alt="Logo BNN" width="190" height="190" class="mb-4">
+        <p>Badan Narkotika Nasional Republik Indonesia</p>
+        <h1>Kota Banjarmasin</h1>
+        <div class="hero-line"></div>
+    </div>
 
     <main class="py-4">
 
