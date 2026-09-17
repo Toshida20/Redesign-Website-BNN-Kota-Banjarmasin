@@ -145,6 +145,64 @@
         <h1>Kota Banjarmasin</h1>
         <div class="hero-line"></div>
     </div>
+</section>
+<div class="our-services">
+    <h1>Kami Melayani</h1>
+    <div class="service-container">
+        <div class="click-service">
+            <div class="service-card">
+                <div class="service-icon">
+                    <image src="{{ asset('images/icon-surat.png') }}"
+                         alt="Icon Surat"
+                         width="60"
+                         height="60">
+                </div>
+                <h5>
+                    Pembuatan Surat Keterangan Hasil Pemeriksaan Narkotika (SKHPN)
+                </h5>
+            </div>
+        </div>
+        <div class="click-service">
+            <div class="service-card">
+                <div class="service-icon">
+                    <image src="{{ asset('images/icon-public.png') }}"
+                         alt="Icon Public"
+                         width="60"
+                         height="60">
+                </div>
+                <h5>
+                    Permohonan Sosialisasi P4GN
+                </h5>
+            </div>
+        </div>
+        <div class="click-service">
+            <div class="service-card">
+                <div class="service-icon">
+                    <image src="{{ asset('images/icon-pengaduan.png') }}"
+                         alt="Icon Pengaduan"
+                         width="60"
+                         height="60">
+                </div>
+                <h5>
+                    Layanan Pengaduan Masyarakat Mengenai P4GN
+                </h5>
+            </div>
+        </div>
+        <div class="click-service">
+            <div class="service-card">
+                <div class="service-icon">
+                    <image src="{{ asset('images/icon-rehabilitas.png') }}"
+                         alt="Icon Rehabilitasi"
+                         width="60"
+                         height="60">
+                </div>
+                <h5>
+                    Informasi Seputar Rehabilitasi
+                </h5>
+            </div>
+        </div>
+    </div>
+</div>
 
     <main class="py-4">
 
