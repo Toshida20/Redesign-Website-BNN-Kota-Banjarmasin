@@ -1,0 +1,42 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.navigation-tab {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+.menu-nav {
+    color: white !important;
+    font-size: 9px;
+    font-weight: 600;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.menu-nav span {
+    position: relative;
+}
+
+.menu-nav span::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background-color: #fff;
+    transition: width 0.3s ease;
+}
+
+.menu-nav:hover span::after {
+    width: 100%;
+}
+
+.container-fluid {
+    padding: 0 20px;
+}
