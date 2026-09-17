@@ -33,7 +33,7 @@
                 Kota Banjarmasin
             </span>
         </a>
-
+        
         <div class="d-flex align-items-center gap-3">
 
             <a href="#" class="nav-link text-white menu-nav">
@@ -67,6 +67,67 @@
         </div>
     </div>
 </nav>
+<nav class="navbar navbar-light navbar-second">
+    <div class="container-fluid">
+        <div class="navbar-right">
+            <div class="menu-nav-2-container">
+            <a href="#" class="menu-nav-2">
+                <span>BERANDA</span>
+            </a>
+
+            <a href="#" class="menu-nav-2">
+                <span>PROFIL</span>
+            </a>
+
+            <a href="#" class="menu-nav-2">
+                <span>GALERI</span>
+            </a>
+
+            <a href="#" class="menu-nav-2">
+                <span>BERITA</span>
+            </a>
+
+            <a href="#" class="menu-nav-2">
+                <span>KONTAK</span>
+            </a>
+
+            <a href="#" class="menu-nav-2">
+                <span>LAYANAN</span>
+            </a>
+
+            <a href="#" class="menu-nav-2">
+                <span>PPID</span>
+            </a>
+
+            <a href="#" class="menu-nav-2 lapor">
+                <span>LAPOR</span>
+            </a>
+            </div>
+        </div>
+
+        <div class="login-user">
+                <a href="#" clsss="dropdown-toggle">
+                <div class="login-arrow">
+                    <span>
+                        <image src="{{ asset('images/down-arrow.png') }}" alt="Arrow Down" width="15" height="15">
+                    </span>
+                </div>
+                </a>
+
+                <div class="login-text">
+                    <small>Login Sebagai</small>
+                    <strong>Tamu</strong>
+                </div>
+
+                <a href="#" clsss="profile-link">
+                <div class="user-icon">
+                    <i class="bi bi-person-circle"></i>
+                </div>
+                </a>
+            </div>
+        </div>    
+    </nav>
+</div>
 
     <main class="py-4">
 
