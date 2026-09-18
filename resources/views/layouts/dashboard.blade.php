@@ -76,7 +76,7 @@
             </a>
 
             <a href="#" class="menu-nav-2">
-                <span>PROFIL</span>
+                <span>ORGANISASI</span>
             </a>
 
             <a href="#" class="menu-nav-2">
@@ -85,6 +85,10 @@
 
             <a href="#" class="menu-nav-2">
                 <span>BERITA</span>
+            </a>
+
+            <a href="#" class="menu-nav-2">
+                <span>PUBLIKASI</span>
             </a>
 
             <a href="#" class="menu-nav-2">
@@ -310,7 +314,7 @@
             <a href="#" class="btn-kunjungi">Kunjungi</a>
         </div>
     </div>
-    
+
 </section>
 
     <main class="py-4">

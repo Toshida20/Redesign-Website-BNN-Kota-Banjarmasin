@@ -41,13 +41,18 @@ body {
     background-color: #ffffff;
     min-height: 45px;
     padding: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .navbar-right {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    margin-left: auto;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     flex-wrap: nowrap;
 }
 
@@ -107,7 +112,7 @@ body {
     display: flex;
     align-items: center;
     flex-shrink: 0;
-    margin-left: 180px;
+    margin-left: auto;
     height: 45px;
 }
 
