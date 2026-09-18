@@ -227,6 +227,10 @@ body {
     padding: 50px 0 30px 50px;
 }
 
+.our-services {
+    padding: 0px 0px 70px 0px;
+}
+
 .click-service {
     width: 230px;
     height: 230px;
@@ -290,6 +294,224 @@ body {
     flex-wrap: wrap;
     gap: 40px;
     min-height: 50vh;
+}
+
+.kegiatan-kami {
+    min-height: 700px;
+    background-color: #113866;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.kegiatan-bg {
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.05);
+    z-index: 0;
+}
+
+.kegiatan-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(100deg, rgb(14, 62, 117) 0%,rgba(19, 84, 154, 0.845) 40%, rgba(23, 75, 131, 0.489) 100%);
+    z-index: 1;
+}
+
+.kegiatan-wrapper {
+    width: 100%;
+    padding: 3rem 15px;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+    z-index: 2;
+}
+
+@media (min-width: 576px) { .kegiatan-wrapper { max-width: 540px; } }
+@media (min-width: 768px) { .kegiatan-wrapper { max-width: 720px; } }
+@media (min-width: 992px) { .kegiatan-wrapper { max-width: 960px; } }
+@media (min-width: 1200px) { .kegiatan-wrapper { max-width: 1140px; } }
+@media (min-width: 1400px) { .kegiatan-wrapper { max-width: 1320px; } }
+
+.kegiatan-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.kegiatan-col-left {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+@media (min-width: 768px) {
+    .kegiatan-col-left {
+        flex: 0 0 auto;
+        width: 50%;
+    }
+}
+
+.kegiatan-col-right {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+@media (min-width: 768px) {
+    .kegiatan-col-right {
+        flex: 0 0 auto;
+        width: 50%;
+        margin-top: 0;
+        padding-left: 3rem;
+    }
+}
+
+.slider-images-container {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    height: 500px;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.activity-slide {
+    position: absolute;
+    width: 100%;
+    height: 280px;
+    border-radius: 24px;
+    object-fit: cover;
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    opacity: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.activity-slide.active {
+    transform: scale(1) translateY(0);
+    z-index: 3;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.activity-slide.prev {
+    transform: scale(0.85) translateY(-58%);
+    z-index: 2;
+    opacity: 0.7;
+    filter: brightness(0.6);
+}
+
+.activity-slide.next {
+    transform: scale(0.85) translateY(58%);
+    z-index: 2;
+    opacity: 0.7;
+    filter: brightness(0.6);
+}
+
+.activity-slide.hidden-slide {
+    transform: scale(0.6) translateY(0);
+    z-index: 1;
+    opacity: 0;
+}
+
+.slider-btn {
+    background: transparent;
+    transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s;
+    opacity: 0.9;
+    cursor: pointer;
+    z-index: 10;
+    padding: 0;
+    border: 0;
+    display: inline-block;
+}
+
+.slider-btn:hover {
+    transform: scale(1.2);
+    opacity: 1;
+    filter: drop-shadow(0 0 8px rgba(255,255,255,0.8));
+}
+
+.slider-btn img {
+    width: 80px;
+    height: auto;
+}
+
+.slider-btn-up {
+    padding-bottom: 0px;
+}
+
+.slider-btn-up img {
+    filter: drop-shadow(0px -4px 6px rgba(0,0,0,0.5));
+    transform: rotate(180deg);
+}
+
+.slider-btn-down {
+    padding-top: 0px;
+}
+
+.slider-btn-down img {
+    filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.5));
+}
+
+.kegiatan-title {
+    font-size: 46px;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
+.kegiatan-text-wrapper {
+    margin-top: 0.5rem;
+}
+@media (min-width: 768px) {
+    .kegiatan-text-wrapper {
+        padding-right: 1.5rem;
+    }
+}
+
+.kegiatan-subtitle {
+    font-size: 26px;
+    line-height: 1.4;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+}
+
+.kegiatan-desc {
+    font-size: 17px;
+    line-height: 1.8;
+    text-align: justify;
+    font-weight: 300;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    opacity: 0.95;
+}
+
+.transition-text {
+    transition: opacity 0.4s ease-in-out;
 }
 
 .container-fluid {

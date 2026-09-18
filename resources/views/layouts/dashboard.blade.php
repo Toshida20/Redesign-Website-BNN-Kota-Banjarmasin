@@ -146,6 +146,7 @@
         <div class="hero-line"></div>
     </div>
 </section>
+
 <div class="our-services">
     <h1>Kami Melayani</h1>
     <div class="service-container">
@@ -199,6 +200,50 @@
                 <h5>
                     Informasi Seputar Rehabilitasi
                 </h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="kegiatan-kami" data-kegiatan='[
+    {"image":"/images/kegiatan/deteksi-dini-supir.jpeg",
+        "title":"Deteksi Dini Soppir Angkutan Dalam Rangka Arus Mudik",
+            "description":"Kegiatan Deteksi Dini Sopir Angkutan dalam Rangka Arus Mudik merupakan pemeriksaan kesehatan bagi sopir angkutan umum menjelang masa mudik, meliputi cek tekanan darah, gula darah, dan kondisi fisik lainnya. Kegiatan ini bertujuan memastikan sopir dalam keadaan sehat dan siap mengemudi, guna mencegah kecelakaan akibat kelelahan atau gangguan kesehatan selama perjalanan mudik."},
+    {"image":"/images/kegiatan/jumat-bersinar-smpn3.jpg",
+        "title":"Jumat Bersinar di SMPN 3 Banjarmasin",
+            "description":"Kegiatan edukasi dan sosialisasi bahaya narkoba kepada para siswa SMPN 3 Banjarmasin. Diharapkan dengan kegiatan ini, para pelajar dapat menjauhi narkoba dan fokus pada pendidikan mereka untuk masa depan yang lebih baik."},
+    {"image":"/images/kegiatan/rapat.jpeg",
+        "title":"Rapat Koordinasi BNN Kota Banjarmasin",
+            "description":"Rapat koordinasi rutin yang diselenggarakan oleh BNN Kota Banjarmasin guna membahas strategi dan evaluasi program Pencegahan dan Pemberantasan Penyalahgunaan dan Peredaran Gelap Narkotika (P4GN) di wilayah Kota Banjarmasin."},
+    {"image":"/images/kegiatan/jumat-bersinar-smpn3-foto2.jpeg",
+        "title":"Pelayanan Terpadu Keliling",
+            "description":"Pelayanan Terpadu Keliling Mobil Bungas BNN Kota Banjarmasin dalam rangka memberikan layanan informasi dan konsultasi kepada masyarakat luas secara langsung dan mudah dijangkau."}]'>
+    
+    <div id="kegiatan-bg" class="kegiatan-bg"></div>
+    <div class="kegiatan-overlay"></div>
+    
+    <div class="kegiatan-wrapper">
+        <div class="kegiatan-row">
+            
+            <div class="kegiatan-col-left">
+                <button id="slider-up" class="slider-btn slider-btn-up">
+                    <img src="{{ asset('images/arrow.png') }}" alt="Arrow Up">
+                </button>
+                
+                <div id="activity-slider-images" class="slider-images-container"></div>
+
+                <button id="slider-down" class="slider-btn slider-btn-down">
+                    <img src="{{ asset('images/arrow.png') }}" alt="Arrow Down">
+                </button>
+            </div>
+            
+            <div class="kegiatan-col-right">
+                <h1 class="kegiatan-title">Kegiatan Kami</h1>
+                
+                <div class="kegiatan-text-wrapper">
+                    <h4 id="activity-title" class="transition-text kegiatan-subtitle"></h4>
+                    <p id="activity-desc" class="transition-text kegiatan-desc"></p>
+                </div>
             </div>
         </div>
     </div>
