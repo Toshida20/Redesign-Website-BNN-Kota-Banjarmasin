@@ -249,6 +249,70 @@
     </div>
 </div>
 
+<section class="division-grid">
+
+    <div class="division-card">
+        <img src="{{ asset('images/bg-sekretariat.jpg') }}" alt="BNNP & BNNK">
+        <div class="overlay"></div>
+
+        <div class="division-content">
+            <h3>BNNP & BNNK</h3>
+            <a href="#" class="btn-kunjungi">Kunjungi</a>
+        </div>
+    </div>
+
+    <div class="division-card">
+        <img src="{{ asset('images/bg-cegah.jpg') }}" alt="Bidang Pencegahan">
+        <div class="overlay"></div>
+
+        <div class="division-content">
+            <h3>Bidang Pencegahan dan<br>Pemberdayaan Masyarakat</h3>
+            <a href="#" class="btn-kunjungi">Kunjungi</a>
+        </div>
+    </div>
+
+    <div class="division-card">
+        <img src="{{ asset('images/bg-rehabilitasi.jpg') }}" alt="BNNP & BNNK">
+        <div class="overlay"></div>
+
+        <div class="division-content">
+            <h3>Bidang Rehabilitas</h3>
+            <a href="#" class="btn-kunjungi">Kunjungi</a>
+        </div>
+    </div>
+
+    <div class="division-card">
+        <img src="{{ asset('images/bg-pemberantasan.jpg') }}" alt="Bidang Pemberantasan">
+        <div class="overlay"></div>
+
+        <div class="division-content">
+            <h3>Bidang Pemberantasan</h3>
+            <a href="#" class="btn-kunjungi">Kunjungi</a>
+        </div>
+    </div>
+
+    <div class="division-card">
+        <img src="{{ asset('images/bg-loker.jpg') }}" alt="Lowongan Kerja">
+        <div class="overlay"></div>
+
+        <div class="division-content">
+            <h3>Lowongan Kerja</h3>
+            <a href="#" class="btn-kunjungi">Kunjungi</a>
+        </div>
+    </div>
+
+    <div class="division-card">
+        <img src="{{ asset('images/bg-edukasi.jpg') }}" alt="Edukasi">
+        <div class="overlay"></div>
+
+        <div class="division-content">
+            <h3>Edukasi</h3>
+            <a href="#" class="btn-kunjungi">Kunjungi</a>
+        </div>
+    </div>
+    
+</section>
+
     <main class="py-4">
 
         @yield('content')

@@ -1,7 +1,7 @@
 import './bootstrap';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
-
+// Slider Kegiatan Kami
 document.addEventListener('DOMContentLoaded', function() {
     const kegiatanSection = document.querySelector('.kegiatan-kami');
     if (!kegiatanSection) return;
@@ -72,4 +72,18 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     updateSlider();
+
+    // Parallax effect background turun pas scroll
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        const offsetTop = kegiatanSection.offsetTop;
+        const sectionHeight = kegiatanSection.offsetHeight;
+        
+        if (scrolled + window.innerHeight > offsetTop && scrolled < offsetTop + sectionHeight) {
+
+            const yPos = (scrolled - offsetTop) * 0.4;
+
+            bgImage.style.transform = `scale(1.05) translateY(${yPos}px)`;
+        }
+    });
 });
