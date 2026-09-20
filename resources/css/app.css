@@ -10,6 +10,13 @@ body {
     width: 100%;
     z-index: 100;
 }
+
+.navbar-brand {
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
 .menu-nav {
     color: white !important;
     font-size: 9px;
@@ -88,8 +95,57 @@ body {
     transition: width 0.3s ease;
 }
 
-.menu-nav-2:hover span::after {
+.menu-nav-2:hover span::after,
+.menu-nav-2.active span::after {
     width: 100%;
+}
+
+.nav-item-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 45px;
+}
+
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) scaleY(0);
+    transform-origin: top;
+    background-color: #050a15d4;
+    min-width: 250px;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    transition-property: transform, opacity, visibility;
+    transition-duration: 0.5s, 0.4s, 0s;
+    transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1), ease, linear;
+    transition-delay: 1s, 1s, 1.5s;
+}
+
+.nav-item-dropdown:hover .dropdown-content {
+    transform: translateX(-50%) scaleY(1);
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s, 0s, 0s;
+}
+
+.dropdown-content a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 12px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(0, 132, 255, 0.2);
 }
 
 .menu-nav-2.lapor {
@@ -150,6 +206,24 @@ body {
     justify-content: center;
     font-size: 18px;
     flex-shrink: 0;
+}
+
+.navbar, .navbar-second, .logo-transition, .menu-nav-2, .login-text small, .login-text strong, .user-icon {
+    transition: all 0.3s ease-in-out !important;
+}
+
+.navigation-tab.scrolled .navbar-dark {
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+}
+
+.navigation-tab.scrolled #bnn-logo {
+    width: 24px;
+    height: 24px;
+}
+
+.navigation-tab.scrolled .navbar-second {
+    min-height: 38px;
 }
 
 .pembatas {

@@ -19,13 +19,14 @@
 <nav class="navbar navbar-dark" style="background-color: #174b83;">
     <div class="container-fluid">
 
-        <a class="navbar-brand d-flex align-items-center" href="#">
+        <a class="navbar-brand" href="#">
             <img 
+                id="bnn-logo"
                 src="{{ asset('images/logo-bnn.png') }}" 
                 alt="Logo BNN"
                 width="30"
                 height="30"
-                class="me-2"
+                class="me-2 logo-transition"
             >
 
             <span class="fw-bold" style="font-size: 12px; line-height: 1.2;">
@@ -71,39 +72,45 @@
     <div class="container-fluid">
         <div class="navbar-right">
             <div class="menu-nav-2-container">
-            <a href="#" class="menu-nav-2">
+            <a href="{{ url('/') }}" class="menu-nav-2 {{ request()->is('/') ? 'active' : '' }}">
                 <span>BERANDA</span>
             </a>
 
-            <a href="#" class="menu-nav-2">
-                <span>ORGANISASI</span>
-            </a>
+            <div class="nav-item-dropdown">
+                <a href="#" class="menu-nav-2 {{ request()->is('organisasi') ? 'active' : '' }}">
+                    <span>ORGANISASI</span>
+                </a>
+                <div class="dropdown-content">
+                    <a href="#">Informasi Profil</a>
+                    <a href="#">Kepala BNNK dari Masa Ke Masa</a>
+                </div>
+            </div>
 
-            <a href="#" class="menu-nav-2">
+            <a href="#" class="menu-nav-2 {{ request()->is('galeri') ? 'active' : '' }}">
                 <span>GALERI</span>
             </a>
 
-            <a href="#" class="menu-nav-2">
+            <a href="#" class="menu-nav-2 {{ request()->is('berita') ? 'active' : '' }}">
                 <span>BERITA</span>
             </a>
 
-            <a href="#" class="menu-nav-2">
+            <a href="#" class="menu-nav-2 {{ request()->is('publikasi') ? 'active' : '' }}">
                 <span>PUBLIKASI</span>
             </a>
 
-            <a href="#" class="menu-nav-2">
+            <a href="#" class="menu-nav-2 {{ request()->is('kontak') ? 'active' : '' }}">
                 <span>KONTAK</span>
             </a>
 
-            <a href="#" class="menu-nav-2">
+            <a href="#" class="menu-nav-2 {{ request()->is('layanan') ? 'active' : '' }}">
                 <span>LAYANAN</span>
             </a>
 
-            <a href="#" class="menu-nav-2">
+            <a href="#" class="menu-nav-2 {{ request()->is('ppid') ? 'active' : '' }}">
                 <span>PPID</span>
             </a>
 
-            <a href="#" class="menu-nav-2 lapor">
+            <a href="#" class="menu-nav-2 lapor {{ request()->is('lapor') ? 'active' : '' }}">
                 <span>LAPOR</span>
             </a>
             </div>
@@ -113,7 +120,7 @@
                 <a href="#" clsss="dropdown-toggle">
                 <div class="login-arrow">
                     <span>
-                        <image src="{{ asset('images/down-arrow.png') }}" alt="Arrow Down" width="15" height="15">
+                        <img src="{{ asset('images/down-arrow.png') }}" alt="Arrow Down" width="15" height="15">
                     </span>
                 </div>
                 </a>

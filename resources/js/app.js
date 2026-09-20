@@ -87,3 +87,31 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// Navbar mengecil ketika di scroll
+document.addEventListener('DOMContentLoaded', function() {
+    const navTab = document.querySelector('.navigation-tab');
+    if (navTab) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navTab.classList.add('scrolled');
+            } else {
+                navTab.classList.remove('scrolled');
+            }
+        });
+    }
+    
+});
+
+// Menu hover bertahan ketika di klik
+document.addEventListener('DOMContentLoaded', function () {
+    const menuItems = document.querySelectorAll('.menu-nav-2');
+
+    menuItems.forEach(item => {
+        item.addEventListener('click', function () {
+            menuItems.forEach(nav => nav.classList.remove('active'));
+
+            this.classList.add('active');
+        });
+    });
+});
