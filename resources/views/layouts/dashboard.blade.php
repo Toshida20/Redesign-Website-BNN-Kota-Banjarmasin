@@ -37,7 +37,7 @@
         
         <div class="d-flex align-items-center gap-3">
 
-            <a href="#" class="nav-link text-white menu-nav">
+            <a href="https://bnn.go.id/" class="nav-link text-white menu-nav">
                 <span>BNN Pusat</span>
             </a>
 
@@ -86,23 +86,33 @@
                 </div>
             </div>
 
-            <a href="#" class="menu-nav-2 {{ request()->is('galeri') ? 'active' : '' }}">
-                <span>GALERI</span>
-            </a>
+            <div class="nav-item-dropdown">
+                <a href="#" class="menu-nav-2 {{ request()->is('berita') ? 'active' : '' }}">
+                    <span>BERITA</span>
+                </a>
+                <div class="dropdown-content">
+                    <a href="#">Berita Utama</a>
+                    <a href="#">Berita Kegiatan</a>
+                    <a href="#">Foto</a>
+                    <a href="#">Video</a>
+                </div>
+            </div>
 
-            <a href="#" class="menu-nav-2 {{ request()->is('berita') ? 'active' : '' }}">
-                <span>BERITA</span>
-            </a>
-
-            <a href="#" class="menu-nav-2 {{ request()->is('publikasi') ? 'active' : '' }}">
-                <span>PUBLIKASI</span>
-            </a>
+            <div class="nav-item-dropdown">
+                <a href="#" class="menu-nav-2 {{ request()->is('publikasi') ? 'active' : '' }}">
+                    <span>PUBLIKASI</span>
+                </a>
+                <div class="dropdown-content">
+                    <a href="#">Artikel</a>
+                    <a href="#">Siaran Pers</a>
+                </div>
+            </div>
 
             <a href="#" class="menu-nav-2 {{ request()->is('kontak') ? 'active' : '' }}">
                 <span>KONTAK</span>
             </a>
 
-            <a href="#" class="menu-nav-2 {{ request()->is('layanan') ? 'active' : '' }}">
+            <a href="https://boss.bnn.go.id/" class="menu-nav-2 {{ request()->is('layanan') ? 'active' : '' }}">
                 <span>LAYANAN</span>
             </a>
 
@@ -322,6 +332,42 @@
         </div>
     </div>
 
+</section>
+
+<section class="news-highlight">
+    <div id="news-bg-layer-old" class="news-highlight-bg" style="background-image: url('{{ asset('images/Berita-1.jpeg') }}');"></div>
+    <div id="news-bg-layer" class="news-highlight-bg" style="background-image: url('{{ asset('images/Berita-1.jpeg') }}'); transition: opacity 0.5s ease-in-out;"></div>
+    <div class="news-highlight-overlay"></div>
+
+    <div class="news-highlight-wrapper">
+        <div class="news-main-content">
+            <p class="news-author">Oleh Humas BNN Kota Banjarmasin</p>
+            <h1 id="news-main-title" class="news-title" style="transition: opacity 0.3s, transform 0.3s; transform: translateY(0);">RENCANA KERJA BNN KOTA BANJARMASIN<br>TAHUN 2026</h1>
+            <a href="#" class="btn-baca-selengkapnya">Baca Selengkapnya</a>
+        </div>
+
+        <div class="news-bottom-row">
+            <div class="news-bottom-item active" data-bg="{{ asset('images/Berita-1.jpeg') }}" data-title="RENCANA KERJA BNN KOTA BANJARMASIN<br>TAHUN 2026">
+                <p>RENCANA KERJA BNN KOTA BANJARMASIN<br>TAHUN 2026</p>
+                <div class="news-line"></div>
+            </div>
+            <div class="news-bottom-item" data-bg="{{ asset('images/Berita-2.jpeg') }}" data-title="LAPORAN KINERJA INSTANSI<br>PEMERINTAH (LKIP) BNN KOTA<br>BANJARMASIN TAHUN 2025">
+                <p>LAPORAN KINERJA INSTANSI<br>PEMERINTAH (LKIP) BNN KOTA<br>BANJARMASIN TAHUN 2025</p>
+                <div class="news-line"></div>
+            </div>
+            <div class="news-bottom-item" data-bg="{{ asset('images/Berita-3.jpeg') }}" data-title="RENPROJA BNN KOTA<br>BANJARMASIN 2025 – 2029">
+                <p>RENPROJA BNN KOTA<br>BANJARMASIN 2025 - 2029</p>
+                <div class="news-line"></div>
+            </div>
+            <div class="news-bottom-item" data-bg="{{ asset('images/Berita-4.jpeg') }}" data-title="BERITA KEGIATAN BNN KOTA<br>BANJARMASIN TERBARU">
+                <p>BERITA KEGIATAN BNN KOTA<br>BANJARMASIN TERBARU</p>
+                <div class="news-line"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class=""></div>
 </section>
 
     <main class="py-4">

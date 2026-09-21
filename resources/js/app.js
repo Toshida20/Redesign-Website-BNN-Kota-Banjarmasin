@@ -115,3 +115,102 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Slider Berita
+    const newsItems = document.querySelectorAll('.news-bottom-item');
+    const newsBg = document.getElementById('news-bg-layer');
+    const newsBgOld = document.getElementById('news-bg-layer-old');
+    const newsTitle = document.getElementById('news-main-title');
+    let autoNewsSlide;
+
+    // Preload foto menghindari blink putih
+    newsItems.forEach(item => {
+        const img = new Image();
+        img.src = item.getAttribute('data-bg');
+    });
+
+    function changeNews(item) {
+        newsItems.forEach(nav => {
+            nav.classList.remove('active');
+            const line = nav.querySelector('.news-line');
+            if (line) {
+                line.classList.remove('loading-start');
+                void line.offsetWidth;
+            }
+        });
+        item.classList.add('active');
+
+        const activeLine = item.querySelector('.news-line');
+        if (activeLine) {
+            activeLine.classList.add('loading-start');
+        }
+
+        const newBg = item.getAttribute('data-bg');
+        
+        // Crossfade background
+        if (newsBgOld && newsBg) {
+            newsBgOld.style.backgroundImage = newsBg.style.backgroundImage;
+            newsBg.style.transition = 'none';
+            newsBg.style.opacity = 0;
+            newsBg.style.backgroundImage = `url('${newBg}')`;
+            
+            void newsBg.offsetWidth;
+            
+            newsBg.style.transition = 'opacity 0.5s ease-in-out';
+            newsBg.style.opacity = 1;
+        } else if (newsBg) {
+            newsBg.style.backgroundImage = `url('${newBg}')`;
+        }
+
+        newsTitle.style.opacity = 0;
+        newsTitle.style.transform = 'translateY(30px)';
+        setTimeout(() => {
+            newsTitle.innerHTML = item.getAttribute('data-title');
+            newsTitle.style.opacity = 1;
+            newsTitle.style.transform = 'translateY(0)';
+        }, 300);
+    }
+
+    function startAutoNewsSlide() {
+        autoNewsSlide = setInterval(() => {
+            let activeIndex = Array.from(newsItems).findIndex(item => item.classList.contains('active'));
+            let nextIndex = (activeIndex + 1) % newsItems.length;
+            changeNews(newsItems[nextIndex]);
+        }, 5000);
+    }
+
+    function resetAutoNewsSlide() {
+        clearInterval(autoNewsSlide);
+        startAutoNewsSlide();
+    }
+
+    newsItems.forEach(item => {
+        item.addEventListener('click', function () {
+            changeNews(this);
+            resetAutoNewsSlide();
+        });
+    });
+
+    const initialActive = Array.from(newsItems).find(item => item.classList.contains('active'));
+    if (initialActive) {
+        const line = initialActive.querySelector('.news-line');
+        if (line) line.classList.add('loading-start');
+    }
+
+    startAutoNewsSlide();
+
+        // Efek Parallax background turun pas scroll section berita-highlight
+        const newsSection = document.querySelector('.news-highlight');
+            
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            const offsetTop = newsSection.offsetTop;
+            const sectionHeight = newsSection.offsetHeight;
+                
+            if (scrolled + window.innerHeight > offsetTop && scrolled < offsetTop + sectionHeight) {
+                const yPos = (scrolled - offsetTop) * 0.4;
+                newsBg.style.transform = `scale(1.05) translateY(${yPos}px)`;
+            }
+        });
+    });
