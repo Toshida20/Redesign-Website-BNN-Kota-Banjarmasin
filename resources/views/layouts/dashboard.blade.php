@@ -168,6 +168,7 @@
     </div>
 </section>
 
+<!-- OUR SERVICE SECTION -->
 <div class="our-services">
     <h1>Kami Melayani</h1>
     <div class="service-container">
@@ -226,6 +227,7 @@
     </div>
 </div>
 
+<!-- KEGIATAN KAMI SECTION -->
 <div class="kegiatan-kami" data-kegiatan='[
     {"image":"/images/kegiatan/deteksi-dini-supir.jpeg",
         "title":"Deteksi Dini Soppir Angkutan Dalam Rangka Arus Mudik",
@@ -270,6 +272,7 @@
     </div>
 </div>
 
+<!-- DIVISI CARD SECTION -->
 <section class="division-grid">
 
     <div class="division-card">
@@ -334,9 +337,10 @@
 
 </section>
 
+<!-- NEWS HIGHLIGHT SECTION -->
 <section class="news-highlight">
-    <div id="news-bg-layer-old" class="news-highlight-bg" style="background-image: url('{{ asset('images/Berita-1.jpeg') }}');"></div>
-    <div id="news-bg-layer" class="news-highlight-bg" style="background-image: url('{{ asset('images/Berita-1.jpeg') }}'); transition: opacity 0.5s ease-in-out;"></div>
+    <div id="news-bg-layer-old" class="news-highlight-bg" style="background-image: url('{{ asset('images/berita/Berita-1.jpeg') }}');"></div>
+    <div id="news-bg-layer" class="news-highlight-bg" style="background-image: url('{{ asset('images/berita/Berita-1.jpeg') }}'); transition: opacity 0.5s ease-in-out;"></div>
     <div class="news-highlight-overlay"></div>
 
     <div class="news-highlight-wrapper">
@@ -347,27 +351,260 @@
         </div>
 
         <div class="news-bottom-row">
-            <div class="news-bottom-item active" data-bg="{{ asset('images/Berita-1.jpeg') }}" data-title="RENCANA KERJA BNN KOTA BANJARMASIN<br>TAHUN 2026">
+            <div class="news-bottom-item active" data-bg="{{ asset('images/berita/Berita-1.jpeg') }}" data-title="RENCANA KERJA BNN KOTA BANJARMASIN<br>TAHUN 2026">
                 <p>RENCANA KERJA BNN KOTA BANJARMASIN<br>TAHUN 2026</p>
                 <div class="news-line"></div>
             </div>
-            <div class="news-bottom-item" data-bg="{{ asset('images/Berita-2.jpeg') }}" data-title="LAPORAN KINERJA INSTANSI<br>PEMERINTAH (LKIP) BNN KOTA<br>BANJARMASIN TAHUN 2025">
+            <div class="news-bottom-item" data-bg="{{ asset('images/berita/Berita-2.jpeg') }}" data-title="LAPORAN KINERJA INSTANSI<br>PEMERINTAH (LKIP) BNN KOTA<br>BANJARMASIN TAHUN 2025">
                 <p>LAPORAN KINERJA INSTANSI<br>PEMERINTAH (LKIP) BNN KOTA<br>BANJARMASIN TAHUN 2025</p>
                 <div class="news-line"></div>
             </div>
-            <div class="news-bottom-item" data-bg="{{ asset('images/Berita-3.jpeg') }}" data-title="RENPROJA BNN KOTA<br>BANJARMASIN 2025 – 2029">
+            <div class="news-bottom-item" data-bg="{{ asset('images/berita/Berita-3.jpeg') }}" data-title="RENPROJA BNN KOTA<br>BANJARMASIN 2025 – 2029">
                 <p>RENPROJA BNN KOTA<br>BANJARMASIN 2025 - 2029</p>
                 <div class="news-line"></div>
             </div>
-            <div class="news-bottom-item" data-bg="{{ asset('images/Berita-4.jpeg') }}" data-title="BERITA KEGIATAN BNN KOTA<br>BANJARMASIN TERBARU">
+            <div class="news-bottom-item" data-bg="{{ asset('images/berita/Berita-4.jpeg') }}" data-title="BERITA KEGIATAN BNN KOTA<br>BANJARMASIN TERBARU">
                 <p>BERITA KEGIATAN BNN KOTA<br>BANJARMASIN TERBARU</p>
                 <div class="news-line"></div>
             </div>
         </div>
     </div>
 </section>
-<section>
-    <div class=""></div>
+
+<section class="news-page">
+    <div id="news-page-bg" class="news-page-bg" style="background-image: url('{{ asset('images/bg-newspaper-1300x700.jpg') }}');"></div>
+    <div class="news-page-overlay"></div>
+    <div class="news-page-container">
+
+        <!-- ARTIKEL SECTION -->
+        <div class="news-section">
+            <div class="news-section-header">
+                <h2>Artikel</h2>
+                <p>Artikel Badan Narkotika Nasional</p>
+            </div>
+            
+            <div class="news-grid">
+                <div class="news-card">
+                    <a href="#" class="post-link">
+                    <div class="news-card-img">
+                        <img src="{{ asset('images/bg-pemberantasan.jpg') }}" alt="Artikel">
+                    </div>
+                    <div class="news-card-content">
+                        <span class="news-category">Artikel</span>
+                        <h3 class="news-title">KEPALA BNN RI BERIKAN KULIAH UMUM DAN TEKEN MOU DI PKKMB UNIVERSITAS PANCASILA</h3>
+                    </div>
+                    </a>
+                </div>
+                <div class="news-card">
+                    <a href="#" class="post-link">
+                    <div class="news-card-img">
+                        <img src="{{ asset('images/bg-pemberantasan.jpg') }}" alt="Artikel">
+                    </div>
+                    <div class="news-card-content">
+                        <span class="news-category">Artikel</span>
+                        <h3 class="news-title">KEPALA BNN RI BERIKAN KULIAH UMUM DAN TEKEN MOU DI PKKMB UNIVERSITAS PANCASILA</h3>
+                    </div>
+                    </a>
+                </div>
+                <div class="news-card">
+                    <a href="#" class="post-link">
+                    <div class="news-card-img">
+                        <img src="{{ asset('images/bg-pemberantasan.jpg') }}" alt="Artikel">
+                    </div>
+                    <div class="news-card-content">
+                        <span class="news-category">Artikel</span>
+                        <h3 class="news-title">KEPALA BNN RI BERIKAN KULIAH UMUM DAN TEKEN MOU DI PKKMB UNIVERSITAS PANCASILA</h3>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- SMALL NEWS LIST (ARTIKEL) -->
+            <div class="news-small-grid">
+                <div class="news-small-item">
+                    <a href="#" class="news-small-link">
+                        <div class="news-small-img">
+                            <img src="{{ asset('images/bg-pemberantasan.jpg') }}" alt="News">
+                        </div>
+                        <div class="news-small-content">
+                            <span class="news-small-category">Berita Utama</span>
+                            <h4 class="news-small-title">GENERASI MUDA JAWA BARAT LAWAN NARKOBA MELALUI PASANGGIRI AGUNG KAWIH SINOM</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="news-small-item">
+                    <a href="#" class="news-small-link">
+                        <div class="news-small-img">
+                            <img src="{{ asset('images/bg-pemberantasan.jpg') }}" alt="News">
+                        </div>
+                        <div class="news-small-content">
+                            <span class="news-small-category">Unggulan</span>
+                            <h4 class="news-small-title">BNN DAN TNI AD PERKUAT SINERGI DALAM UPAYA P4GN</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="news-small-item">
+                    <a href="#" class="news-small-link">
+                        <div class="news-small-img">
+                            <img src="{{ asset('images/bg-pemberantasan.jpg') }}" alt="News">
+                        </div>
+                        <div class="news-small-content">
+                            <span class="news-small-category">Unggulan</span>
+                            <h4 class="news-small-title">KEPALA BNN RI AUDIENSI DENGAN KASAU, PERKUAT KOLABORASI P4GN</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="news-small-item">
+                    <a href="#" class="news-small-link">
+                        <div class="news-small-img">
+                            <img src="{{ asset('images/bg-pemberantasan.jpg') }}" alt="News">
+                        </div>
+                        <div class="news-small-content">
+                            <span class="news-small-category">Unggulan</span>
+                            <h4 class="news-small-title">KEPALA BNN RI HADIRI PELEPASAN KONTINGEN INDONESIA CYCLING MENUJU ASIAN GAMES 2026</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="news-small-item">
+                    <a href="#" class="news-small-link">
+                        <div class="news-small-img">
+                            <img src="{{ asset('images/bg-pemberantasan.jpg') }}" alt="News">
+                        </div>
+                        <div class="news-small-content">
+                            <span class="news-small-category">Unggulan</span>
+                            <h4 class="news-small-title">AUDIENSI BNN DAN ADKASI: KEPALA BNN RI AJAK DPRD KABUPATEN SE-INDONESIA BERSATU PERANGI NARKOTIKA</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="news-small-item">
+                    <a href="#" class="news-small-link">
+                        <div class="news-small-img">
+                            <img src="{{ asset('images/bg-pemberantasan.jpg') }}" alt="News">
+                        </div>
+                        <div class="news-small-content">
+                            <span class="news-small-category">Berita Utama</span>
+                            <h4 class="news-small-title">BNN TERIMA KUNJUNGAN SMPIT INSAN MANDIRI JAGAKARSA, EDUKASI PELAJAR TENTANG BAHAYA NARKOTIKA</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- BERITA KEGIATAN SECTION -->
+        <div class="news-section">
+            <div class="news-section-header">
+                <h2>Berita Kegiatan</h2>
+                <p>Berita Kegiatan Badan Narkotika Nasional</p>
+            </div>
+            
+            <div class="news-grid">
+                <div class="news-card">
+                    <a href="#" class="post-link">
+                    <div class="news-card-img">
+                        <img src="{{ asset('images/bg-pemberantasan.jpg') }}" alt="Berita Kegiatan">
+                    </div>
+                    <div class="news-card-content">
+                        <span class="news-category">Berita Kegiatan</span>
+                        <h3 class="news-title">KEPALA BNN RI BERIKAN KULIAH UMUM DAN TEKEN MOU DI PKKMB UNIVERSITAS PANCASILA</h3>
+                    </div>
+                    </a>
+                </div>
+                <div class="news-card">
+                    <a href="#" class="post-link">
+                    <div class="news-card-img">
+                        <img src="{{ asset('images/bg-pemberantasan.jpg') }}" alt="Berita Kegiatan">
+                    </div>
+                    <div class="news-card-content">
+                        <span class="news-category">Berita Kegiatan</span>
+                        <h3 class="news-title">KEPALA BNN RI BERIKAN KULIAH UMUM DAN TEKEN MOU DI PKKMB UNIVERSITAS PANCASILA</h3>
+                    </div>
+                    </a>
+                </div>
+                <div class="news-card">
+                    <a href="#" class="post-link">
+                    <div class="news-card-img">
+                        <img src="{{ asset('images/bg-pemberantasan.jpg') }}" alt="Berita Kegiatan">
+                    </div>
+                    <div class="news-card-content">
+                        <span class="news-category">Berita Kegiatan</span>
+                        <h3 class="news-title">KEPALA BNN RI BERIKAN KULIAH UMUM DAN TEKEN MOU DI PKKMB UNIVERSITAS PANCASILA</h3>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SMALL NEWS LIST -->
+        <div class="news-small-grid">
+            <div class="news-small-item">
+                <a href="#" class="news-small-link">
+                    <div class="news-small-img">
+                        <img src="{{ asset('images/bg-pemberantasan.jpg') }}" alt="News">
+                    </div>
+                    <div class="news-small-content">
+                        <span class="news-small-category">Berita Utama</span>
+                        <h4 class="news-small-title">GENERASI MUDA JAWA BARAT LAWAN NARKOBA MELALUI PASANGGIRI AGUNG KAWIH SINOM</h4>
+                    </div>
+                </a>
+            </div>
+            <div class="news-small-item">
+                <a href="#" class="news-small-link">
+                    <div class="news-small-img">
+                        <img src="{{ asset('images/bg-pemberantasan.jpg') }}" alt="News">
+                    </div>
+                    <div class="news-small-content">
+                        <span class="news-small-category">Unggulan</span>
+                        <h4 class="news-small-title">BNN DAN TNI AD PERKUAT SINERGI DALAM UPAYA P4GN</h4>
+                    </div>
+                </a>
+            </div>
+            <div class="news-small-item">
+                <a href="#" class="news-small-link">
+                    <div class="news-small-img">
+                        <img src="{{ asset('images/bg-pemberantasan.jpg') }}" alt="News">
+                    </div>
+                    <div class="news-small-content">
+                        <span class="news-small-category">Unggulan</span>
+                        <h4 class="news-small-title">KEPALA BNN RI AUDIENSI DENGAN KASAU, PERKUAT KOLABORASI P4GN</h4>
+                    </div>
+                </a>
+            </div>
+            <div class="news-small-item">
+                <a href="#" class="news-small-link">
+                    <div class="news-small-img">
+                        <img src="{{ asset('images/bg-pemberantasan.jpg') }}" alt="News">
+                    </div>
+                    <div class="news-small-content">
+                        <span class="news-small-category">Unggulan</span>
+                        <h4 class="news-small-title">KEPALA BNN RI HADIRI PELEPASAN KONTINGEN INDONESIA CYCLING MENUJU ASIAN GAMES 2026</h4>
+                    </div>
+                </a>
+            </div>
+            <div class="news-small-item">
+                <a href="#" class="news-small-link">
+                    <div class="news-small-img">
+                        <img src="{{ asset('images/bg-pemberantasan.jpg') }}" alt="News">
+                    </div>
+                    <div class="news-small-content">
+                        <span class="news-small-category">Unggulan</span>
+                        <h4 class="news-small-title">AUDIENSI BNN DAN ADKASI: KEPALA BNN RI AJAK DPRD KABUPATEN SE-INDONESIA BERSATU PERANGI NARKOTIKA</h4>
+                    </div>
+                </a>
+            </div>
+            <div class="news-small-item">
+                <a href="#" class="news-small-link">
+                    <div class="news-small-img">
+                        <img src="{{ asset('images/bg-pemberantasan.jpg') }}" alt="News">
+                    </div>
+                    <div class="news-small-content">
+                        <span class="news-small-category">Berita Utama</span>
+                        <h4 class="news-small-title">BNN TERIMA KUNJUNGAN SMPIT INSAN MANDIRI JAGAKARSA, EDUKASI PELAJAR TENTANG BAHAYA NARKOTIKA</h4>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
 </section>
 
     <main class="py-4">
