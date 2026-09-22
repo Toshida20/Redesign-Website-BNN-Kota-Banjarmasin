@@ -10,3 +10,7 @@ Route::get('/', function () {
 Route::get('/informasi-profil', function () {
     return view('informasi-profil');
 });
+
+Route::get('/kepala-bnnp-k-dari-masa-ke-masa', function () {
+    return view('kepala-bnnk');
+});

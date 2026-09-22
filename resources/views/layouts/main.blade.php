@@ -48,12 +48,12 @@
             </a>
 
             <div class="nav-item-dropdown">
-                <a href="#" class="menu-nav-2 {{ request()->is('organisasi') || request()->is('informasi-profil') ? 'active' : '' }}">
+                <a href="#" class="menu-nav-2 {{ request()->is('organisasi') || request()->is('informasi-profil') || request()->is('kepala-bnnp-k-dari-masa-ke-masa') ? 'active' : '' }}">
                     <span>ORGANISASI</span>
                 </a>
                 <div class="dropdown-content">
                     <a href="{{ url('/informasi-profil') }}">Informasi Profil</a>
-                    <a href="#">Kepala BNNK dari Masa Ke Masa</a>
+                    <a href="{{ url('/kepala-bnnp-k-dari-masa-ke-masa') }}">Kepala BNNK dari Masa Ke Masa</a>
                 </div>
             </div>
 
