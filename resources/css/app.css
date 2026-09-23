@@ -120,7 +120,7 @@ body {
     position: absolute;
     top: 100%;
     left: 50%;
-    transform: translateX(-50%) scaleY(0);
+    transform: translateX(-50%);
     transform-origin: top;
     background-color: #050a15d4;
     min-width: 250px;
@@ -131,30 +131,42 @@ body {
     flex-direction: column;
     padding: 10px 0;
     transition-property: transform, opacity, visibility;
-    transition-duration: 0.5s, 0.4s, 0s;
-    transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1), ease, linear;
-    transition-delay: 1s, 1s, 1.5s;
+    transition-duration: 0s, 0s, 0s;
+    transition-delay: 1s, 1s, 1s;
 }
 
 .nav-item-dropdown:hover .dropdown-content {
-    transform: translateX(-50%) scaleY(1);
+    transform: translateX(-50%);
     opacity: 1;
     visibility: visible;
+    transition-duration: 0s, 0s, 0s;
     transition-delay: 0s, 0s, 0s;
 }
 
-.menu-nav-2-container:hover .nav-item-dropdown:not(:hover) .dropdown-content {
-    transition-delay: 0s, 0s, 0s;
+.navigation-tab:hover .nav-item-dropdown:not(:hover) .dropdown-content {
+    opacity: 0;
+    visibility: hidden;
+    transition: none;
 }
 
-.menu-nav-2-container:hover .nav-item-dropdown:not(:hover) .menu-nav-2 span::after {
-    transition-delay: 0s;
+.navigation-tab:hover .nav-item-dropdown:not(:hover) .dropdown-content > a,
+.navigation-tab:hover .nav-item-dropdown:not(:hover) .dropdown-content > .nav-item-dropdown-2 > a,
+.navigation-tab:hover .nav-item-dropdown:not(:hover) .dropdown-content-2 > a {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: none;
+}
+
+.navigation-tab:hover .nav-item-dropdown:not(:hover) .menu-nav-2 span::after {
+    width: 0;
+    transition: none;
 }
 
 .dropdown-content a {
     color: #ffffff;
     text-decoration: none;
-    padding: 12px 20px;
+    padding: 8px 16px;
+    margin: 4px 12px;
     font-size: 13px;
     font-weight: 500;
     transition: background-color 0.2s;
@@ -163,6 +175,65 @@ body {
 
 .dropdown-content a:hover {
     background-color: rgba(0, 132, 255, 0.2);
+}
+
+.dropdown-content > a,
+.dropdown-content > .nav-item-dropdown-2 > a,
+.dropdown-content-2 > a {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: background-color 0.2s, opacity 0s 1s, transform 0s 1s;
+}
+
+.nav-item-dropdown:hover > .dropdown-content > a,
+.nav-item-dropdown:hover > .dropdown-content > .nav-item-dropdown-2 > a,
+.nav-item-dropdown-2:hover > .dropdown-content-2 > a {
+    opacity: 1;
+    transform: translateY(0);
+    transition: background-color 0.2s, opacity 0.4s ease, transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.nav-item-dropdown-2 {
+    position: relative;
+    width: 100%;
+}
+
+.dropdown-content-2 {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background-color: #050a15d4;
+    min-width: 250px;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 101;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    transition-property: transform, opacity, visibility;
+    transition-duration: 0s, 0s, 0s;
+    transition-delay: 1s, 1s, 1s;
+    transform: translateX(0);
+}
+
+.nav-item-dropdown-2:hover .dropdown-content-2 {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+    transition-duration: 0s, 0s, 0s;
+    transition-delay: 0s, 0s, 0s;
+}
+
+.dropdown-content:hover .nav-item-dropdown-2:not(:hover) .dropdown-content-2 {
+    opacity: 0;
+    visibility: hidden;
+    transition: none;
+}
+
+.dropdown-content:hover .nav-item-dropdown-2:not(:hover) .dropdown-content-2 > a {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: none;
 }
 
 .menu-nav-2.lapor {

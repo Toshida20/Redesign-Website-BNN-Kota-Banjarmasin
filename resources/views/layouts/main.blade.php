@@ -31,7 +31,6 @@
             <a href="https://bnn.go.id/" class="nav-link text-white menu-nav"><span>BNN Pusat</span></a>
             <a href="#" class="nav-link text-white menu-nav"><span>Informasi Publik (PPID)</span></a>
             <a href="#" class="nav-link text-white menu-nav"><span>Peraturan (JDIH)</span></a>
-            <a href="#" class="nav-link text-white menu-nav"><span>Layanan Rehabilitasi (SIRENAP)</span></a>
             <a href="#" class="nav-link text-white menu-nav"><span>Perpustakaan Digital</span></a>
             <a href="#" class="nav-link text-white menu-nav"><span>Government Public Relations (GPR)</span></a>
             <a href="#" class="nav-link text-white menu-nav"><span>Toko Stop Narkoba</span></a>
@@ -48,12 +47,12 @@
             </a>
 
             <div class="nav-item-dropdown">
-                <a href="#" class="menu-nav-2 {{ request()->is('organisasi') || request()->is('informasi-profil') || request()->is('kepala-bnnp-k-dari-masa-ke-masa') ? 'active' : '' }}">
+                <a href="{{ url('/informasi-profil') }}" class="menu-nav-2 {{ request()->is('organisasi') || request()->is('informasi-profil') || request()->is('kepala-bnnp-k-dari-masa-ke-masa') ? 'active' : '' }}">
                     <span>ORGANISASI</span>
                 </a>
                 <div class="dropdown-content">
                     <a href="{{ url('/informasi-profil') }}">Informasi Profil</a>
-                    <a href="{{ url('/kepala-bnnp-k-dari-masa-ke-masa') }}">Kepala BNNK dari Masa Ke Masa</a>
+                    <a href="{{ url('/kepala-bnn-k-dari-masa-ke-masa') }}">Kepala BNNK dari Masa Ke Masa</a>
                 </div>
             </div>
 
@@ -83,17 +82,43 @@
                 <span>KONTAK</span>
             </a>
 
-            <a href="https://boss.bnn.go.id/" class="menu-nav-2 {{ request()->is('layanan') ? 'active' : '' }}">
-                <span>LAYANAN</span>
-            </a>
+            <div class="nav-item-dropdown">
+                <a href="#" class="menu-nav-2 {{ request()->is('layanan') ? 'active' : '' }}">
+                    <span>LAYANAN</span>
+                </a>
+                <div class="dropdown-content">
+                    <a href="https://boss.bnn.go.id/">BNN One Stop Service (BOSS)</a>
+                    <a href="https://rehabilitasi.bnn.go.id/">Layanan Rehabilitasi (SIRENAP)</a>
+                </div>
+            </div>
 
             <a href="#" class="menu-nav-2 {{ request()->is('ppid') ? 'active' : '' }}">
                 <span>PPID</span>
             </a>
 
-            <a href="#" class="menu-nav-2 lapor {{ request()->is('lapor') ? 'active' : '' }}">
-                <span>LAPOR</span>
-            </a>
+            <div class="nav-item-dropdown">
+                <a href="#" class="menu-nav-2 lapor {{ request()->is('lapor') ? 'active' : '' }}">
+                    <span>LAPOR</span>
+                </a>
+                <div class="dropdown-content">
+                    <a href="#">Aspirasi Masyarakat</a>
+                    <a href="#">Permintaan Informasi</a>
+                    <div class="nav-item-dropdown-2">
+                        <a href="#" style="display: flex; justify-content: space-between; align-items: center;">
+                            <span>Pengaduan BNN</span>
+                            <img id="icon-dropdown" src="{{ asset('images/right-arrow-white.png') }}" width="10" height="10">
+                        </a>
+                        <div class="dropdown-content-2">
+                            <a href="#">Penyalahgunaan Narkoba</a>
+                            <a href="#">Whistleblowing Dan Pengaduan Pelayanan Publik</a>
+                            <a href="#">Pelaporan Gratifikasi</a>
+                        </div>
+                    </div>
+                    <a href="#">LAPOR!</a>
+                    <a href="#">CSIRT/TTIS</a>
+                </div>
+            </div>
+
             </div>
         </div>
         

@@ -75,6 +75,7 @@
                     Protocol Standard and Security Compliance Reports
                 </p>
                 <div class="footer-logos">
+                    
                     <div class="logo-placeholder">LOGO</div>
                     <div class="logo-placeholder">LOGO</div>
                     <div class="logo-placeholder">LOGO</div>
