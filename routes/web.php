@@ -14,3 +14,27 @@ Route::get('/informasi-profil', function () {
 Route::get('/kepala-bnn-k-dari-masa-ke-masa', function () {
     return view('kepala-bnnk');
 });
+
+Route::get('/berita-utama', function () {
+    return view('berita-utama');
+});
+
+Route::get('/berita-kegiatan', function () {
+    return view('berita-kegiatan');
+});
+
+Route::get('/foto', function () {
+    return view('foto');
+});
+
+Route::get('/video', function () {
+    return view('video');
+});
+
+Route::get('/artikel', function () {
+    return view('artikel');
+});
+
+Route::get('/siaran-pers', function () {
+    return view('siaran-pers');
+});

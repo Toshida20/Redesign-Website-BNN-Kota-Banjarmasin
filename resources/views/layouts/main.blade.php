@@ -61,10 +61,10 @@
                     <span>BERITA</span>
                 </a>
                 <div class="dropdown-content">
-                    <a href="#">Berita Utama</a>
-                    <a href="#">Berita Kegiatan</a>
-                    <a href="#">Foto</a>
-                    <a href="#">Video</a>
+                    <a href="{{ url('/berita-utama') }}">Berita Utama</a>
+                    <a href="{{ url('/berita-kegiatan') }}">Berita Kegiatan</a>
+                    <a href="{{ url('/foto') }}">Foto</a>
+                    <a href="{{ url('/video') }}">Video</a>
                 </div>
             </div>
 
@@ -73,8 +73,8 @@
                     <span>PUBLIKASI</span>
                 </a>
                 <div class="dropdown-content">
-                    <a href="#">Artikel</a>
-                    <a href="#">Siaran Pers</a>
+                    <a href="{{ url('/artikel') }}">Artikel</a>
+                    <a href="{{ url('/siaran-pers') }}">Siaran Pers</a>
                 </div>
             </div>
 
