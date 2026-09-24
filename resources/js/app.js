@@ -1,6 +1,25 @@
 import './bootstrap';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
+// Slider Menu Nav Informasi Profil
+window.switchMenu = function(menuIndex) {
+    const container = document.getElementById('menuSliderContainer');
+    const dot1 = document.getElementById('dot-1');
+    const dot2 = document.getElementById('dot-2');
+    
+    if (!container || !dot1 || !dot2) return;
+
+    if (menuIndex === 1) {
+        container.style.transform = 'translateX(0%)';
+        dot1.classList.add('active');
+        dot2.classList.remove('active');
+    } else if (menuIndex === 2) {
+        container.style.transform = 'translateX(-50%)';
+        dot1.classList.remove('active');
+        dot2.classList.add('active');
+    }
+}
+
 // Slider Kegiatan Kami
 document.addEventListener('DOMContentLoaded', function() {
     const kegiatanSection = document.querySelector('.kegiatan-kami');

@@ -38,3 +38,7 @@ Route::get('/artikel', function () {
 Route::get('/siaran-pers', function () {
     return view('siaran-pers');
 });
+
+Route::get('/visi-dan-misi', function () {
+    return view('visi-dan-misi');
+});
