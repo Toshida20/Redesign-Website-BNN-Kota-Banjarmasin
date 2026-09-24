@@ -157,7 +157,7 @@ body {
     transition: none;
 }
 
-.navigation-tab:hover .nav-item-dropdown:not(:hover) .menu-nav-2 span::after {
+.navigation-tab:hover .nav-item-dropdown:not(:hover) .menu-nav-2:not(.active) span::after {
     width: 0;
     transition: none;
 }
@@ -181,17 +181,15 @@ body {
 .dropdown-content > a,
 .dropdown-content > .nav-item-dropdown-2 > a,
 .dropdown-content-2 > a {
-    opacity: 0;
-    transform: translateY(10px);
-    transition: background-color 0.2s, opacity 0s 1s, transform 0s 1s;
+    opacity: 1;
+    transform: translateY(0);
+    transition: background-color 0.2s;
 }
 
 .nav-item-dropdown:hover > .dropdown-content > a,
 .nav-item-dropdown:hover > .dropdown-content > .nav-item-dropdown-2 > a,
 .nav-item-dropdown-2:hover > .dropdown-content-2 > a {
-    opacity: 1;
-    transform: translateY(0);
-    transition: background-color 0.2s, opacity 0.4s ease, transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    animation: menuTextSlideIn 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
 .nav-item-dropdown-2 {
@@ -1165,32 +1163,6 @@ body {
     }
 }
 
-.media-social {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-top: 20px;
-}
-
-.media-social a {
-    width: 38px;
-    height: 38px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    color: #174b83;
-    background: #ffffff;
-    text-decoration: none;
-    font-size: 16px;
-}
-
-.media-social a:hover {
-    transform: translateY(-4px);
-    background: #174b83;
-    color: #ffffff;
-}
-
 .dashboard-footer {
     position: relative;
     width: 100%;
@@ -1461,14 +1433,18 @@ body {
     display: flex;
     align-items: center; 
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: 35px;
+    height: 35px;
     background-color: #0d6efd;
     color: white;
     border-radius: 4px;
     text-decoration: none; 
     font-size: 16px;
     transition: background-color 0.3s;
+}
+
+.media-social a:hover {
+    transform: translateY(-4px);
 }
 
 .media-social a.twitter {
@@ -1597,3 +1573,9 @@ body {
 }
 
 .main-menu-1 .btn-menu { text-decoration: none; display: inline-block; }
+@keyframes menuTextSlideIn {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+

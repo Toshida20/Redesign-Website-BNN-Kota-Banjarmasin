@@ -42,3 +42,11 @@ Route::get('/siaran-pers', function () {
 Route::get('/visi-dan-misi', function () {
     return view('visi-dan-misi');
 });
+
+Route::get('/tugas-dan-fungsi', function () {
+    return view('tugas-dan-fungsi');
+});
+
+Route::get('/struktur', function () {
+    return view('struktur');
+});

@@ -47,7 +47,7 @@
             </a>
 
             <div class="nav-item-dropdown">
-                <a href="{{ url('/informasi-profil') }}" class="menu-nav-2 {{ request()->is('organisasi') || request()->is('informasi-profil') || request()->is('kepala-bnnp-k-dari-masa-ke-masa') ? 'active' : '' }}">
+                <a href="{{ url('/informasi-profil') }}" class="menu-nav-2 {{ request()->is('organisasi', 'informasi-profil', 'visi-dan-misi', 'tugas-dan-fungsi', 'struktur', 'alamat-kantor', 'alamat-kantor-bnnp-bnnk', 'lhkpn', 'kepala-bnn-k-dari-masa-ke-masa') ? 'active' : '' }}">
                     <span>ORGANISASI</span>
                 </a>
                 <div class="dropdown-content">
