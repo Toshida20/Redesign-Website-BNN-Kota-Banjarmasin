@@ -248,3 +248,135 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+//effect paralax background struktur
+document.addEventListener('DOMContentLoaded', function() {
+    const bgImage = document.getElementById('bgImage');
+    const kegiatanSection = document.getElementById('kegiatanSection');
+    
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        const offsetTop = kegiatanSection.offsetTop;
+        const sectionHeight = kegiatanSection.offsetHeight;
+        
+        if (scrolled + window.innerHeight > offsetTop && scrolled < offsetTop + sectionHeight) {
+            const yPos = (scrolled - offsetTop) * 0.4;
+            bgImage.style.transform = `scale(1.05) translateY(${yPos}px)`;
+        }
+    });
+});
+
+// Effect Transisi Perpindahan Menu/Page
+document.addEventListener('DOMContentLoaded', function () {
+    const transitionContainer = document.querySelector('.page-transition');
+    if (!transitionContainer) return;
+    
+    if (transitionContainer.classList.contains('initial-cover')) {
+        function revealPage() {
+            transitionContainer.classList.remove('initial-cover');
+            transitionContainer.classList.add('active-out');
+
+            setTimeout(() => {
+                transitionContainer.classList.remove('active-out');
+                const layers = transitionContainer.querySelectorAll('.transition-layer');
+                layers.forEach(layer => {
+                    layer.style.transition = 'none';
+                    layer.style.transform = 'translateX(-100%)';
+                });
+                
+                void transitionContainer.offsetWidth; // Kembalikan transition
+
+                layers.forEach(layer => {
+                    layer.style.transition = '';
+                });
+            }, 1200);
+        }
+
+        // TUNGGU GAMBAR SELESAI LOAD
+        const images = document.querySelectorAll('img');
+        let imagesLoaded = 0;
+        const totalImages = images.length;
+        if (totalImages === 0) {
+            revealPage();
+        } else {
+            let isRevealed = false;
+
+            // Fallback maksimum 2.5 detik
+            const fallbackTimer = setTimeout(() => {
+                if (!isRevealed) {
+                    isRevealed = true;
+                    revealPage();
+                }
+            }, 2500);
+
+            function imageLoaded() {
+                imagesLoaded++;
+                if (imagesLoaded >= totalImages && !isRevealed) {
+                    isRevealed = true;
+                    clearTimeout(fallbackTimer);
+                    // Delay sedikit supaya lebih smooth
+                    setTimeout(revealPage, 100);
+                }
+            }
+
+            images.forEach(img => {
+                if (img.complete) {
+                    imageLoaded();
+                } else {
+                    img.addEventListener('load', imageLoaded);
+                    img.addEventListener('error', imageLoaded);
+                }
+            });
+        }
+    }
+
+    // 2. MENU / LINK CLICK
+    const currentHost = window.location.host;
+    document.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function (e) {
+            if (
+                this.hostname === currentHost &&
+                this.target !== '_blank' &&
+                !this.hasAttribute('download') &&
+                !this.getAttribute('href')?.startsWith('#') &&
+                this.href !== window.location.href
+            ) {
+                e.preventDefault();
+                const targetUrl = this.href;
+
+                // RESET TRANSITION
+                transitionContainer.classList.remove(
+                    'active-out',
+                    'initial-cover'
+                );
+                const layers = transitionContainer.querySelectorAll(
+                    '.transition-layer'
+                );
+                layers.forEach(layer => {
+                    layer.style.transition = 'none';
+                    layer.style.transform = 'translateX(-100%)';
+                });
+
+                // Force browser melakukan reflow
+                void transitionContainer.offsetWidth;
+
+                layers.forEach(layer => {
+                    layer.style.transition = '';
+                    layer.style.transform = ''; // PENTING AGAR CSS BERJALAN
+                });
+
+                // ACTIVE IN
+                transitionContainer.classList.add(
+                    'active-in'
+                );
+
+                setTimeout(() => {
+                    /* Pada titik ini layar sudah FULL ABU-ABU */
+                    setTimeout(() => {
+                        window.location.href = targetUrl;
+                    }, 200);
+                }, 1000);
+            }
+        });
+    });
+});

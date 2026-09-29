@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -9,6 +9,13 @@
 </head>
 
 <body>
+
+<div class="page-transition initial-cover">
+    <div class="transition-layer layer-1"></div>
+    <div class="transition-layer layer-2"></div>
+    <div class="transition-layer layer-3"></div>
+</div>
+
 <div class="navigation-tab">
 <nav class="navbar navbar-dark" style="background-color: #174b83;">
     <div class="container-fluid">
@@ -154,3 +161,4 @@
 
 </body>
 </html>
+

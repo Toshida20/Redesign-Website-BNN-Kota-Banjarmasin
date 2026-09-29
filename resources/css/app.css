@@ -1578,4 +1578,283 @@ body {
     100% { opacity: 1; transform: translateY(0); }
 }
 
+.page-transition {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+}
 
+.transition-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    transform: translateX(-100%);
+
+    transition:
+        transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+
+    will-change: transform;
+}
+
+.layer-1 {
+    background-color: #d1d5db;
+    z-index: 303;
+}
+
+.layer-2 {
+    background-color: #9ca3af;
+    z-index: 302;
+}
+
+.layer-3 {
+    background-color: #4b5563;
+    z-index: 301;
+}
+
+.page-transition.active-in .layer-3 {
+    transform: translateX(0);
+    transition-delay: 0s;
+}
+
+.page-transition.active-in .layer-2 {
+    transform: translateX(0);
+    transition-delay: 0.10s;
+}
+
+.page-transition.active-in .layer-1 {
+    transform: translateX(0);
+    transition-delay: 0.20s;
+}
+
+.page-transition.initial-cover .transition-layer {
+    transform: translateX(0);
+    transition: none;
+}
+
+.page-transition.active-out .layer-1 {
+    transform: translateX(100%);
+    transition:
+        transform 0.7s cubic-bezier(0.77, 0, 0.175, 1) 0s;
+}
+
+.page-transition.active-out .layer-2 {
+    transform: translateX(100%);
+    transition:
+        transform 0.7s cubic-bezier(0.77, 0, 0.175, 1) 0.10s;
+}
+
+.page-transition.active-out .layer-3 {
+    transform: translateX(100%);
+    transition:
+        transform 0.7s cubic-bezier(0.77, 0, 0.175, 1) 0.20s;
+}
+
+.bnn-org-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    height: 900px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    z-index: 2;
+}
+
+.oc-person-card {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    min-height: 110px;
+    background: #fff;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    position: relative;
+    z-index: 5;
+}
+
+.oc-person-photo {
+    position: absolute;
+    left: -70px;
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 140px;
+    height: 170px;
+    box-shadow: -4px 0 8px rgba(0,0,0,0.15);
+}
+
+.oc-person-photo img {
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    object-fit: cover;
+    object-position: center 5%;
+    display: block;
+}
+
+.oc-person-info {
+    flex-grow: 1;
+    display: flex;
+    margin-left: 70px;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+}
+
+.oc-person-title {
+    background-color: #1a4b8b;
+    color: white;
+    font-weight: 700;
+    text-align: center;
+    padding: 10px 5px;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.oc-person-desc {
+    background-color: #dbe3ed;
+    color: black;
+    text-align: center;
+    padding: 10px 5px;
+    font-size: 11px;
+    font-weight: 700;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.oc-person-desc p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+.oc-simple-card {
+    background-color: #dbe3ed;
+    color: black;
+    font-weight: 700;
+    text-align: center;
+    padding: 12px;
+    width: 280px;
+    height: 44px;
+    font-size: 14px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    position: relative;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.oc-fungsional-card {
+    width: 280px;
+    height: 130px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    background-color: #dbe3ed;
+}
+
+.oc-fungsional-title {
+    background-color: #1a4b8b;
+    color: white;
+    font-weight: 700;
+    text-align: center;
+    padding: 8px 5px;
+    font-size: 13px;
+}
+
+.oc-fungsional-desc {
+    padding: 12px 15px;
+    font-size: 10px;
+    font-weight: 700;
+    text-align: left;
+    color: black;
+    flex-grow: 1;
+}
+
+.oc-fungsional-desc p {
+    margin: 0 0 5px 0;
+    line-height: 1.3;
+}
+.oc-fungsional-desc p:last-child {
+    margin-bottom: 0;
+}
+
+.oc-line {
+    background-color: #222;
+    position: absolute;
+    z-index: -1;
+}
+
+.oc-line-v { width: 3px; transform: translateX(-1px); }
+.oc-line-h { height: 3px; transform: translateY(-1px); }
+
+.oc-arrow-down {
+    width: 0; height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 7px solid #222;
+    position: absolute;
+    transform: translateX(-50%);
+    z-index: -1;
+}
+
+/*.oc-arrow-left {
+    width: 0; height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 7px solid #222;
+    position: absolute;
+    transform: translateY(-50%);
+    z-index: -1;
+}*/
+
+.oc-arrow-right {
+    width: 0; height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 7px solid #222;
+    position: absolute;
+    transform: translateY(-50%);
+    z-index: -1;
+}
+
+.background-struktur {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 40px;
+    height: 1300px;
+    padding-top: 60px;
+    border-radius: 0;
+}
+.background-struktur > img {
+    position: absolute;
+    top: 0;
+    left: -5px;
+    right: 5px;
+    width: 150%;
+    height: 100%;
+    z-index: 0;
+}
+.layer-background-struktur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 92, 196, 0.509);
+    backdrop-filter: blur(3px);
+    z-index: 1;
+}
