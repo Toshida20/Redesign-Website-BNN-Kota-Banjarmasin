@@ -380,3 +380,59 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+//logika clip-path timeline
+document.addEventListener('DOMContentLoaded', function() {
+        const timeline = document.getElementById('timeline-container');
+        const fillLine = document.getElementById('timeline-line-fill');
+        const items = document.querySelectorAll('.timeline-item');
+
+        function updateTimeline() {
+            if (!timeline) return;
+            const windowCenter = window.scrollY + (window.innerHeight / 2);
+            const timelineRect = timeline.getBoundingClientRect();
+
+            const timelineTop = timelineRect.top + window.scrollY;
+            const timelineHeight = timeline.offsetHeight;
+
+            let effectiveTipY = windowCenter - timelineTop;
+            
+            let lineTipY = effectiveTipY;
+            if (lineTipY < 80) lineTipY = 80;
+            if (lineTipY > timelineHeight) lineTipY = timelineHeight;
+
+            fillLine.style.height = (lineTipY - 80) + 'px';
+
+            items.forEach(item => {
+                const checkpoint = item.querySelector('.timeline-checkpoint');
+                const borderFill = item.querySelector('.checkpoint-border-fill');
+
+                const checkpointCenterY = item.offsetTop + checkpoint.offsetTop;
+                const radius = 35;
+                const checkpointTopY = checkpointCenterY - radius;
+                let percentage = 0;
+                if (effectiveTipY > checkpointTopY) {
+                    percentage = ((effectiveTipY - checkpointTopY) / (radius * 2)) * 100;
+                    if (percentage > 100) percentage = 100;
+                }
+
+                if (borderFill) {
+                    // Animasi border menggunakan clip-path
+                    // Saat percentage = 0, inset bawah adalah 100% (tersembunyi)
+                    // Saat percentage = 100, inset bawah adalah 0% (terlihat penuh)
+                    let bottomInset = 100 - percentage;
+                    borderFill.style.clipPath = `inset(0 0 ${bottomInset}% 0)`;
+                }
+
+                if (percentage >= 100) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateTimeline);
+        window.addEventListener('resize', updateTimeline);
+        updateTimeline();
+    });

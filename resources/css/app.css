@@ -1858,3 +1858,193 @@ body {
     backdrop-filter: blur(3px);
     z-index: 1;
 }
+
+.timeline-container {
+        position: relative;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    .timeline-line-bg {
+        position: absolute;
+        top: 80px;
+        bottom: 80px;
+        left: 50%;
+        height: 3103px;
+        width: 8px;
+        background-color: #d3d3d3;
+        transform: translateX(-50%);
+        z-index: 1;
+    }
+
+    .timeline-line-fill {
+        position: absolute;
+        top: 80px;
+        left: 50%;
+        width: 8px;
+        background-color: #1a5b9e;
+        transform: translateX(-50%);
+        z-index: 2;
+        height: 0%; 
+    }
+
+    .timeline-item {
+        position: relative;
+        width: 100%;
+        display: flex;
+        margin-bottom: 60px;
+        z-index: 3;
+    }
+
+    .timeline-item.left {
+        justify-content: flex-start;
+    }
+
+    .timeline-item.right {
+        justify-content: flex-end;
+    }
+
+    .timeline-half {
+        width: 50%;
+        position: relative;
+        display: flex;
+    }
+
+    .timeline-item.left .timeline-half {
+        justify-content: flex-end;
+        padding-right: 60px;
+    }
+
+    .timeline-item.right .timeline-half {
+        justify-content: flex-start;
+        padding-left: 60px;
+    }
+
+    .timeline-checkpoint {
+        position: absolute;
+        left: 50%;
+        top: 80px;
+        transform: translate(-50%, -50%);
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-color: white;
+        border: 8px solid #d3d3d3;
+        z-index: 3;
+    }
+
+    .checkpoint-border-fill {
+        position: absolute;
+        top: -8px;
+        left: -8px;
+        right: -8px;
+        bottom: -8px;
+        border-radius: 50%;
+        border: 8px solid #1a5b9e;
+        z-index: 4;
+        clip-path: inset(0 0 100% 0);
+    }
+
+    .timeline-card {
+        position: relative;
+        width: 250px;
+        background: transparent;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        text-align: left;
+    }
+
+    .timeline-card-inner {
+        position: relative;
+        width: 100%;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        overflow: hidden;
+    }
+
+    .timeline-card-inner img {
+        width: 100%;
+        display: block;
+    }
+
+    .timeline-card .overlay-gradient {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 50%;
+        background: linear-gradient(to top, rgba(10, 40, 80, 0.95), transparent);
+    }
+
+    .timeline-card h3 {
+        position: absolute;
+        bottom: 15px;
+        left: 15px;
+        right: 15px;
+        color: white;
+        font-size: 14px;
+        margin: 0;
+        z-index: 1;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .timeline-arrow {
+        position: absolute;
+        top: 65px;
+        width: 0;
+        height: 0;
+        border-top: 15px solid transparent;
+        border-bottom: 15px solid transparent;
+        z-index: 0;
+        transition: border-color 0.3s;
+    }
+
+    .timeline-item.left .timeline-arrow {
+        right: -25px;
+        border-left: 25px solid #e2e2e2;
+    }
+
+    .timeline-item.left.active .timeline-arrow {
+        border-left-color: #1a5b9e;
+    }
+
+    .timeline-item.right .timeline-arrow {
+        left: -25px;
+        border-right: 25px solid #e2e2e2;
+    }
+
+    .timeline-item.right.active .timeline-arrow {
+        border-right-color: #1a5b9e;
+    }
+    
+    @media (max-width: 768px) {
+        .timeline-line-bg, .timeline-line-fill, .timeline-checkpoint {
+            left: 40px;
+        }
+        .timeline-item.left, .timeline-item.right {
+            justify-content: flex-start;
+        }
+        .timeline-half {
+            width: 100%;
+        }
+        .timeline-item.left .timeline-half,
+        .timeline-item.right .timeline-half {
+            padding-left: 90px;
+            padding-right: 20px;
+            justify-content: flex-start;
+        }
+        .timeline-item.left .timeline-arrow,
+        .timeline-item.right .timeline-arrow {
+            left: 65px;
+            right: auto;
+            border-left: none;
+            border-right: 25px solid #e2e2e2;
+        }
+        .timeline-item.left.active .timeline-arrow,
+        .timeline-item.right.active .timeline-arrow {
+            border-right-color: #1a5b9e;
+            border-left-color: transparent;
+        }
+    }
