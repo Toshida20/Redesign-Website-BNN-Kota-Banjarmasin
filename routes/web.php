@@ -50,3 +50,7 @@ Route::get('/tugas-dan-fungsi', function () {
 Route::get('/struktur', function () {
     return view('struktur');
 });
+
+Route::get('/alamat-kantor', function () {
+    return view('alamat-kantor');
+});

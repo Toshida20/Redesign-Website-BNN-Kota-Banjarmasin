@@ -1,4 +1,4 @@
-﻿@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap/dist/css/bootstrap.min.css';
 
 body {
     font-family: Arial, sans-serif;
@@ -1861,9 +1861,10 @@ body {
 
 .timeline-container {
         position: relative;
-        max-width: 900px;
+        max-width: 1000px;
+        padding:  0px 0px 65px 0px;
         margin: 0 auto;
-        padding: 0;
+
     }
 
     .timeline-line-bg {
@@ -1871,7 +1872,6 @@ body {
         top: 80px;
         bottom: 80px;
         left: 50%;
-        height: 3103px;
         width: 8px;
         background-color: #d3d3d3;
         transform: translateX(-50%);
@@ -1913,12 +1913,12 @@ body {
 
     .timeline-item.left .timeline-half {
         justify-content: flex-end;
-        padding-right: 60px;
+        padding-right: 110px;
     }
 
     .timeline-item.right .timeline-half {
         justify-content: flex-start;
-        padding-left: 60px;
+        padding-left: 110px;
     }
 
     .timeline-checkpoint {
@@ -1926,8 +1926,8 @@ body {
         left: 50%;
         top: 80px;
         transform: translate(-50%, -50%);
-        width: 70px;
-        height: 70px;
+        width: 110px;
+        height: 110px;
         border-radius: 50%;
         background-color: white;
         border: 8px solid #d3d3d3;
@@ -1954,11 +1954,13 @@ body {
         padding: 0;
         cursor: pointer;
         text-align: left;
+        overflow: visible; /* wajib agar arrow bisa keluar dari batas button */
     }
 
     .timeline-card-inner {
         position: relative;
         width: 100%;
+        top: 45px;
         box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         overflow: hidden;
     }
@@ -1992,31 +1994,30 @@ body {
 
     .timeline-arrow {
         position: absolute;
-        top: 65px;
-        width: 0;
-        height: 0;
-        border-top: 15px solid transparent;
-        border-bottom: 15px solid transparent;
-        z-index: 0;
-        transition: border-color 0.3s;
+        top: 45px;
+        width: 30px;
+        height: 70px;
+        background-color: #e2e2e2;
+        transition: background-color 0.3s;
+        z-index: 5;
     }
 
     .timeline-item.left .timeline-arrow {
-        right: -25px;
-        border-left: 25px solid #e2e2e2;
+        right: -30px;
+        clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
     }
 
     .timeline-item.left.active .timeline-arrow {
-        border-left-color: #1a5b9e;
+        background-color: #1a5b9e;
     }
 
     .timeline-item.right .timeline-arrow {
-        left: -25px;
-        border-right: 25px solid #e2e2e2;
+        left: -30px;
+        clip-path: polygon(100% 0%, 0% 50%, 100% 100%);
     }
 
     .timeline-item.right.active .timeline-arrow {
-        border-right-color: #1a5b9e;
+        background-color: #1a5b9e;
     }
     
     @media (max-width: 768px) {
@@ -2048,3 +2049,161 @@ body {
             border-left-color: transparent;
         }
     }
+
+.modal-kepala-dialog {
+    max-width: 840px;
+    width: 95%;
+}
+
+.modal-kepala-content {
+    position: relative;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    overflow: visible;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+}
+/*
+.modal-kepala-triangle {
+    position: absolute;
+    top: -24px;
+    left: 32px;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 28px solid transparent;
+    border-right: 28px solid transparent;
+    border-bottom: 24px solid #ffffff;
+    z-index: 10;
+    filter: drop-shadow(0 -3px 3px rgba(0,0,0,0.1));
+}*/
+
+.modal-kepala-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 100;
+    background: transparent;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    line-height: 0;
+    pointer-events: auto;
+}
+
+.modal-kepala-close img {
+    width: 28px;
+    height: 28px;
+    pointer-events: none;
+}
+
+.modal-kepala-body {
+    padding: 28px 28px 48px 28px;
+    width: 100%;
+    max-width: 780px;
+    box-sizing: border-box;
+}
+
+.modal-kepala-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a3a6b;
+    margin-bottom: 24px;
+    letter-spacing: 0.3px;
+}
+
+.modal-kepala-row {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.modal-kepala-foto-wrapper {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 160px;
+    height: 200px;
+    overflow: hidden;
+    border: 3px solid #1a5b9e;
+    border-radius: 4px;
+}
+
+/* ===================================================
+     * ATUR POSISI FOTO DI SINI agar foto tidak terpotong
+     * Nilai: top | center | bottom | left | right
+     * Contoh kombinasi:
+     *   object-position: center top;    → fokus ke atas
+     *   object-position: center center; → tengah (default)
+     *   object-position: center bottom; → fokus ke bawah
+     *   object-position: 50% 20%;       → custom (x% y%)
+     * =================================================== */
+     
+.modal-kepala-foto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+}
+
+.modal-kepala-info {
+    flex: 1;
+    background-color: #dde4ef;
+    border-radius: 8px;
+    align-self: stretch;
+    padding: 14px 18px;
+}
+
+.modal-kepala-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 12px;
+}
+
+.modal-kepala-label {
+    color: #1a3a6b;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    vertical-align: top;
+    padding-right: 8px;
+    width: 195px;
+}
+
+.modal-kepala-colon {
+    color: #1a3a6b;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 0 10px;
+    vertical-align: middle;
+}
+
+.modal-kepala-value {
+    color: #1a5b9e;
+    font-size: 13px;
+    font-weight: 600;
+    vertical-align: top;
+}
+
+/* =============================================
+   MAP KANTOR — Leaflet
+   Lebar mengikuti .hero-line-long (width: 100%)
+   ============================================= */
+.map-kantor-wrapper {
+    position: relative;
+    z-index: 1;
+    width: 100%;          /* sama persis dengan .hero-line-long */
+    margin: 0 auto 32px auto;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+    border: 1px solid #cbd5e1;
+}
+
+#map-kantor {
+    width: 100%;
+    height: 420px;
+}

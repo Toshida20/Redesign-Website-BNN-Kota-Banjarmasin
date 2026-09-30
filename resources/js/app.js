@@ -395,13 +395,20 @@ document.addEventListener('DOMContentLoaded', function() {
             const timelineTop = timelineRect.top + window.scrollY;
             const timelineHeight = timeline.offsetHeight;
 
-            let effectiveTipY = windowCenter - timelineTop;
-            
-            let lineTipY = effectiveTipY;
-            if (lineTipY < 80) lineTipY = 80;
-            if (lineTipY > timelineHeight) lineTipY = timelineHeight;
+            const lineStart = 80;
+            const lineEnd = timelineHeight - 80;
+            const maxFillHeight = lineEnd - lineStart;
 
-            fillLine.style.height = (lineTipY - 80) + 'px';
+            let effectiveTipY = windowCenter - timelineTop;
+
+            const isNearBottom = (window.scrollY + window.innerHeight) >= (document.body.scrollHeight - 50);
+            if (isNearBottom) effectiveTipY = timelineHeight;
+
+            let lineTipY = effectiveTipY;
+            if (lineTipY < lineStart) lineTipY = lineStart;
+            if (lineTipY > lineEnd)   lineTipY = lineEnd;
+
+            fillLine.style.height = (lineTipY - lineStart) + 'px';
 
             items.forEach(item => {
                 const checkpoint = item.querySelector('.timeline-checkpoint');
@@ -436,3 +443,83 @@ document.addEventListener('DOMContentLoaded', function() {
         window.addEventListener('resize', updateTimeline);
         updateTimeline();
     });
+
+    //modal foto kepala bnn
+document.addEventListener('DOMContentLoaded', function () {
+    const modalKepalaEl = document.getElementById('modalKepala');
+    if (!modalKepalaEl) return;
+
+    // Isi data ketika modal dibuka
+    modalKepalaEl.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget;
+
+        const nama               = button.getAttribute('data-nama');
+        const foto               = button.getAttribute('data-foto');
+        const tempatTanggalLahir = button.getAttribute('data-tempat-tanggal-lahir');
+        const agama              = button.getAttribute('data-agama');
+        const pendidikan         = button.getAttribute('data-pendidikan');
+        const mulaiMenjabat      = button.getAttribute('data-mulai-menjabat');
+
+        document.getElementById('modal-nama').textContent                = nama;
+        document.getElementById('modal-foto').src                        = foto;
+        document.getElementById('modal-tempat-tanggal-lahir').textContent = tempatTanggalLahir;
+        document.getElementById('modal-agama').textContent               = agama;
+        document.getElementById('modal-pendidikan').textContent          = pendidikan;
+        document.getElementById('modal-mulai-menjabat').textContent      = mulaiMenjabat;
+    });
+
+    // Tombol close tutup modal via Bootstrap API
+    const closeBtn = modalKepalaEl.querySelector('.modal-kepala-close');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function () {
+            const modalInstance = bootstrap.Modal.getInstance(modalKepalaEl)
+                || new bootstrap.Modal(modalKepalaEl);
+            modalInstance.hide();
+        });
+    }
+});
+
+// Map via leaflet API
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+    iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
+    iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+    shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+});
+
+function initMap() {
+    const mapContainer = document.getElementById('map-kantor');
+    if (!mapContainer) return;
+    if (mapContainer._leaflet_id) return;
+
+    const lat = -3.3073021203374093;
+    const lng = 114.6145565186026;
+    const zoomLevel = 17;
+
+    const map = L.map('map-kantor').setView([lat, lng], zoomLevel);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 19
+    }).addTo(map);
+
+    const marker = L.marker([lat, lng]).addTo(map);
+    marker.bindPopup(
+        '<strong>BNN Kota Banjarmasin</strong><br>' +
+        'Jl. Pangeran Hidayatullah, Benua Anyar,<br>' +
+        'Kec. Banjarmasin Tim., Kota Banjarmasin'
+    ).openPopup();
+    
+    setTimeout(() => {
+        map.invalidateSize();
+    }, 500);
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMap);
+} else {
+    initMap();
+}
