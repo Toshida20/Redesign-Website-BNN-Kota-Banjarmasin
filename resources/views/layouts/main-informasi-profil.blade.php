@@ -1,4 +1,4 @@
-﻿<head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'BNN')</title>
@@ -33,8 +33,12 @@
 
 <div class="hero-line-long"></div>
 
+@php
+    $isMenu2 = request()->is('alamat-kantor', 'alamat-kantor-bnnp-bnnk', 'lhkpn');
+@endphp
+
 <div class="menu-slider-wrapper">
-    <div class="menu-slider-container" id="menuSliderContainer">
+    <div class="menu-slider-container" id="menuSliderContainer" style="transform: translateX({{ $isMenu2 ? '-50%' : '0%' }});">
         
         <div class="menu-slide">
             <div class="main-menu-1">
@@ -57,6 +61,6 @@
 </div>
 
 <div class="indicator-menu-1">
-    <div class="dot active" id="dot-1" onclick="switchMenu(1)"></div>
-    <div class="dot" id="dot-2" onclick="switchMenu(2)"></div>
+    <div class="dot {{ !$isMenu2 ? 'active' : '' }}" id="dot-1" onclick="switchMenu(1)"></div>
+    <div class="dot {{ $isMenu2 ? 'active' : '' }}" id="dot-2" onclick="switchMenu(2)"></div>
 </div>
