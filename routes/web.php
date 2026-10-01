@@ -54,3 +54,15 @@ Route::get('/struktur', function () {
 Route::get('/alamat-kantor', function () {
     return view('alamat-kantor');
 });
+
+Route::get('/alamat-kantor-bnnp-bnnk', function () {
+    return view('alamat-kantor-bnnp-bnnk');
+});
+
+Route::get('/lhkpn', function () {
+    return view('lhkpn');
+});
+
+Route::get('/lhkpn-report', function () {
+    return view('lhkpn-report');
+});

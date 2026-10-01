@@ -1,4 +1,4 @@
-@import 'bootstrap/dist/css/bootstrap.min.css';
+﻿@import 'bootstrap/dist/css/bootstrap.min.css';
 
 body {
     font-family: Arial, sans-serif;
@@ -2188,14 +2188,10 @@ body {
     vertical-align: top;
 }
 
-/* =============================================
-   MAP KANTOR — Leaflet
-   Lebar mengikuti .hero-line-long (width: 100%)
-   ============================================= */
 .map-kantor-wrapper {
     position: relative;
     z-index: 1;
-    width: 100%;          /* sama persis dengan .hero-line-long */
+    width: 100%;
     margin: 0 auto 32px auto;
     border-radius: 6px;
     overflow: hidden;
@@ -2207,3 +2203,68 @@ body {
     width: 100%;
     height: 420px;
 }
+
+.custom-lhkpn-table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: #fcfcfc;
+        }
+        .custom-lhkpn-table th, .custom-lhkpn-table td {
+            border: 1px solid #b7b7b7;
+            padding: 8px 12px;
+            vertical-align: middle;
+            color: #333;
+            font-size: 14px;
+        }
+        .custom-lhkpn-table thead th {
+            background-color: #174b83;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        .lkhpn-report-tagline {
+            font-size: 18px;
+            font-weight: 700;
+            color: #777;
+            margin-bottom: 15px;
+        }
+        .thumbnail-lhkpn-report {
+            display: block;
+            position: relative;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: white;
+            height: 150px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .thumbnail-lhkpn-report img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .thumbnail-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(23, 75, 131, 0.95) 0%, rgba(23, 75, 131, 0.7) 50%, transparent 100%);
+            padding: 15px;
+            padding-top: 30px;
+        }
+        .thumbnail-overlay h4 {
+            font-size: 11px;
+            font-weight: 600;
+            margin: 0 0 5px 0;
+            line-height: 1.4;
+            color: #fff;
+        }
+        .thumbnail-overlay p {
+            font-size: 9px;
+            margin: 0;
+            color: #e2e8f0;
+        }
+        .thumbnail-lhkpn-report:hover .thumbnail-overlay h4 {
+            text-decoration: underline;
+        }
