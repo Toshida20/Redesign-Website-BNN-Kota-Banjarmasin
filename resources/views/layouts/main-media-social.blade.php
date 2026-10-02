@@ -26,7 +26,7 @@
     </div>
     
     <div class="logo-company">
-        <img src="{{ asset('images/logo-bnn.png') }}" alt="Logo BNN">
+        <img src="{{ asset('images/assets/public/logo/logo-bnn.png') }}" alt="Logo BNN">
         <h1 class="title-company">Badan Narkotika Nasional</h1>
     </div>
 </div>

@@ -523,3 +523,27 @@ if (document.readyState === 'loading') {
 } else {
     initMap();
 }
+
+//logika toggle mata hide password
+const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+        const icon = togglePassword.querySelector('i');
+
+        togglePassword.addEventListener('click', function () {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            
+            if(type === 'password') {
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            } else {
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            }
+        });
+
+document.querySelectorAll('.input-wrap.input-error input').forEach(function(input) {
+    input.addEventListener('focus', function() {
+        this.closest('.input-wrap').classList.remove('input-error');
+    });
+});

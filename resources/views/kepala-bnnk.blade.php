@@ -111,7 +111,7 @@
         <div class="modal-kepala-content">
             <!-- <div class="modal-kepala-triangle"></div> -->
             <button type="button" class="modal-kepala-close" data-bs-dismiss="modal" aria-label="Close">
-                <img src="{{ asset('images/close-black.png') }}" alt="Close">
+                <img src="{{ asset('images/assets/public/button/close-black.png') }}" alt="Close">
             </button>
             <div class="modal-kepala-body">
                 <h4 class="modal-kepala-title">Detail Biografi</h4>

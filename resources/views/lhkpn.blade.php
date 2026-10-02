@@ -84,6 +84,12 @@
                 'date'   => '18 Agustus 2026',
                 'link'   => url('/lhkpn-report')
             ],
+            [
+                'image' => 'bnn-featured-thumbnail.jpg',
+                'title'  => 'Jumlah, Jenis, dan gambaran umum pelanggaran yang dilaporkan oleh masyarakat serta laporan penindakannya',
+                'date'   => '18 Agustus 2026',
+                'link'   => url('/lhkpn-report')
+            ],
         ];
 
         $lhkpnPopulerList = [
@@ -107,6 +113,10 @@
             ],
         ];
     @endphp
+
+    <div class="content-sejarah mt-4 text-center">
+        <h2 class="fw-bold mb-4" style="color: #444;">Informasi Publik Tersedia Berkala</h2>
+    </div>
 
     <div class="row mt-4">
         <!-- Main Content: Table -->
@@ -133,6 +143,7 @@
                                     <a href="{{ $report['link'] }}" style="text-decoration: none; color: #174b83; font-weight: 500;">Lihat</a>
                                 </td>
                             </tr>
+                            
                             @endforeach
                         @endforeach
                     </tbody>
@@ -141,7 +152,7 @@
         </div>
         
         <!-- Sidebar: Terkini & Populer -->
-        <div class="col-lg-4 px-lg-4">
+        <div class="col-lg-4 px-lg-4" style="padding-right: 1.5rem !important; padding-left: 2.5rem !important; width: 380px;">
             <h4 class="lkhpn-report-tagline">Terkini</h4>
             @foreach($lhkpnTerkiniList as $terkini)
                 <a href="{{ $terkini['link'] }}" class="thumbnail-lhkpn-report">

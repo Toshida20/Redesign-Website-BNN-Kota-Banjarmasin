@@ -22,7 +22,7 @@
         <a class="navbar-brand" href="#">
             <img 
                 id="bnn-logo"
-                src="{{ asset('images/logo-bnn.png') }}" 
+                src="{{ asset('images/assets/public/logo/logo-bnn.png') }}" 
                 alt="Logo BNN"
                 width="30"
                 height="30"
@@ -113,7 +113,7 @@
                     <div class="nav-item-dropdown-2">
                         <a href="#" style="display: flex; justify-content: space-between; align-items: center;">
                             <span>Pengaduan BNN</span>
-                            <img id="icon-dropdown" src="{{ asset('images/right-arrow-white.png') }}" width="10" height="10">
+                            <img id="icon-dropdown" src="{{ asset('images/assets/public/button/right-arrow-white.png') }}" width="10" height="10">
                         </a>
                         <div class="dropdown-content-2">
                             <a href="#">Penyalahgunaan Narkoba</a>
@@ -130,25 +130,32 @@
         </div>
         
         <div class="login-user">
-                <a href="#" clsss="dropdown-toggle">
+            @guest
+                <a href="{{ url('/login') }}" class="login-button"> <img class="login-icon" src="{{ asset('images/assets/public/icon/icon-login-avatar.png') }}"></img>Masuk</a>
+            @endguest
+
+            @auth
+                {{-- Wadah profil yang ditampilkan saat user sudah login --}}
+                <a href="#" class="dropdown-toggle">
                 <div class="login-arrow">
                     <span>
-                        <img src="{{ asset('images/down-arrow.png') }}" alt="Arrow Down" width="15" height="15">
+                        <img src="{{ asset('images/assets/public/button/down-arrow.png') }}" alt="Arrow Down" width="15" height="15">
                     </span>
                 </div>
                 </a>
 
                 <div class="login-text">
                     <small>Login Sebagai</small>
-                    <strong>Tamu</strong>
+                    <strong>{{ Auth::user()->name ?? 'Tamu' }}</strong>
                 </div>
 
-                <a href="#" clsss="profile-link">
+                <a href="#" class="profile-link">
                 <div class="user-icon">
                     <i class="bi bi-person-circle"></i>
                 </div>
                 </a>
-            </div>
+            @endauth
+        </div>
         </div>    
     </nav>
 </div>

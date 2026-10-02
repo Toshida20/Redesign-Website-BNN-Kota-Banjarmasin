@@ -15,7 +15,7 @@
     <div class="video-overlay"></div>
 
     <div class="hero-content">
-        <image src="{{ asset('images/logo-bnn.png') }}" alt="Logo BNN" width="190" height="190" class="mb-4">
+        <image src="{{ asset('images/assets/public/logo/logo-bnn.png') }}" alt="Logo BNN" width="190" height="190" class="mb-4">
         <p>Badan Narkotika Nasional Republik Indonesia</p>
         <h1>Kota Banjarmasin</h1>
         <div class="hero-line"></div>
@@ -29,7 +29,7 @@
         <div class="click-service">
             <div class="service-card">
                 <div class="service-icon">
-                    <image src="{{ asset('images/icon-surat.png') }}"
+                    <image src="{{ asset('images/assets/public/icon/icon-surat.png') }}"
                          alt="Icon Surat"
                          width="60"
                          height="60">
@@ -42,7 +42,7 @@
         <div class="click-service">
             <div class="service-card">
                 <div class="service-icon">
-                    <image src="{{ asset('images/icon-public.png') }}"
+                    <image src="{{ asset('images/assets/public/icon/icon-public.png') }}"
                          alt="Icon Public"
                          width="60"
                          height="60">
@@ -55,7 +55,7 @@
         <div class="click-service">
             <div class="service-card">
                 <div class="service-icon">
-                    <image src="{{ asset('images/icon-pengaduan.png') }}"
+                    <image src="{{ asset('images/assets/public/icon/icon-pengaduan.png') }}"
                          alt="Icon Pengaduan"
                          width="60"
                          height="60">
@@ -68,7 +68,7 @@
         <div class="click-service">
             <div class="service-card">
                 <div class="service-icon">
-                    <image src="{{ asset('images/icon-rehabilitas.png') }}"
+                    <image src="{{ asset('images/assets/public/icon/icon-rehabilitas.png') }}"
                          alt="Icon Rehabilitasi"
                          width="60"
                          height="60">
@@ -104,13 +104,13 @@
             
             <div class="kegiatan-col-left">
                 <button id="slider-up" class="slider-btn slider-btn-up">
-                    <img src="{{ asset('images/arrow.png') }}" alt="Arrow Up">
+                    <img src="{{ asset('images/assets/public/button/arrow.png') }}" alt="Arrow Up">
                 </button>
                 
                 <div id="activity-slider-images" class="slider-images-container"></div>
 
                 <button id="slider-down" class="slider-btn slider-btn-down">
-                    <img src="{{ asset('images/arrow.png') }}" alt="Arrow Down">
+                    <img src="{{ asset('images/assets/public/button/arrow.png') }}" alt="Arrow Down">
                 </button>
             </div>
             
@@ -130,7 +130,7 @@
 <section class="division-grid">
 
     <div class="division-card">
-        <img src="{{ asset('images/bg-sekretariat.jpg') }}" alt="BNNP & BNNK">
+        <img src="{{ asset('images/background/public/bg-sekretariat.jpg') }}" alt="BNNP & BNNK">
         <div class="overlay"></div>
 
         <div class="division-content">
@@ -140,7 +140,7 @@
     </div>
 
     <div class="division-card">
-        <img src="{{ asset('images/bg-cegah.jpg') }}" alt="Bidang Pencegahan">
+        <img src="{{ asset('images/background/public/bg-cegah.jpg') }}" alt="Bidang Pencegahan">
         <div class="overlay"></div>
 
         <div class="division-content">
@@ -150,7 +150,7 @@
     </div>
 
     <div class="division-card">
-        <img src="{{ asset('images/bg-rehabilitasi.jpg') }}" alt="BNNP & BNNK">
+        <img src="{{ asset('images/background/public/bg-rehabilitasi.jpg') }}" alt="BNNP & BNNK">
         <div class="overlay"></div>
 
         <div class="division-content">
@@ -160,7 +160,7 @@
     </div>
 
     <div class="division-card">
-        <img src="{{ asset('images/bg-pemberantasan.jpg') }}" alt="Bidang Pemberantasan">
+        <img src="{{ asset('images/background/public/bg-pemberantasan.jpg') }}" alt="Bidang Pemberantasan">
         <div class="overlay"></div>
 
         <div class="division-content">
@@ -170,7 +170,7 @@
     </div>
 
     <div class="division-card">
-        <img src="{{ asset('images/bg-loker.jpg') }}" alt="Lowongan Kerja">
+        <img src="{{ asset('images/background/public/bg-loker.jpg') }}" alt="Lowongan Kerja">
         <div class="overlay"></div>
 
         <div class="division-content">
@@ -180,7 +180,7 @@
     </div>
 
     <div class="division-card">
-        <img src="{{ asset('images/bg-edukasi.jpg') }}" alt="Edukasi">
+        <img src="{{ asset('images/background/public/bg-edukasi.jpg') }}" alt="Edukasi">
         <div class="overlay"></div>
 
         <div class="division-content">
@@ -193,8 +193,8 @@
 
 <!-- NEWS HIGHLIGHT SECTION -->
 <section class="news-highlight">
-    <div id="news-bg-layer-old" class="news-highlight-bg" style="background-image: url('{{ asset('images/berita/Berita-1.jpeg') }}');"></div>
-    <div id="news-bg-layer" class="news-highlight-bg" style="background-image: url('{{ asset('images/berita/Berita-1.jpeg') }}'); transition: opacity 0.5s ease-in-out;"></div>
+    <div id="news-bg-layer-old" class="news-highlight-bg" style="background-image: url('{{ asset('images/contents/Berita-1.jpeg') }}');"></div>
+    <div id="news-bg-layer" class="news-highlight-bg" style="background-image: url('{{ asset('images/contents/Berita-1.jpeg') }}'); transition: opacity 0.5s ease-in-out;"></div>
     <div class="news-highlight-overlay"></div>
 
     <div class="news-highlight-wrapper">
@@ -205,19 +205,19 @@
         </div>
 
         <div class="news-bottom-row">
-            <div class="news-bottom-item active" data-bg="{{ asset('images/berita/Berita-1.jpeg') }}" data-title="RENCANA KERJA BNN KOTA BANJARMASIN<br>TAHUN 2026">
+            <div class="news-bottom-item active" data-bg="{{ asset('images/contents/Berita-1.jpeg') }}" data-title="RENCANA KERJA BNN KOTA BANJARMASIN<br>TAHUN 2026">
                 <p>RENCANA KERJA BNN KOTA BANJARMASIN<br>TAHUN 2026</p>
                 <div class="news-line"></div>
             </div>
-            <div class="news-bottom-item" data-bg="{{ asset('images/berita/Berita-2.jpeg') }}" data-title="LAPORAN KINERJA INSTANSI<br>PEMERINTAH (LKIP) BNN KOTA<br>BANJARMASIN TAHUN 2025">
+            <div class="news-bottom-item" data-bg="{{ asset('images/contents/Berita-2.jpeg') }}" data-title="LAPORAN KINERJA INSTANSI<br>PEMERINTAH (LKIP) BNN KOTA<br>BANJARMASIN TAHUN 2025">
                 <p>LAPORAN KINERJA INSTANSI<br>PEMERINTAH (LKIP) BNN KOTA<br>BANJARMASIN TAHUN 2025</p>
                 <div class="news-line"></div>
             </div>
-            <div class="news-bottom-item" data-bg="{{ asset('images/berita/Berita-3.jpeg') }}" data-title="RENPROJA BNN KOTA<br>BANJARMASIN 2025 – 2029">
+            <div class="news-bottom-item" data-bg="{{ asset('images/contents/Berita-3.jpeg') }}" data-title="RENPROJA BNN KOTA<br>BANJARMASIN 2025 – 2029">
                 <p>RENPROJA BNN KOTA<br>BANJARMASIN 2025 - 2029</p>
                 <div class="news-line"></div>
             </div>
-            <div class="news-bottom-item" data-bg="{{ asset('images/berita/Berita-4.jpeg') }}" data-title="BERITA KEGIATAN BNN KOTA<br>BANJARMASIN TERBARU">
+            <div class="news-bottom-item" data-bg="{{ asset('images/contents/Berita-4.jpeg') }}" data-title="BERITA KEGIATAN BNN KOTA<br>BANJARMASIN TERBARU">
                 <p>BERITA KEGIATAN BNN KOTA<br>BANJARMASIN TERBARU</p>
                 <div class="news-line"></div>
             </div>
@@ -226,7 +226,7 @@
 </section>
 
 <section class="news-page">
-    <div id="news-page-bg" class="news-page-bg" style="background-image: url('{{ asset('images/bg-newspaper-1300x700.jpg') }}');"></div>
+    <div id="news-page-bg" class="news-page-bg" style="background-image: url('{{ asset('images/background/public/bg-newspaper-1300x700.jpg') }}');"></div>
     <div class="news-page-overlay"></div>
     <div class="news-page-container">
 
@@ -355,7 +355,7 @@
                 <div class="news-card">
                     <a href="#" class="post-link">
                     <div class="news-card-img">
-                        <img src="{{ asset('images/berita/Berita-1.jpeg') }}" alt="Berita Kegiatan">
+                        <img src="{{ asset('images/contents/Berita-1.jpeg') }}" alt="Berita Kegiatan">
                     </div>
                     <div class="news-card-content">
                         <span class="news-category">Berita Kegiatan</span>
@@ -366,7 +366,7 @@
                 <div class="news-card">
                     <a href="#" class="post-link">
                     <div class="news-card-img">
-                        <img src="{{ asset('images/berita/Berita-2.jpeg') }}" alt="Berita Kegiatan">
+                        <img src="{{ asset('images/contents/Berita-2.jpeg') }}" alt="Berita Kegiatan">
                     </div>
                     <div class="news-card-content">
                         <span class="news-category">Berita Kegiatan</span>
@@ -377,7 +377,7 @@
                 <div class="news-card">
                     <a href="#" class="post-link">
                     <div class="news-card-img">
-                        <img src="{{ asset('images/berita/Berita-3.jpeg') }}" alt="Berita Kegiatan">
+                        <img src="{{ asset('images/contents/Berita-3.jpeg') }}" alt="Berita Kegiatan">
                     </div>
                     <div class="news-card-content">
                         <span class="news-category">Berita Kegiatan</span>
@@ -393,7 +393,7 @@
             <div class="news-small-item">
                 <a href="#" class="news-small-link">
                     <div class="news-small-img">
-                        <img src="{{ asset('images/berita/Berita-1.jpeg') }}" alt="News">
+                        <img src="{{ asset('images/contents/Berita-1.jpeg') }}" alt="News">
                     </div>
                     <div class="news-small-content">
                         <span class="news-small-category">Berita Utama</span>
@@ -404,7 +404,7 @@
             <div class="news-small-item">
                 <a href="#" class="news-small-link">
                     <div class="news-small-img">
-                        <img src="{{ asset('images/berita/Berita-2.jpeg') }}" alt="News">
+                        <img src="{{ asset('images/contents/Berita-2.jpeg') }}" alt="News">
                     </div>
                     <div class="news-small-content">
                         <span class="news-small-category">Unggulan</span>
@@ -415,7 +415,7 @@
             <div class="news-small-item">
                 <a href="#" class="news-small-link">
                     <div class="news-small-img">
-                        <img src="{{ asset('images/berita/Berita-3.jpeg') }}" alt="News">
+                        <img src="{{ asset('images/contents/Berita-3.jpeg') }}" alt="News">
                     </div>
                     <div class="news-small-content">
                         <span class="news-small-category">Unggulan</span>
@@ -426,7 +426,7 @@
             <div class="news-small-item">
                 <a href="#" class="news-small-link">
                     <div class="news-small-img">
-                        <img src="{{ asset('images/berita/Berita-4.jpeg') }}" alt="News">
+                        <img src="{{ asset('images/contents/Berita-4.jpeg') }}" alt="News">
                     </div>
                     <div class="news-small-content">
                         <span class="news-small-category">Unggulan</span>
@@ -437,7 +437,7 @@
             <div class="news-small-item">
                 <a href="#" class="news-small-link">
                     <div class="news-small-img">
-                        <img src="{{ asset('images/berita/Berita-1.jpeg') }}" alt="News">
+                        <img src="{{ asset('images/contents/Berita-1.jpeg') }}" alt="News">
                     </div>
                     <div class="news-small-content">
                         <span class="news-small-category">Unggulan</span>
@@ -448,7 +448,7 @@
             <div class="news-small-item">
                 <a href="#" class="news-small-link">
                     <div class="news-small-img">
-                        <img src="{{ asset('images/berita/Berita-2.jpeg') }}" alt="News">
+                        <img src="{{ asset('images/contents/Berita-2.jpeg') }}" alt="News">
                     </div>
                     <div class="news-small-content">
                         <span class="news-small-category">Berita Utama</span>
