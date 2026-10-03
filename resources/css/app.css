@@ -116,10 +116,10 @@ body {
 
 .back-btn {
     position: absolute;
-    top: 20px;
-    left: 15px;
-    width: 50px;
-    height: 50px;
+    top: 18px;
+    left: 13px;
+    width: 45px;
+    height: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -127,7 +127,7 @@ body {
     color: #3978b8;
     border-radius: 50%;
     text-decoration: none;
-    font-size: 22px;
+    font-size: 20px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     z-index: 5;
     transition: 0.2s ease;
@@ -141,7 +141,7 @@ body {
 .hero-logo {
     position: relative;
     z-index: 2;
-    width: 190px;
+    width: 171px;
     height: auto;
     margin-top: -10px;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
@@ -151,29 +151,29 @@ body {
     position: relative;
     z-index: 2;
     width: 100%;
-    margin-top: 18px;
+    margin-top: 16px;
     text-align: center;
     color: #ffffff;
 }
 
 .hero-bottom h1 {
-    font-size: 29px;
+    font-size: 26px;
     font-weight: 700;
     letter-spacing: 0.5px;
     margin-bottom: 2px;
 }
 
 .hero-bottom p {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     letter-spacing: 0.2px;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
     opacity: 0.95;
 }
 
 .hero-line-login {
     width: 76%;
-    max-width: 400px;
+    max-width: 360px;
     height: 1px;
     margin: 0 auto;
     background: rgba(255, 255, 255, 0.75);
@@ -190,40 +190,42 @@ body {
 
 .login-card {
     width: 400px;
-    height: 500px;
+    height: 480px;
     background: #ffffff;
     border-radius: 10px;
-    padding: 21px 50px 22px;
+    padding: 19px 40px 20px;
     box-shadow: 0 7px 5px rgba(0, 0, 0, 0.35);
     transition: 0.2s ease;
 }
 
 .card-logo {
     display: block;
-    width: 120px;
-    padding-top: 15px;
+    width: 108px;
+    padding-top: 14px;
     height: auto;
-    margin: 0 auto 18px;
+    margin: 0 auto 16px;
+    transition: width 0.4s ease, margin 0.4s ease, padding 0.4s ease;
 }
 
 .field-label {
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
     color: #222222;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
+    transition: margin 0.4s ease;
 }
 
 .input-wrap {
     display: flex;
     align-items: center;
     width: 100%;
-    height: 48px;
-    padding: 0 12px;
-    margin-bottom: 18px;
+    height: 43px;
+    padding: 0 11px;
+    margin-bottom: 16px;
     background: #e9e9e9;
     border: 1.5px solid #888888;
-    border-radius: 8px;
+    border-radius: 7px;
     transition: 0.2s ease;
 }
 
@@ -235,8 +237,8 @@ body {
 .input-wrap .icon {
     flex-shrink: 0;
     color: #666666;
-    font-size: 16px;
-    width: 21px;
+    font-size: 14px;
+    width: 19px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -251,17 +253,40 @@ body {
     flex: 1;
     min-width: 0;
     height: 100%;
-    padding: 0 9px;
+    padding: 0 8px;
     border: none;
     outline: none;
     background: transparent;
     color: #333333;
     font-family: 'Inter', sans-serif;
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .input-wrap input::placeholder {
     color: #858585;
+}
+
+/* Preserve styling when browser autofill is active */
+.input-wrap input:-webkit-autofill,
+.input-wrap input:-webkit-autofill:hover,
+.input-wrap input:-webkit-autofill:focus,
+.input-wrap input:-webkit-autofill:active {
+    -webkit-text-fill-color: #333333 !important;
+    font-size: 12px !important;
+    font-family: 'Inter', sans-serif !important;
+    -webkit-box-shadow: 0 0 0px 1000px #e9e9e9 inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+    caret-color: #333333;
+}
+
+.input-wrap:focus-within input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+}
+
+/* Force password input to keep consistent dot size */
+.input-wrap input[type="password"] {
+    font-size: 12px !important;
+    font-family: 'Inter', sans-serif !important;
 }
 
 /* Hide native password reveal button in Edge/IE */
@@ -278,7 +303,7 @@ body {
     border: none;
     background: transparent;
     color: #666666;
-    font-size: 17px;
+    font-size: 15px;
     cursor: pointer;
     transition: 0.2s ease;
 }
@@ -288,21 +313,22 @@ body {
     align-items: center;
     justify-content: space-between;
     margin-top: -2px;
-    margin-bottom: 22px;
+    margin-bottom: 20px;
+    transition: margin 0.4s ease;
 }
 
 .remember-row label {
     display: flex;
     align-items: center;
-    gap: 7px;
+    gap: 6px;
     color: #333333;
-    font-size: 12px;
+    font-size: 11px;
     cursor: pointer;
 }
 
 .remember-row input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     margin: 0;
     cursor: pointer;
     accent-color: #174b83;
@@ -310,7 +336,7 @@ body {
 
 .link {
     color: #287be0;
-    font-size: 12px;
+    font-size: 11px;
     text-decoration: underline;
     transition: 0.2s ease;
 }
@@ -321,22 +347,22 @@ body {
 
 .btn-masuk {
     display: block;
-    width: 100px;
-    padding: 7px 0;
-    margin: 0 auto 16px;
+    width: 90px;
+    padding: 6px 0;
+    margin: 0 auto 14px;
     border: none;
     border-radius: 6px;
     background: linear-gradient(to top, #246ebd, #03376e);
     color: #ffffff;
     font-family: 'Inter', sans-serif;
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 600;
     cursor: pointer;
     transition: 0.2s ease;
 }
 
 .btn-masuk:hover {
-    background: #174b83;
+    background: linear-gradient(to top, #246ebd, #03376e);
     transform: translateY(-1px);
 }
 
@@ -350,7 +376,7 @@ body {
 
 .register-link a {
     color: #287be0;
-    font-size: 12px;
+    font-size: 11px;
     text-decoration: underline;
     transition: 0.2s ease;
 }
@@ -387,6 +413,27 @@ body {
     line-height: 1.4;
     border-radius: 0;
     text-align: center;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: opacity 1s ease, max-height 0.4s ease, margin 0.4s ease, padding 0.4s ease;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.alert-error.alert-visible {
+    max-height: 80px;
+    opacity: 1;
+    margin-bottom: 15px;
+    padding: 8px 10px;
+}
+
+.alert-error.alert-hiding {
+    max-height: 80px;
+    opacity: 0;
+    margin-bottom: 15px;
+    padding: 8px 10px;
 }
 
 @keyframes shake {
@@ -417,6 +464,67 @@ body {
 
 .login-card.has-error .remember-row {
     margin-bottom: 15px;
+}
+
+.register-side-left {
+    position: relative;
+}
+
+.register-card {
+    width: 396px;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 28px 45px;
+    box-shadow: 0 7px 5px rgba(0, 0, 0, 0.35);
+}
+
+
+.register-card .input-wrap {
+    height: 43px;
+    margin-bottom: 14px;
+}
+
+.register-card .field-label {
+    margin-bottom: 6px;
+    font-size: 12.5px;
+}
+
+.back-btn.back-btn-dark {
+    background: #000000;
+    color: #ffffff;
+}
+.back-btn.back-btn-dark:hover {
+    background: #333333;
+}
+
+.btn-masuk .btn-register {
+    width: 126px;
+    padding: 10px 0;
+    margin: 0 auto;
+    background: linear-gradient(to top, #246ebd, #03376e);
+    color: #ffffff;
+    font-size: 14.5px;
+    font-weight: 700;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    background-image: none;
+}
+.btn-masuk .btn-register:hover {
+    background: linear-gradient(to top, #246ebd, #03376e);
+    transform: translateY(-1px);
+}
+
+.register-card .alert-error {
+    text-align: left;
+}
+
+.register-card .alert-error ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.register-card .alert-error ul li {
+    margin-bottom: 2px;
 }
 
 .menu-nav-2-container {

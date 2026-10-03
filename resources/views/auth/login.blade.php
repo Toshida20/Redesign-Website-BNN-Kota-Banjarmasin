@@ -50,7 +50,7 @@
                         <span class="icon">
                             <i class="fa-solid fa-phone" style="transform: scaleX(-1);"></i>
                         </span>
-                        <input type="email" name="email" autocomplete="off" placeholder="Masukkan Nama Pengguna/Email anda" value="{{ old('email') }}" {{ $errors->any() ? '' : 'autofocus' }}>
+                        <input type="email" name="email" autocomplete="off" placeholder="Masukkan Email anda" value="{{ old('email') }}" {{ $errors->any() ? '' : 'autofocus' }}>
                     </div>
 
                     <label class="field-label">Password</label>
@@ -59,19 +59,19 @@
                         <span class="icon">
                             <i class="fa-solid fa-phone" style="transform: scaleX(-1);"></i>
                         </span>
-                        <input type="password" id="password" name="password" autocomplete="new-password" placeholder="Masukkan password anda">
+                        <input type="password" id="password" name="password" autocomplete="old-password" placeholder="Masukkan password anda">
                         <button type="button" class="eye-btn" id="togglePassword">
                             <i class="fa-solid fa-eye"></i>
                         </button>
                     </div>
 
-                @if ($errors->any())
-
-                    <div class="alert-error">
-                        Email atau password salah. Silakan coba lagi.
-                    </div>
-
-                @endif
+                <div id="alert-container">
+                    @if ($errors->any())
+                        <div class="alert-error alert-visible" id="server-alert">
+                            Email atau password salah. Silakan coba lagi.
+                        </div>
+                    @endif
+                </div>
 
                     <div class="remember-row">
                         <label><input type="checkbox" name="remember">Ingatkan Saya</label>

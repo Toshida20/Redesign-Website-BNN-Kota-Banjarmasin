@@ -524,14 +524,23 @@ if (document.readyState === 'loading') {
     initMap();
 }
 
-//logika toggle mata hide password
-const togglePassword = document.querySelector('#togglePassword');
-        const password = document.querySelector('#password');
-        const icon = togglePassword.querySelector('i');
+// Logika toggle mata hide password dinamis (Bisa untuk Login & Register)
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleButtons = document.querySelectorAll('.eye-btn');
+    
+    toggleButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Cari input di dalam container yang sama (.input-wrap)
+            const wrap = this.closest('.input-wrap');
+            if(!wrap) return;
+            
+            const input = wrap.querySelector('input');
+            const icon = this.querySelector('i');
+            
+            if(!input || !icon) return;
 
-        togglePassword.addEventListener('click', function () {
-            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-            password.setAttribute('type', type);
+            const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+            input.setAttribute('type', type);
             
             if(type === 'password') {
                 icon.classList.remove('fa-eye-slash');
@@ -541,9 +550,165 @@ const togglePassword = document.querySelector('#togglePassword');
                 icon.classList.add('fa-eye-slash');
             }
         });
+    });
+});
 
 document.querySelectorAll('.input-wrap.input-error input').forEach(function(input) {
     input.addEventListener('focus', function() {
         this.closest('.input-wrap').classList.remove('input-error');
+    });
+});
+
+//Logika alert login page
+document.addEventListener('DOMContentLoaded', function () {
+    const loginCard = document.querySelector('.login-card');
+    const alertContainer = document.getElementById('alert-container');
+    const loginForm = document.querySelector('.login-card form');
+
+    // Fungsi untuk menghilangkan alert setelah 5 detik
+    function autoDismissAlert(alertEl) {
+        setTimeout(function () {
+            alertEl.classList.remove('alert-visible');
+            alertEl.classList.add('alert-hiding');
+
+            alertEl.addEventListener('transitionend', function () {
+                alertEl.remove();
+
+                loginCard.classList.remove('has-error');
+                loginCard.querySelectorAll('.input-wrap.input-error').forEach(function (wrap) {
+                    wrap.classList.remove('input-error');
+                });
+            }, { once: true });
+        }, 5000);
+    }
+
+    var serverAlert = document.getElementById('server-alert');
+    if (serverAlert) {
+        autoDismissAlert(serverAlert);
+    }
+
+    loginForm.addEventListener('submit', function (e) {
+        var emailInput = loginForm.querySelector('input[name="email"]');
+        var passwordInput = loginForm.querySelector('input[name="password"]');
+        var emailVal = emailInput.value.trim();
+        var passwordVal = passwordInput.value.trim();
+
+        if (emailVal === '' && passwordVal === '') {
+            e.preventDefault();
+
+            var existingAlert = alertContainer.querySelector('.alert-error');
+            if (existingAlert) {
+                existingAlert.remove();
+            }
+
+            var newAlert = document.createElement('div');
+            newAlert.className = 'alert-error';
+            newAlert.textContent = 'Isi email dan password untuk melanjutkan.';
+            alertContainer.appendChild(newAlert);
+
+            loginCard.classList.add('has-error');
+
+            emailInput.closest('.input-wrap').classList.add('input-error');
+            passwordInput.closest('.input-wrap').classList.add('input-error');
+
+            void newAlert.offsetWidth;
+            newAlert.classList.add('alert-visible');
+
+            autoDismissAlert(newAlert);
+        }
+    });
+});
+
+
+// Logika alert register page
+document.addEventListener('DOMContentLoaded', function () {
+    const registerCard = document.querySelector('.register-card');
+    const alertContainer = document.getElementById('alert-container');
+    if (!registerCard || !alertContainer) return;
+
+    const registerForm = registerCard.querySelector('form');
+
+    function autoDismissAlert(alertEl) {
+        setTimeout(function () {
+            alertEl.classList.remove('alert-visible');
+            alertEl.classList.add('alert-hiding');
+
+            alertEl.addEventListener('transitionend', function () {
+                alertEl.remove();
+
+                registerCard.classList.remove('has-error');
+                registerCard.querySelectorAll('.input-wrap.input-error').forEach(function (wrap) {
+                    wrap.classList.remove('input-error');
+                });
+            }, { once: true });
+        }, 5000);
+    }
+
+    var serverAlert = document.getElementById('server-alert');
+    if (serverAlert) {
+        autoDismissAlert(serverAlert);
+    }
+
+    registerForm.addEventListener('submit', function (e) {
+        const nameInput = registerForm.querySelector('input[name="name"]');
+        const emailInput = registerForm.querySelector('input[name="email"]');
+        const passwordInput = registerForm.querySelector('input[name="password"]');
+        const confirmInput = registerForm.querySelector('input[name="password_confirmation"]');
+
+        const nameVal = nameInput.value.trim();
+        const emailVal = emailInput.value.trim();
+        const passwordVal = passwordInput.value.trim();
+        const confirmVal = confirmInput.value.trim();
+
+        let errorMessage = "";
+        let errorInputs = [];
+
+        // 1. Cek kekosongan
+        if (nameVal === '' || emailVal === '' || passwordVal === '' || confirmVal === '') {
+            errorMessage = 'Silakan lengkapi semua data terlebih dahulu.';
+            if (nameVal === '') errorInputs.push(nameInput);
+            if (emailVal === '') errorInputs.push(emailInput);
+            if (passwordVal === '') errorInputs.push(passwordInput);
+            if (confirmVal === '') errorInputs.push(confirmInput);
+        }
+        // 2. Cek panjang password (Minimal 7)
+        else if (passwordVal.length < 7) {
+            errorMessage = 'Password minimal 7 karakter.';
+            errorInputs.push(passwordInput);
+        }
+        // 3. Cek kesesuaian password
+        else if (passwordVal !== confirmVal) {
+            errorMessage = 'Konfirmasi password tidak sesuai.';
+            errorInputs.push(confirmInput);
+        }
+
+        if (errorMessage !== "") {
+            e.preventDefault();
+
+            var existingAlert = alertContainer.querySelector('.alert-error');
+            if (existingAlert) {
+                existingAlert.remove();
+            }
+
+            registerCard.querySelectorAll('.input-wrap.input-error').forEach(function (wrap) {
+                wrap.classList.remove('input-error');
+            });
+            registerCard.classList.remove('has-error');
+
+            var newAlert = document.createElement('div');
+            newAlert.className = 'alert-error';
+            newAlert.textContent = errorMessage;
+            alertContainer.appendChild(newAlert);
+
+            registerCard.classList.add('has-error');
+            errorInputs.forEach(input => {
+                input.closest('.input-wrap').classList.add('input-error');
+            });
+
+            void newAlert.offsetWidth;
+            newAlert.classList.add('alert-visible');
+
+            autoDismissAlert(newAlert);
+        }
     });
 });

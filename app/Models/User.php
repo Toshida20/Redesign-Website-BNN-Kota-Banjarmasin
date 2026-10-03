@@ -19,10 +19,22 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
+        'role_id',
         'name',
         'email',
+        'phone',
         'password',
+        'avatar',
+        'is_active',
     ];
+
+    /**
+     * Relasi ke tabel roles.
+     */
+    public function role()
+    {
+        return $this->belongsTo(\App\Models\Role::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
