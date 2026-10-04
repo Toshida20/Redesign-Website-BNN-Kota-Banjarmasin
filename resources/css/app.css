@@ -515,7 +515,7 @@ body {
 }
 
 .register-card .alert-error {
-    text-align: left;
+    text-align: center;
 }
 
 .register-card .alert-error ul {
@@ -525,6 +525,12 @@ body {
 
 .register-card .alert-error ul li {
     margin-bottom: 2px;
+}
+
+.register-card .input-wrap.do-shake,
+.register-card .field-label.do-shake,
+.register-card .alert-error.do-shake {
+    animation: shake 0.4s ease-in-out;
 }
 
 .menu-nav-2-container {

@@ -75,7 +75,7 @@
                     <div id="alert-container">
                         @if ($errors->any())
                             <div class="alert-error alert-visible" id="server-alert">
-                                <ul style="margin: 0; padding-left: 18px; text-align: left;">
+                                <ul style="margin: 0; padding-left: 18px; text-align: center;">
                                     @foreach ($errors->all() as $error)
                                         <li>{{ $error }}</li>
                                     @endforeach

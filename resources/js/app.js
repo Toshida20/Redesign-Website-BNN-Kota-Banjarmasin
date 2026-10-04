@@ -629,7 +629,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const registerForm = registerCard.querySelector('form');
 
     function autoDismissAlert(alertEl) {
-        setTimeout(function () {
+        if (registerCard.alertTimeout) {
+            clearTimeout(registerCard.alertTimeout);
+        }
+        registerCard.alertTimeout = setTimeout(function () {
             alertEl.classList.remove('alert-visible');
             alertEl.classList.add('alert-hiding');
 
@@ -640,6 +643,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 registerCard.querySelectorAll('.input-wrap.input-error').forEach(function (wrap) {
                     wrap.classList.remove('input-error');
                 });
+                registerCard.querySelectorAll('.field-label.label-error').forEach(function (label) {
+                    label.classList.remove('label-error');
+                });
+                registerCard.querySelectorAll('.do-shake').forEach(function (el) {
+                    el.classList.remove('do-shake');
+                });
             }, { once: true });
         }, 5000);
     }
@@ -648,6 +657,19 @@ document.addEventListener('DOMContentLoaded', function () {
     if (serverAlert) {
         autoDismissAlert(serverAlert);
     }
+
+    // Hapus border merah saat user klik/focus kolom input yang error
+    registerCard.addEventListener('focusin', function (e) {
+        const input = e.target;
+        const wrap = input.closest('.input-wrap');
+        if (wrap && wrap.classList.contains('input-error')) {
+            wrap.classList.remove('input-error', 'do-shake');
+            const label = wrap.previousElementSibling;
+            if (label && label.classList.contains('label-error')) {
+                label.classList.remove('label-error', 'do-shake');
+            }
+        }
+    });
 
     registerForm.addEventListener('submit', function (e) {
         const nameInput = registerForm.querySelector('input[name="name"]');
@@ -685,30 +707,46 @@ document.addEventListener('DOMContentLoaded', function () {
         if (errorMessage !== "") {
             e.preventDefault();
 
-            var existingAlert = alertContainer.querySelector('.alert-error');
-            if (existingAlert) {
-                existingAlert.remove();
+            let alertEl = alertContainer.querySelector('.alert-error');
+            let isPhase2 = !!alertEl;
+
+            if (!isPhase2) {
+                // Phase 1: Buat alert baru, menyebabkan card memanjang
+                alertEl = document.createElement('div');
+                alertEl.className = 'alert-error';
+                alertContainer.appendChild(alertEl);
             }
 
-            registerCard.querySelectorAll('.input-wrap.input-error').forEach(function (wrap) {
-                wrap.classList.remove('input-error');
-            });
-            registerCard.classList.remove('has-error');
+            alertEl.textContent = errorMessage;
 
-            var newAlert = document.createElement('div');
-            newAlert.className = 'alert-error';
-            newAlert.textContent = errorMessage;
-            alertContainer.appendChild(newAlert);
+            // Reset error state dan animasi
+            registerCard.querySelectorAll('.do-shake').forEach(el => el.classList.remove('do-shake'));
+            registerCard.querySelectorAll('.input-wrap.input-error').forEach(wrap => wrap.classList.remove('input-error'));
+            registerCard.querySelectorAll('.field-label.label-error').forEach(label => label.classList.remove('label-error'));
+            registerCard.classList.remove('has-error');
+            alertEl.classList.remove('alert-hiding'); // Jika sedang dalam proses menghilang
+
+            // Force reflow untuk me-restart CSS animasi
+            void registerCard.offsetWidth;
 
             registerCard.classList.add('has-error');
             errorInputs.forEach(input => {
-                input.closest('.input-wrap').classList.add('input-error');
+                const wrap = input.closest('.input-wrap');
+                wrap.classList.add('input-error', 'do-shake');
+                
+                const label = wrap.previousElementSibling;
+                if (label && label.classList.contains('field-label')) {
+                    label.classList.add('label-error', 'do-shake');
+                }
             });
 
-            void newAlert.offsetWidth;
-            newAlert.classList.add('alert-visible');
+            if (!isPhase2) {
+                void alertEl.offsetWidth;
+                alertEl.classList.add('alert-visible');
+            }
+            alertEl.classList.add('do-shake');
 
-            autoDismissAlert(newAlert);
+            autoDismissAlert(alertEl);
         }
     });
 });
