@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EmailVerificationController;
 
 Route::get('/', function () {
     return view('dashboard');
@@ -66,3 +67,17 @@ Route::get('/lhkpn', function () {
 Route::get('/lhkpn-report', function () {
     return view('lhkpn-report');
 });
+
+Route::middleware('auth')->group(function () {
+    Route::get('/email/verify', [EmailVerificationController::class, 'show'])->name('email.verify');
+    Route::post('/email/verify-code', [EmailVerificationController::class, 'verify'])->name('email.verify.code');
+    Route::post('/email/resend-otp', [EmailVerificationController::class, 'resend'])->name('email.resend.otp');
+});
+
+Route::get('/verify-success', function () {
+    return view('auth.verify-success');
+})->name('verify.success');
+
+Route::get('/verify-complete', function () {
+    return redirect()->route('login')->with('status', 'Registrasi berhasil! Silakan login.');
+})->name('verify.complete');

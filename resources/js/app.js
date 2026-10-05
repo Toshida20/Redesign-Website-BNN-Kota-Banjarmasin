@@ -724,9 +724,8 @@ document.addEventListener('DOMContentLoaded', function () {
             registerCard.querySelectorAll('.input-wrap.input-error').forEach(wrap => wrap.classList.remove('input-error'));
             registerCard.querySelectorAll('.field-label.label-error').forEach(label => label.classList.remove('label-error'));
             registerCard.classList.remove('has-error');
-            alertEl.classList.remove('alert-hiding'); // Jika sedang dalam proses menghilang
+            alertEl.classList.remove('alert-hiding');
 
-            // Force reflow untuk me-restart CSS animasi
             void registerCard.offsetWidth;
 
             registerCard.classList.add('has-error');
@@ -750,3 +749,169 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+// Logika Input OTP & Timer (Email Verification)
+document.addEventListener('DOMContentLoaded', function() {
+    const codeBoxes = document.querySelectorAll('.code-box');
+    
+    if (codeBoxes.length > 0) {
+        codeBoxes.forEach((box, index) => {
+
+            box.addEventListener('keypress', function(e) {
+                if (e.key < '0' || e.key > '9') {
+                    e.preventDefault();
+                }
+            });
+
+            box.addEventListener('input', (e) => {
+                if (box.value !== '' && index < codeBoxes.length - 1) {
+                    codeBoxes[index + 1].focus();
+                }
+            });
+
+            box.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && box.value === '') {
+                    if (index > 0) {
+                        codeBoxes[index - 1].focus();
+                    }
+                }
+            });
+
+            box.addEventListener('paste', (e) => {
+                e.preventDefault();
+                const pasteData = e.clipboardData.getData('text').replace(/[^0-9]/g, '');
+                if (pasteData) {
+                    let pasteArray = pasteData.split('');
+                    for (let i = 0; i < codeBoxes.length; i++) {
+                        if (pasteArray[i]) {
+                            codeBoxes[i].value = pasteArray[i];
+
+                            if(i === pasteArray.length - 1 || i === codeBoxes.length - 1) {
+                                codeBoxes[i].focus();
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    }
+
+    const countdownEl = document.getElementById('countdown');
+    const resendBtn = document.getElementById('resendBtn');
+    
+    if (countdownEl && resendBtn) {
+        let timeLeft = 119;
+
+        resendBtn.style.pointerEvents = 'none';
+        resendBtn.style.color = '#888888';
+        resendBtn.style.textDecoration = 'none';
+
+        const timerId = setInterval(() => {
+            if (timeLeft <= 0) {
+                clearInterval(timerId);
+                countdownEl.textContent = "00:00";
+                
+                resendBtn.style.pointerEvents = 'auto';
+                resendBtn.style.color = '#287be0';
+                resendBtn.style.textDecoration = 'underline';
+            } else {
+                let m = Math.floor(timeLeft / 60);
+                let s = timeLeft % 60;
+                
+                let mStr = m < 10 ? '0' + m : m;
+                let sStr = s < 10 ? '0' + s : s;
+                
+                countdownEl.textContent = mStr + ':' + sStr;
+                timeLeft--;
+            }
+        }, 1000);
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const profileDropdownBtn = document.getElementById('profileDropdownBtn');
+    const profileDropdownMenu = document.getElementById('profileDropdownMenu');
+    const profileDropdownIcon = document.getElementById('profileDropdownIcon');
+
+    if (profileDropdownBtn && profileDropdownMenu) {
+        const loginArrow = profileDropdownBtn.querySelector('.login-arrow');
+        const loginText = profileDropdownBtn.querySelector('.login-text');
+
+        function alignWithDropdown() {
+
+            requestAnimationFrame(() => {
+                const dropdownRect = profileDropdownMenu.getBoundingClientRect();
+                const arrowRect = loginArrow.getBoundingClientRect();
+                const textRect = loginText.getBoundingClientRect();
+
+                const iconLeftEdge = dropdownRect.left + 22;
+
+                const arrowShift = iconLeftEdge - arrowRect.left;
+                loginArrow.style.transform = `translateX(${arrowShift}px)`;
+
+                const dropdownCenterX = dropdownRect.left + (dropdownRect.width / 2);
+                const textCenterX = textRect.left + (textRect.width / 2);
+                const textShift = dropdownCenterX - textCenterX;
+                loginText.style.transform = `translateX(${textShift}px)`;
+            });
+        }
+
+        function resetAlignment() {
+            loginArrow.style.transform = '';
+            loginText.style.transform = '';
+        }
+
+        profileDropdownBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            profileDropdownMenu.classList.toggle('show');
+            if (profileDropdownIcon) {
+                profileDropdownIcon.classList.toggle('rotate');
+            }
+
+            if (profileDropdownMenu.classList.contains('show')) {
+                alignWithDropdown();
+            } else {
+                resetAlignment();
+            }
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!profileDropdownBtn.contains(e.target) && !profileDropdownMenu.contains(e.target)) {
+                profileDropdownMenu.classList.remove('show');
+                if (profileDropdownIcon) {
+                    profileDropdownIcon.classList.remove('rotate');
+                }
+                resetAlignment();
+            }
+        });
+    }
+});
+
+// Modal Logic untuk Logout
+window.confirmLogout = function(e) {
+    if(e) e.preventDefault();
+    const modal = document.getElementById('logoutModal');
+    if (modal) {
+
+        const profileDropdownMenu = document.getElementById('profileDropdownMenu');
+        const profileDropdownIcon = document.getElementById('profileDropdownIcon');
+        const loginArrow = document.querySelector('.login-arrow');
+        const loginText = document.querySelector('.login-user-header .login-text');
+
+        if (profileDropdownMenu) profileDropdownMenu.classList.remove('show');
+        if (profileDropdownIcon) profileDropdownIcon.classList.remove('rotate');
+
+        if (loginArrow) loginArrow.style.transform = '';
+        if (loginText) loginText.style.transform = '';
+
+        modal.classList.add('show');
+    }
+}
+
+window.closeLogoutModal = function() {
+    const modal = document.getElementById('logoutModal');
+    if (modal) {
+        modal.classList.remove('show');
+    }
+}

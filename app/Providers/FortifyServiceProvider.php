@@ -8,10 +8,12 @@ use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
+use Laravel\Fortify\Contracts\RegisterResponse as RegisterResponseContract;
 use Laravel\Fortify\Fortify;
 
 class FortifyServiceProvider extends ServiceProvider
@@ -21,7 +23,21 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // Override register response: generate OTP dan redirect ke halaman verifikasi email
+        $this->app->singleton(RegisterResponseContract::class, function () {
+            return new class implements RegisterResponseContract {
+                public function toResponse($request)
+                {
+                    $user = Auth::user();
+
+                    // Generate OTP dan kirim ke email user
+                    $otpService = new \App\Services\OtpService();
+                    $otpService->generateAndSend($user->id, $user->email);
+
+                    return redirect()->route('email.verify');
+                }
+            };
+        });
     }
 
     /**

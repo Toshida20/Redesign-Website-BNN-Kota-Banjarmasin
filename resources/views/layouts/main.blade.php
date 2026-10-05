@@ -1,10 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'BNN')</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -136,24 +137,57 @@
 
             @auth
                 {{-- Wadah profil yang ditampilkan saat user sudah login --}}
-                <a href="#" class="dropdown-toggle">
-                <div class="login-arrow">
-                    <span>
-                        <img src="{{ asset('images/assets/public/button/down-arrow.png') }}" alt="Arrow Down" width="15" height="15">
-                    </span>
-                </div>
-                </a>
+                <div class="profile-dropdown-container">
+                    <div class="login-user-header" id="profileDropdownBtn">
+                        <div class="login-arrow">
+                            <i class="fa-solid fa-chevron-down" id="profileDropdownIcon"></i>
+                        </div>
+                        <div class="login-text">
+                            <small>Login Sebagai</small>
+                            <strong>{{ Auth::user()->name ?? 'Tamu' }}</strong>
+                        </div>
+                        <div class="user-icon">
+                            @if(Auth::user()->avatar)
+                                <img src="{{ asset(Auth::user()->avatar) }}" class="rounded-circle" width="45" height="45" alt="Avatar">
+                            @else
+                                <img src="{{ asset('images/assets/public/logo/logo-bnn.png') }}" class="rounded-circle" width="45" height="45" alt="Avatar">
+                            @endif
+                        </div>
+                    </div>
 
-                <div class="login-text">
-                    <small>Login Sebagai</small>
-                    <strong>{{ Auth::user()->name ?? 'Tamu' }}</strong>
+                    {{-- Dropdown Menu --}}
+                    <div class="profile-dropdown-menu" id="profileDropdownMenu">
+                        <a href="#" class="dropdown-item">
+                            <i class="fa-regular fa-circle-user"></i> Kelola Profil
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="fa-regular fa-clock"></i> Riwayat Aktivitas
+                        </a>
+                        <a href="#" class="dropdown-item logout-item" onclick="confirmLogout(event)">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i> Keluar
+                        </a>
+                    </div>
                 </div>
 
-                <a href="#" class="profile-link">
-                <div class="user-icon">
-                    <i class="bi bi-person-circle"></i>
+                {{-- Hidden Form for Logout --}}
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+
+                {{-- Modal Konfirmasi Logout --}}
+                <div id="logoutModal" class="custom-modal-overlay">
+                    <div class="custom-modal-box">
+                        <div class="modal-icon-warning">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+                        <h3>Konfirmasi Keluar</h3>
+                        <p>Apakah anda yakin ingin keluar dari akun ini?</p>
+                        <div class="custom-modal-actions">
+                            <button onclick="closeLogoutModal()" class="btn-cancel">Tidak</button>
+                            <button onclick="document.getElementById('logout-form').submit();" class="btn-confirm">Ya</button>
+                        </div>
+                    </div>
                 </div>
-                </a>
             @endauth
         </div>
         </div>    

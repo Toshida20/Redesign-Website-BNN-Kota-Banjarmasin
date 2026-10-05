@@ -66,6 +66,11 @@
                     </div>
 
                 <div id="alert-container">
+                    @if (session('status'))
+                        <div class="alert-success alert-visible" id="success-alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
                     @if ($errors->any())
                         <div class="alert-error alert-visible" id="server-alert">
                             Email atau password salah. Silakan coba lagi.
