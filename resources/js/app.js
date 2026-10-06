@@ -915,3 +915,114 @@ window.closeLogoutModal = function() {
         modal.classList.remove('show');
     }
 }
+
+// Dynamic Dropdown Positioning & Smart Hover
+document.addEventListener('DOMContentLoaded', function() {
+    
+    const mainDropdowns = document.querySelectorAll('.nav-item-dropdown');
+    const subDropdowns = document.querySelectorAll('.nav-item-dropdown-2');
+    let globalCloseTimer = null;
+
+    mainDropdowns.forEach(dropdown => {
+        dropdown.addEventListener('mouseenter', function() {
+            clearTimeout(globalCloseTimer);
+
+            document.querySelectorAll('.nav-item-dropdown.js-keep-open').forEach(el => {
+                if (el !== this) el.classList.remove('js-keep-open');
+            });
+            
+            // Dynamic Positioning (flip to left jika mentok layar)
+            const content = this.querySelector('.dropdown-content');
+            if (content) {
+                content.style.left = '';
+                content.style.right = '';
+                content.style.transform = '';
+                const rect = content.getBoundingClientRect();
+                const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+                if (rect.right > viewportWidth) {
+                    content.style.left = 'auto';
+                    content.style.right = '0';
+                    content.style.transform = 'none';
+                } else if (rect.left < 0) {
+                    content.style.left = '0';
+                    content.style.right = 'auto';
+                    content.style.transform = 'none';
+                }
+            }
+        });
+        
+        dropdown.addEventListener('mouseleave', function() {
+
+            this.classList.add('js-keep-open');
+
+            globalCloseTimer = setTimeout(() => {
+                this.classList.remove('js-keep-open');
+            }, 1000);
+        });
+    });
+
+    subDropdowns.forEach(sub => {
+        sub.addEventListener('mouseenter', function() {
+            clearTimeout(globalCloseTimer);
+
+            document.querySelectorAll('.nav-item-dropdown-2.js-keep-open').forEach(el => {
+                if (el !== this) el.classList.remove('js-keep-open');
+            });
+            
+            // Dynamic Positioning (flip to left jika mentok layar)
+            const content = this.querySelector('.dropdown-content-2');
+            if (content) {
+                content.style.left = '';
+                content.style.right = '';
+                const rect = content.getBoundingClientRect();
+                const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+                if (rect.right > viewportWidth) {
+                    content.style.left = 'auto';
+                    content.style.right = '100%';
+                } else if (rect.left < 0) {
+                    content.style.left = '100%';
+                    content.style.right = 'auto';
+                }
+            }
+        });
+        
+        sub.addEventListener('mouseleave', function() {
+            this.classList.add('js-keep-open');
+            setTimeout(() => {
+                if (!sub.matches(':hover')) {
+                    sub.classList.remove('js-keep-open');
+                }
+            }, 1000);
+        });
+    });
+
+    const currentUrl = window.location.href.split('#')[0].split('?')[0].replace(/\/$/, "");
+    
+    if (currentUrl) {
+        const dropdownLinks = document.querySelectorAll('.dropdown-content a, .dropdown-content-2 a');
+        
+        dropdownLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (!href || href === '#') return;
+            
+            let linkUrl = link.href.split('#')[0].split('?')[0].replace(/\/$/, "");
+            
+            if (linkUrl === currentUrl) {
+                link.classList.add('active');
+                
+                const parentSub = link.closest('.nav-item-dropdown-2');
+                if (parentSub) {
+                    parentSub.classList.add('active');
+                }
+                
+                const parentMain = link.closest('.nav-item-dropdown');
+                if (parentMain) {
+                    const mainNav = parentMain.querySelector('.menu-nav-2');
+                    if (mainNav && !mainNav.classList.contains('active')) {
+                        mainNav.classList.add('active');
+                    }
+                }
+            }
+        });
+    }
+});

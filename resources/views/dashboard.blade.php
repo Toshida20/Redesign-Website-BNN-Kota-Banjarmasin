@@ -15,10 +15,10 @@
     <div class="video-overlay"></div>
 
     <div class="hero-content">
-        <image src="{{ asset('images/assets/public/logo/logo-bnn.png') }}" alt="Logo BNN" width="190" height="190" class="mb-4">
-        <p>Badan Narkotika Nasional Republik Indonesia</p>
-        <h1>Kota Banjarmasin</h1>
-        <div class="hero-line"></div>
+        <image src="{{ asset('images/assets/public/logo/bnn-250x250.avif') }}" alt="Logo BNN" width="190" height="190" class="mb-4 hero-logo-anim">
+        <p class="hero-subtitle-anim">Badan Narkotika Nasional Republik Indonesia</p>
+        <h1 class="hero-title-anim">Kota Banjarmasin</h1>
+        <div class="hero-line hero-line-anim"></div>
     </div>
 </section>
 
@@ -154,7 +154,7 @@
         <div class="overlay"></div>
 
         <div class="division-content">
-            <h3>Bidang Rehabilitas</h3>
+            <h3>Bidang Rehabilitasi</h3>
             <a href="#" class="btn-kunjungi">Kunjungi</a>
         </div>
     </div>

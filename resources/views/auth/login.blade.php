@@ -28,7 +28,7 @@
                 <i class="fa-solid fa-arrow-left"></i>
             </a>
             <img src="{{ asset('images/background/gedung-bnnk.jpeg') }}" alt="Gedung BNN Kota Banjarmasin" class="hero-bg-img">
-            <img src="{{ asset('images/assets/public/logo/logo-bnn.png') }}" alt="Logo BNN" class="hero-logo">
+            <img src="{{ asset('images/assets/public/logo/bnn-250x250.avif') }}" alt="Logo BNN" class="hero-logo">
             <div class="hero-bottom">
                 <h1>KOTA BANJARMASIN</h1>
                 <p>Badan Narkotika Nasional Republik Indonesia</p>
@@ -38,13 +38,16 @@
 
         <div class="split__right">
             <div class="login-card {{ $errors->any() ? 'has-error' : '' }}">
-                <img src="{{ asset('images/assets/public/logo/logo-bnn.png') }}" alt="Logo BNN" class="card-logo">
+                <div class="login-header-text">
+                    <p class="greeting"><strong>Halo,</strong> <span class="text-blue">Selamat Datang</span></p>
+                    <h2 class="welcome-title">Silahkan Masuk ke<br>Akun Anda</h2>
+                </div>
 
                 <form method="POST" autocomplete="off" action="{{ route('login') }}">
 
                     @csrf
 
-                    <label class="field-label">Nama Pengguna/Alamat Email</label>
+                    <label class="field-label">Alamat Email</label>
 
                     <div class="input-wrap {{ $errors->any() ? 'input-error' : '' }}">
                         <span class="icon">

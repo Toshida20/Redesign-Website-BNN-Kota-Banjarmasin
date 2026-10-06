@@ -44,7 +44,7 @@
 
         <div class="split__left register-side-right">
             <img src="{{ asset('images/background/gedung-bnnk.jpeg') }}" alt="Gedung BNN Kota Banjarmasin" class="hero-bg-img">
-            <img src="{{ asset('images/assets/public/logo/logo-bnn.png') }}" alt="Logo BNN" class="hero-logo">
+            <img src="{{ asset('images/assets/public/logo/bnn-250x250.avif') }}" alt="Logo BNN" class="hero-logo">
             <div class="hero-bottom">
                 <h1>KOTA BANJARMASIN</h1>
                 <p>Badan Narkotika Nasional Republik Indonesia</p>

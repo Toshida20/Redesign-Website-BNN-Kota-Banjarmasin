@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -23,7 +23,7 @@
         <a class="navbar-brand" href="#">
             <img 
                 id="bnn-logo"
-                src="{{ asset('images/assets/public/logo/logo-bnn.png') }}" 
+                src="{{ asset('images/assets/public/logo/bnn-250x250.avif') }}" 
                 alt="Logo BNN"
                 width="30"
                 height="30"
@@ -37,7 +37,6 @@
         
         <div class="d-flex align-items-center gap-3">
             <a href="https://bnn.go.id/" class="nav-link text-white menu-nav"><span>BNN Pusat</span></a>
-            <a href="#" class="nav-link text-white menu-nav"><span>Informasi Publik (PPID)</span></a>
             <a href="#" class="nav-link text-white menu-nav"><span>Peraturan (JDIH)</span></a>
             <a href="#" class="nav-link text-white menu-nav"><span>Perpustakaan Digital</span></a>
             <a href="#" class="nav-link text-white menu-nav"><span>Government Public Relations (GPR)</span></a>
@@ -61,6 +60,18 @@
                 <div class="dropdown-content">
                     <a href="{{ url('/informasi-profil') }}">Informasi Profil</a>
                     <a href="{{ url('/kepala-bnn-k-dari-masa-ke-masa') }}">Kepala BNNK dari Masa Ke Masa</a>
+                        <div class="nav-item-dropdown-2">
+                            <a href="#" style="display: flex; justify-content: space-between; align-items: center;">
+                                <span>Satuan Kerja</span>
+                                <img id="icon-dropdown" src="{{ asset('images/assets/public/button/right-arrow-white.png') }}" width="10" height="10">
+                            </a>
+                        <div class="dropdown-content-2">
+                            <a href="#">Deputi Bidang Sekretariat Umum</a>
+                            <a href="#">Deputi Bidang Bidang Pencegahan dan Pemberdayaan Masyarakat</a>
+                            <a href="#">Deputi Bidang Rehabilitasi</a>
+                            <a href="#">Deputi Bidang Pemberantasan</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -112,7 +123,7 @@
                     <a href="#">Aspirasi Masyarakat</a>
                     <a href="#">Permintaan Informasi</a>
                     <div class="nav-item-dropdown-2">
-                        <a href="#" style="display: flex; justify-content: space-between; align-items: center;">
+                        <a href="#">
                             <span>Pengaduan BNN</span>
                             <img id="icon-dropdown" src="{{ asset('images/assets/public/button/right-arrow-white.png') }}" width="10" height="10">
                         </a>
@@ -150,7 +161,7 @@
                             @if(Auth::user()->avatar)
                                 <img src="{{ asset(Auth::user()->avatar) }}" class="rounded-circle" width="45" height="45" alt="Avatar">
                             @else
-                                <img src="{{ asset('images/assets/public/logo/logo-bnn.png') }}" class="rounded-circle" width="45" height="45" alt="Avatar">
+                                <img src="{{ asset('images/assets/public/logo/bnn-250x250.avif') }}" class="rounded-circle" width="45" height="45" alt="Avatar">
                             @endif
                         </div>
                     </div>
