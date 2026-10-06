@@ -266,14 +266,22 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Effect Transisi Perpindahan Menu/Page
+// Effect Transisi Perpindahan Menu/Page UPDATE
 document.addEventListener('DOMContentLoaded', function () {
     const transitionContainer = document.querySelector('.page-transition');
     if (!transitionContainer) return;
     
+    const isInternalNav = sessionStorage.getItem('is_internal_nav') === 'true';
+    sessionStorage.removeItem('is_internal_nav');
+
     if (transitionContainer.classList.contains('initial-cover')) {
+        
         function revealPage() {
-            transitionContainer.classList.remove('initial-cover');
+            const layers = transitionContainer.querySelectorAll('.transition-layer');
+
+            layers.forEach(layer => layer.style.transform = '');
+
+            transitionContainer.classList.remove('initial-cover', 'active-in');
             transitionContainer.classList.add('active-out');
 
             setTimeout(() => {
@@ -281,61 +289,82 @@ document.addEventListener('DOMContentLoaded', function () {
                 const layers = transitionContainer.querySelectorAll('.transition-layer');
                 layers.forEach(layer => {
                     layer.style.transition = 'none';
-                    layer.style.transform = 'translateX(-100%)';
+                    layer.style.transform = 'translateX(100%)';
                 });
                 
-                void transitionContainer.offsetWidth; // Kembalikan transition
+                layers.forEach(layer => void layer.offsetWidth);
 
                 layers.forEach(layer => {
                     layer.style.transition = '';
+                    layer.style.transform = '';
                 });
             }, 1200);
         }
 
-        // TUNGGU GAMBAR SELESAI LOAD
-        const images = document.querySelectorAll('img');
-        let imagesLoaded = 0;
-        const totalImages = images.length;
-        if (totalImages === 0) {
-            revealPage();
-        } else {
-            let isRevealed = false;
+        function waitForImagesAndReveal() {
+            const images = document.querySelectorAll('img');
+            let imagesLoaded = 0;
+            const totalImages = images.length;
+            if (totalImages === 0) {
+                revealPage();
+            } else {
+                let isRevealed = false;
+                const fallbackTimer = setTimeout(() => {
+                    if (!isRevealed) {
+                        isRevealed = true;
+                        revealPage();
+                    }
+                }, 2500);
 
-            // Fallback maksimum 2.5 detik
-            const fallbackTimer = setTimeout(() => {
-                if (!isRevealed) {
-                    isRevealed = true;
-                    revealPage();
+                function imageLoaded() {
+                    imagesLoaded++;
+                    if (imagesLoaded >= totalImages && !isRevealed) {
+                        isRevealed = true;
+                        clearTimeout(fallbackTimer);
+                        setTimeout(revealPage, 100);
+                    }
                 }
-            }, 2500);
 
-            function imageLoaded() {
-                imagesLoaded++;
-                if (imagesLoaded >= totalImages && !isRevealed) {
-                    isRevealed = true;
-                    clearTimeout(fallbackTimer);
-                    // Delay sedikit supaya lebih smooth
-                    setTimeout(revealPage, 100);
-                }
+                images.forEach(img => {
+                    if (img.complete) {
+                        imageLoaded();
+                    } else {
+                        img.addEventListener('load', imageLoaded);
+                        img.addEventListener('error', imageLoaded);
+                    }
+                });
             }
+        }
 
-            images.forEach(img => {
-                if (img.complete) {
-                    imageLoaded();
-                } else {
-                    img.addEventListener('load', imageLoaded);
-                    img.addEventListener('error', imageLoaded);
-                }
+        if (isInternalNav) {
+            const layers = transitionContainer.querySelectorAll('.transition-layer');
+            layers.forEach(layer => {
+                layer.style.transition = 'none';
+                layer.style.transform = 'translateX(0)';
             });
+            layers.forEach(layer => void layer.offsetWidth);
+            layers.forEach(layer => layer.style.transition = '');
+            
+            document.documentElement.classList.remove('internal-nav');
+
+            waitForImagesAndReveal();
+        } else {
+
+            requestAnimationFrame(() => {
+                transitionContainer.classList.add('active-in');
+            });
+            
+            setTimeout(() => {
+                waitForImagesAndReveal();
+            }, 1000);
         }
     }
 
-    // 2. MENU / LINK CLICK
     const currentHost = window.location.host;
     document.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', function (e) {
             if (
-                this.hostname === currentHost &&
+                this.host === currentHost &&
                 this.target !== '_blank' &&
                 !this.hasAttribute('download') &&
                 !this.getAttribute('href')?.startsWith('#') &&
@@ -344,7 +373,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 e.preventDefault();
                 const targetUrl = this.href;
 
-                // RESET TRANSITION
+                sessionStorage.setItem('is_internal_nav', 'true');
+
                 transitionContainer.classList.remove(
                     'active-out',
                     'initial-cover'
@@ -354,24 +384,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 );
                 layers.forEach(layer => {
                     layer.style.transition = 'none';
-                    layer.style.transform = 'translateX(-100%)';
+                    layer.style.transform = 'translateX(100%)';
                 });
 
-                // Force browser melakukan reflow
-                void transitionContainer.offsetWidth;
+                layers.forEach(layer => void layer.offsetWidth);
 
                 layers.forEach(layer => {
                     layer.style.transition = '';
-                    layer.style.transform = ''; // PENTING AGAR CSS BERJALAN
+                    layer.style.transform = '';
                 });
 
-                // ACTIVE IN
                 transitionContainer.classList.add(
                     'active-in'
                 );
 
                 setTimeout(() => {
-                    /* Pada titik ini layar sudah FULL ABU-ABU */
                     setTimeout(() => {
                         window.location.href = targetUrl;
                     }, 200);

@@ -266,7 +266,6 @@ body {
     color: #858585;
 }
 
-/* Preserve styling when browser autofill is active */
 .input-wrap input:-webkit-autofill,
 .input-wrap input:-webkit-autofill:hover,
 .input-wrap input:-webkit-autofill:focus,
@@ -283,13 +282,11 @@ body {
     -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
 }
 
-/* Force password input to keep consistent dot size */
 .input-wrap input[type="password"] {
     font-size: 12px !important;
     font-family: 'Inter', sans-serif !important;
 }
 
-/* Hide native password reveal button in Edge/IE */
 .input-wrap input::-ms-reveal,
 .input-wrap input::-ms-clear {
     display: none;
@@ -1927,7 +1924,7 @@ body {
 
 .profil-header { 
     text-align: center;
-    padding-top: 40px; 
+    padding-top: 68px; 
 }
 
 .hashtags { 
@@ -2110,7 +2107,7 @@ body {
     width: 100%;
     height: 100%;
 
-    transform: translateX(-100%);
+    transform: translateX(100%);
 
     transition:
         transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
@@ -2148,25 +2145,25 @@ body {
     transition-delay: 0.20s;
 }
 
-.page-transition.initial-cover .transition-layer {
-    transform: translateX(0);
-    transition: none;
+html.internal-nav .page-transition .transition-layer {
+    transform: translateX(0) !important;
+    transition: none !important;
 }
 
 .page-transition.active-out .layer-1 {
-    transform: translateX(100%);
+    transform: translateX(-100%);
     transition:
         transform 0.7s cubic-bezier(0.77, 0, 0.175, 1) 0s;
 }
 
 .page-transition.active-out .layer-2 {
-    transform: translateX(100%);
+    transform: translateX(-100%);
     transition:
         transform 0.7s cubic-bezier(0.77, 0, 0.175, 1) 0.10s;
 }
 
 .page-transition.active-out .layer-3 {
-    transform: translateX(100%);
+    transform: translateX(-100%);
     transition:
         transform 0.7s cubic-bezier(0.77, 0, 0.175, 1) 0.20s;
 }
@@ -2645,16 +2642,6 @@ body {
     border: 3px solid #1a5b9e;
     border-radius: 4px;
 }
-
-/* ===================================================
-     * ATUR POSISI FOTO DI SINI agar foto tidak terpotong
-     * Nilai: top | center | bottom | left | right
-     * Contoh kombinasi:
-     *   object-position: center top;    → fokus ke atas
-     *   object-position: center center; → tengah (default)
-     *   object-position: center bottom; → fokus ke bawah
-     *   object-position: 50% 20%;       → custom (x% y%)
-     * =================================================== */
      
 .modal-kepala-foto {
     width: 100%;

@@ -3,7 +3,7 @@
 @section('title', 'Alamat Kantor - BNN Kota Banjarmasin')
 
 @section('content')
-<div class="container mt-5 mb-5" style="padding-top: 68px;">
+<div class="container mt-5 mb-5" style="padding-top: 40px;">
 
     @include('layouts.main-informasi-profil')
 
