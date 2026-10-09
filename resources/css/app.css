@@ -969,7 +969,7 @@ body {
 
 .our-services {
     padding: 70px 0px 70px 0px;
-    background: rgb(78 78 78);
+    background: rgb(166, 166, 166);
 }
 
 .service-page-bg {
@@ -2107,6 +2107,15 @@ body {
     background-color: #174b83; 
     color: white;
 }
+
+.sticky-nav-profil {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 100px;
+        z-index: 90;
+        background-color: #ffffff02;
+        padding: 10px 0;
+    }
 
 .nav-full-width { 
     display: flex;
@@ -3773,4 +3782,116 @@ html.internal-nav .page-transition .transition-layer {
 
 .navigation-tab:hover .nav-item-dropdown.js-keep-open .menu-nav-2 span::after {
     width: 100% !important;
+}
+
+.profil-wrapper {
+    display: grid;
+    grid-template-columns: 355px minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+}
+
+.profil-sidebar {
+    position: sticky;
+    top: 120px;
+    z-index: 90;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    width: 350px;
+    padding: 26px;
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
+}
+
+.profil-sidebar .btn-menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 18px;
+    width: 295px;
+    height: 80px;
+    min-height: 42px;
+    padding: 15px;
+    border: none;
+    border-radius: 4px;
+    background: #dedede;
+    color: #333;
+    text-align: left;
+    font-size: 20px;
+    cursor: pointer;
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease;
+}
+
+.profil-sidebar .btn-menu i {
+    flex-shrink: 0;
+    width: 50px;
+    font-size: 40px;
+    text-align: center;
+}
+
+.profil-sidebar .btn-menu span {
+    display: block;
+    flex: 1;
+    text-align: left;
+    line-height: 1.4;
+}
+
+.profil-sidebar .btn-menu:hover,
+.profil-sidebar .btn-menu.active {
+    background: linear-gradient(to bottom, #246ebd, #03376e);
+    color: #fff;
+    font-weight: bold;
+}
+
+.profil-content {
+    min-width: 0;
+    line-height: 1.7;
+}
+
+.profil-panel[hidden] {
+    display: none !important;
+}
+
+.profil-panel.active {
+    animation: profilFadeIn 0.3s ease;
+}
+
+@keyframes profilFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .profil-wrapper {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .profil-sidebar {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .profil-sidebar .btn-menu {
+        flex: 1 1 130px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .profil-panel.active {
+        animation: none;
+    }
 }

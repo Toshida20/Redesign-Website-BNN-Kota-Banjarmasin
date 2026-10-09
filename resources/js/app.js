@@ -1104,3 +1104,52 @@ document.addEventListener('DOMContentLoaded', () => {
         friction: 0.28
     });
 });
+
+//tombol nav Informasi-Profil
+document.addEventListener("DOMContentLoaded", () => {
+    const navButtons = document.querySelectorAll(".profil-sidebar .btn-menu");
+    const panels = document.querySelectorAll(".profil-content .profil-panel");
+
+    if (!navButtons.length || !panels.length) return;
+
+    function showPanel(targetId) {
+        const targetPanel = document.getElementById(targetId);
+
+        if (!targetPanel || !targetPanel.classList.contains("profil-panel")) {
+            return;
+        }
+
+        panels.forEach((panel) => {
+            const isActive = panel === targetPanel;
+
+            panel.hidden = !isActive;
+            panel.classList.toggle("active", isActive);
+            panel.setAttribute("aria-hidden", String(!isActive));
+        });
+
+        navButtons.forEach((button) => {
+            const isActive = button.dataset.target === targetId;
+
+            button.classList.toggle("active", isActive);
+            button.setAttribute("aria-selected", String(isActive));
+        });
+    }
+
+    navButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            showPanel(button.dataset.target);
+        
+            const wrapper = document.querySelector(".profil-wrapper");
+            if (wrapper) {
+
+                const offsetTop = wrapper.getBoundingClientRect().top + window.scrollY - 130;
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    showPanel("sejarah");
+});

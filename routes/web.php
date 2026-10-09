@@ -40,14 +40,6 @@ Route::get('/siaran-pers', function () {
     return view('siaran-pers');
 });
 
-Route::get('/visi-dan-misi', function () {
-    return view('layouts.organisasi.informasi-profil.visi-dan-misi');
-});
-
-Route::get('/tugas-dan-fungsi', function () {
-    return view('layouts.organisasi.informasi-profil.tugas-dan-fungsi');
-});
-
 Route::get('/struktur', function () {
     return view('layouts.organisasi.informasi-profil.struktur');
 });

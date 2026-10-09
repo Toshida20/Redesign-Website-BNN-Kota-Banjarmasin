@@ -1,7 +1,7 @@
 ﻿<div class="navigation-tab">
 <nav class="navbar navbar-dark" style="background-color: #174b83;">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{{ url('/') }}">
             <img 
                 id="bnn-logo"
                 src="{{ asset('images/assets/public/logo/bnn-250x250.avif') }}" 
@@ -38,6 +38,7 @@
                 </a>
                 <div class="dropdown-content">
                     <a href="{{ url('/informasi-profil') }}">Informasi Profil</a>
+                    <a href="{{ url('/struktur') }}">Struktur Organisasi</a>
                     <a href="{{ url('/kepala-bnn-k-dari-masa-ke-masa') }}">Kepala BNNK dari Masa Ke Masa</a>
                         <div class="nav-item-dropdown-2">
                             <a href="#" style="display: flex; justify-content: space-between; align-items: center;">

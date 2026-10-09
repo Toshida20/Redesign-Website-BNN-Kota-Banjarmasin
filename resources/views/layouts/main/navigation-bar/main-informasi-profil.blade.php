@@ -38,21 +38,9 @@
 
 <div class="hero-line-long"></div>
 
-<style>
-    .sticky-nav-profil {
-        position: -webkit-sticky;
-        position: sticky;
-        top: 100px; /* Menyesuaikan dengan tinggi navbar utama setelah discroll */
-        z-index: 90;
-        background-color: #ffffff02; /* Memberikan background agar teks tidak bertumpuk */
-        padding: 10px 0;
-    }
-</style>
-
 <div class="nav-full-width sticky-nav-profil">
     <a href="{{ url('informasi-profil') }}" class="btn-menu {{ request()->is('informasi-profil') ? 'active' : '' }}">Sejarah</a>
     <a href="{{ url('visi-dan-misi') }}" class="btn-menu {{ request()->is('visi-dan-misi') ? 'active' : '' }}">Visi dan Misi</a>
     <a href="{{ url('tugas-dan-fungsi') }}" class="btn-menu {{ request()->is('tugas-dan-fungsi') ? 'active' : '' }}">Tugas dan Fungsi</a>
-    <a href="{{ url('struktur') }}" class="btn-menu {{ request()->is('struktur') ? 'active' : '' }}">Struktur</a>
     <a href="{{ url('lhkpn') }}" class="btn-menu {{ request()->is('lhkpn') ? 'active' : '' }}">LHKPN</a>
 </div>
