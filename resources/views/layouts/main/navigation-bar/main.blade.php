@@ -1,28 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'BNN')</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <script>
-        if (sessionStorage.getItem('is_internal_nav') === 'true') {
-            document.documentElement.classList.add('internal-nav');
-        }
-    </script>
-</head>
-
-<body>
-
-<div class="page-transition initial-cover">
-    <div class="transition-layer layer-1"></div>
-    <div class="transition-layer layer-2"></div>
-    <div class="transition-layer layer-3"></div>
-</div>
-
-<div class="navigation-tab">
+﻿<div class="navigation-tab">
 <nav class="navbar navbar-dark" style="background-color: #174b83;">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
@@ -42,10 +18,8 @@
         
         <div class="d-flex align-items-center gap-3">
             <a href="https://bnn.go.id/" class="nav-link text-white menu-nav"><span>BNN Pusat</span></a>
-            <a href="#" class="nav-link text-white menu-nav"><span>Peraturan (JDIH)</span></a>
-            <a href="#" class="nav-link text-white menu-nav"><span>Perpustakaan Digital</span></a>
+            <a href="https://jdih.bnn.go.id/" class="nav-link text-white menu-nav"><span>Peraturan (JDIH)</span></a>
             <a href="#" class="nav-link text-white menu-nav"><span>Government Public Relations (GPR)</span></a>
-            <a href="#" class="nav-link text-white menu-nav"><span>Toko Stop Narkoba</span></a>
         </div>
     </div>
 </nav>
@@ -59,7 +33,7 @@
             </a>
 
             <div class="nav-item-dropdown">
-                <a href="{{ url('/informasi-profil') }}" class="menu-nav-2 {{ request()->is('organisasi', 'informasi-profil', 'visi-dan-misi', 'tugas-dan-fungsi', 'struktur', 'alamat-kantor', 'alamat-kantor-bnnp-bnnk', 'lhkpn', 'kepala-bnn-k-dari-masa-ke-masa') ? 'active' : '' }}">
+                <a href="{{ url('/informasi-profil') }}" class="menu-nav-2 {{ request()->is('organisasi', 'informasi-profil', 'visi-dan-misi', 'tugas-dan-fungsi', 'struktur', 'alamat-kantor-bnnp-bnnk', 'lhkpn', 'kepala-bnn-k-dari-masa-ke-masa') ? 'active' : '' }}">
                     <span>ORGANISASI</span>
                 </a>
                 <div class="dropdown-content">
@@ -71,10 +45,11 @@
                                 <img id="icon-dropdown" src="{{ asset('images/assets/public/button/right-arrow-white.png') }}" width="10" height="10">
                             </a>
                         <div class="dropdown-content-2">
-                            <a href="#">Deputi Bidang Sekretariat Umum</a>
-                            <a href="#">Deputi Bidang Bidang Pencegahan dan Pemberdayaan Masyarakat</a>
-                            <a href="#">Deputi Bidang Rehabilitasi</a>
-                            <a href="#">Deputi Bidang Pemberantasan</a>
+                            <a href="{{ url('/satuan-kerja/kasubbag-umum') }}">Kepala Sub Bagian Umum</a>
+                            <a href="{{ url('/satuan-kerja/katim-bidang-pencegahan-dan-pemberdayaan-masyarakat') }}">Katim Bidang Pencegahan dan Pemberdayaan Masyarakat</a>
+                            <a href="{{ url('/satuan-kerja/katim-bidang-rehabilitasi') }}">Katim Bidang Rehabilitasi</a>
+                            <a href="{{ url('/satuan-kerja/katim-bidang-pemberantasan') }}">Katim Bidang Pemberantasan</a>
+                            <a href="{{ url('/satuan-kerja/alamat-kantor-bnnp-bnnk') }}">BNN Provinsi, Kabupaten/Kota dan Balai Rehabilitasi</a>
                         </div>
                     </div>
                 </div>
@@ -85,8 +60,20 @@
                     <span>BERITA</span>
                 </a>
                 <div class="dropdown-content">
-                    <a href="{{ url('/berita-utama') }}">Berita Utama</a>
-                    <a href="{{ url('/berita-kegiatan') }}">Berita Kegiatan</a>
+                    <div class="nav-item-dropdown-2">
+                        <a href="#">
+                            <span>Berita Satker</span>
+                            <img id="icon-dropdown" src="{{ asset('images/assets/public/button/right-arrow-white.png') }}" width="10" height="10">
+                        </a>
+                        <div class="dropdown-content-2">
+                            <a href="#">Kassubag Umum</a>
+                            <a href="#">Katim Bidang Pencegahan dan Pemberdayaan Masyarakat</a>
+                            <a href="#">Katim Bidang Rehabilitasi</a>
+                            <a href="#">Katim Bidang Pemberantasan</a>
+                            <a href="{{ url('/berita-utama') }}">Berita Utama</a>
+                            <a href="{{ url('/berita-kegiatan') }}">Berita Kegiatan</a>
+                        </div>
+                    </div>
                     <a href="{{ url('/foto') }}">Foto</a>
                     <a href="{{ url('/video') }}">Video</a>
                 </div>
@@ -102,7 +89,7 @@
                 </div>
             </div>
 
-            <a href="#" class="menu-nav-2 {{ request()->is('kontak') ? 'active' : '' }}">
+            <a href="{{ url('kontak') }}" class="menu-nav-2 {{ request()->is('kontak') ? 'active' : '' }}">
                 <span>KONTAK</span>
             </a>
 
@@ -112,7 +99,8 @@
                 </a>
                 <div class="dropdown-content">
                     <a href="https://boss.bnn.go.id/">BNN One Stop Service (BOSS)</a>
-                    <a href="https://rehabilitasi.bnn.go.id/">Layanan Rehabilitasi (SIRENAP)</a>
+                    <a href="https://www.lapor.go.id/">Toko Stop Narkoba</a>
+                    <a href="https://perpustakaan.bnn.go.id/id">Perpustakaan Digital</a>
                 </div>
             </div>
 
@@ -126,7 +114,6 @@
                 </a>
                 <div class="dropdown-content">
                     <a href="#">Aspirasi Masyarakat</a>
-                    <a href="#">Permintaan Informasi</a>
                     <div class="nav-item-dropdown-2">
                         <a href="#">
                             <span>Pengaduan BNN</span>
@@ -138,8 +125,7 @@
                             <a href="#">Pelaporan Gratifikasi</a>
                         </div>
                     </div>
-                    <a href="#">LAPOR!</a>
-                    <a href="#">CSIRT/TTIS</a>
+                    <a href="https://www.lapor.go.id/">LAPOR!</a>
                 </div>
             </div>
 
@@ -209,13 +195,4 @@
         </div>    
     </nav>
 </div>
-
-<main>
-    @yield('content')
-</main>
-
-@include('footer')
-
-</body>
-</html>
 

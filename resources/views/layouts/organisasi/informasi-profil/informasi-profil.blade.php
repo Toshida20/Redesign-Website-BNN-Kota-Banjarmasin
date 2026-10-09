@@ -1,11 +1,11 @@
-﻿@extends('layouts.main')
+@extends('layouts.master')
 
 @section('title', 'Informasi Profil BNN Kota Banjarmasin')
 
 @section('content')
-<div class="container mt-5 mb-5" style="padding-top: 40px;">
+<div class="container mt-5 mb-5" style="padding-top: 15px;">
     
-    @include('layouts.main-informasi-profil')
+    @include('layouts.main.navigation-bar.main-informasi-profil')
     
     <div class="content-sejarah mt-4">
         <p>Badan Narkotika Nasional merupakan lembaga vertikal yang memiliki perwakilan di daerah yang disebut Badan Narkotika Nasional Kota. BNN Kota Banjarmasin merupakan perwakilan BNN yang berlokasi di Jl. Pangeran Hidayatullah Kelurahan Banua Anyar Kecamatan Banjarmasin Utara Kota Banjarmasin Kalimantan Selatan.</p>

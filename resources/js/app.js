@@ -1,24 +1,9 @@
 import './bootstrap';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'flickity/css/flickity.css';
+import Flickity from 'flickity';
 
-// Slider Menu Nav Informasi Profil
-window.switchMenu = function(menuIndex) {
-    const container = document.getElementById('menuSliderContainer');
-    const dot1 = document.getElementById('dot-1');
-    const dot2 = document.getElementById('dot-2');
-    
-    if (!container || !dot1 || !dot2) return;
-
-    if (menuIndex === 1) {
-        container.style.transform = 'translateX(0%)';
-        dot1.classList.add('active');
-        dot2.classList.remove('active');
-    } else if (menuIndex === 2) {
-        container.style.transform = 'translateX(-50%)';
-        dot1.classList.remove('active');
-        dot2.classList.add('active');
-    }
-}
+window.Flickity = Flickity;
 
 // Slider Kegiatan Kami
 document.addEventListener('DOMContentLoaded', function() {
@@ -1052,4 +1037,70 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+});
+
+//logika animasi hero content muncul jika animasi keluar sudah selesai
+document.addEventListener("DOMContentLoaded", () => {
+    const transitionContainer = document.querySelector('.page-transition');
+    const heroLogo = document.getElementById('hero-logo');
+    const heroSubtitle = document.getElementById('hero-subtitle');
+    const heroTitle = document.getElementById('hero-title');
+    const heroLine = document.getElementById('hero-line');
+
+    function playHeroAnimations() {
+        if (heroLogo) heroLogo.classList.add('hero-logo-anim');
+        if (heroSubtitle) heroSubtitle.classList.add('hero-subtitle-anim');
+        if (heroTitle) heroTitle.classList.add('hero-title-anim');
+        if (heroLine) heroLine.classList.add('hero-line-anim');
+    }
+
+    if (transitionContainer) {
+        if (transitionContainer.classList.contains('active-out')) {
+            setTimeout(playHeroAnimations, 900);
+        } else if (!transitionContainer.classList.contains('initial-cover')) {
+            playHeroAnimations();
+        } else {
+            const observer = new MutationObserver((mutations) => {
+                for (const mutation of mutations) {
+                    if (mutation.attributeName === 'class' && transitionContainer.classList.contains('active-out')) {
+                        setTimeout(playHeroAnimations, 900);
+                        observer.disconnect();
+                        break;
+                    }
+                }
+            });
+
+            observer.observe(transitionContainer, { attributes: true });
+        }
+    } else {
+        playHeroAnimations();
+    }
+});
+
+//flikity API foto slider
+document.addEventListener('DOMContentLoaded', () => {
+    const carousel = document.querySelector('.main-carousel');
+
+    if (!carousel || carousel.classList.contains('flickity-enabled')) {
+        return;
+    }
+
+    new Flickity(carousel, {
+        cellAlign: 'center',
+        contain: false,
+        wrapAround: true,
+
+        prevNextButtons: false,
+        pageDots: false,
+
+        autoPlay: 4000,
+        pauseAutoPlayOnHover: false,
+
+        draggable: true,
+        accessibility: true,
+        imagesLoaded: true,
+
+        selectedAttraction: 0.018,
+        friction: 0.28
+    });
 });

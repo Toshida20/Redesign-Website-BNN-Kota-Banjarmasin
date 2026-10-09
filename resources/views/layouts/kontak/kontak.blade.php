@@ -1,14 +1,14 @@
-@extends('layouts.main')
+@extends('layouts.master')
 
-@section('title', 'Alamat Kantor - BNN Kota Banjarmasin')
+@section('title', 'Kontak - BNN Kota Banjarmasin')
 
 @section('content')
-<div class="container mt-5 mb-5" style="padding-top: 40px;">
+<div class="container mt-5 mb-5" style="padding-top: 15px;">
 
-    @include('layouts.main-informasi-profil')
+    @include('layouts.main.navigation-bar.main-media-social')
 
     <div class="content-sejarah mt-4 text-center">
-        <h2 class="fw-bold mb-4" style="color: #444;">Map Kantor BNN Kota Banjarmasin</h2>
+        <h2 class="fw-bold mb-4" style="color: #444;">Kontak BNN Kota Banjarmasin</h2>
     </div>
 
     <div class="map-kantor-wrapper">

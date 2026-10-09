@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.master')
 
 @section('title', 'Beranda - BNN Kota Banjarmasin')
 
@@ -9,22 +9,39 @@
 <section class="hero-video">
     
     <video autoplay muted loop playsinline class="background-video">
-        <source src="{{ asset('videos/bg-dna.mp4') }}" type="video/mp4">
+        <source src="{{ asset('videos/assets/dashboard/bg-dna.webm') }}" type="video/mp4">
     </video>
 
     <div class="video-overlay"></div>
 
     <div class="hero-content">
-        <image src="{{ asset('images/assets/public/logo/bnn-250x250.avif') }}" alt="Logo BNN" width="190" height="190" class="mb-4 hero-logo-anim">
-        <p class="hero-subtitle-anim">Badan Narkotika Nasional Republik Indonesia</p>
-        <h1 class="hero-title-anim">Kota Banjarmasin</h1>
-        <div class="hero-line hero-line-anim"></div>
+        <image src="{{ asset('images/assets/public/logo/bnn-250x250.avif') }}" alt="Logo BNN" width="190" height="190" class="mb-5" id="hero-logo" style="opacity: 0;">
+        <p id="hero-subtitle" style="opacity: 0;">Badan Narkotika Nasional Republik Indonesia</p>
+        <h1 id="hero-title" style="opacity: 0;">Kota Banjarmasin</h1>
+        <div class="hero-line" id="hero-line" style="transform: scaleX(0);"></div>
+    </div>
+</section>
+
+<!-- gallery foto poster -->
+<section class="gallery-section">
+    <div class="gallery-container">
+        <div class="main-carousel">
+            <div class="carousel-cell">
+                <img src="{{ asset('images/contents/unggahan/content-1-slideshow.avif') }}" alt="Foto kegiatan 1">
+            </div>
+            <div class="carousel-cell">
+                <img src="{{ asset('images/contents/unggahan/content-2-slideshow.avif') }}" alt="Foto kegiatan 2">
+            </div>
+            <div class="carousel-cell">
+                <img src="{{ asset('images/contents/unggahan/content-3-slideshow.avif') }}">
+            </div>
+        </div>
     </div>
 </section>
 
 <!-- OUR SERVICE SECTION -->
-<div class="our-services">
-    <h1>Kami Melayani</h1>
+<div class="our-services" style="position: relative; z-index: 1; overflow: hidden;">
+    <img src="{{ asset('images/background/public/no-drug-background-4K.avif') }}" class="service-page-bg">
     <div class="service-container">
         <div class="click-service">
             <div class="service-card">
@@ -100,8 +117,7 @@
     <div class="kegiatan-overlay"></div>
     
     <div class="kegiatan-wrapper">
-        <div class="kegiatan-row">
-            
+        <div class="kegiatan-row" style="align-items: stretch;">
             <div class="kegiatan-col-left">
                 <button id="slider-up" class="slider-btn slider-btn-up">
                     <img src="{{ asset('images/assets/public/button/arrow.png') }}" alt="Arrow Up">
@@ -113,10 +129,8 @@
                     <img src="{{ asset('images/assets/public/button/arrow.png') }}" alt="Arrow Down">
                 </button>
             </div>
-            
             <div class="kegiatan-col-right">
                 <h1 class="kegiatan-title">Kegiatan Kami</h1>
-                
                 <div class="kegiatan-text-wrapper">
                     <h4 id="activity-title" class="transition-text kegiatan-subtitle"></h4>
                     <p id="activity-desc" class="transition-text kegiatan-desc"></p>
@@ -130,12 +144,12 @@
 <section class="division-grid">
 
     <div class="division-card">
-        <img src="{{ asset('images/background/public/bg-sekretariat.jpg') }}" alt="BNNP & BNNK">
+        <img src="{{ asset('images/background/public/bg-inspektorat.avif') }}" alt="BNNP & BNNK">
         <div class="overlay"></div>
 
         <div class="division-content">
-            <h3>BNNP & BNNK</h3>
-            <a href="#" class="btn-kunjungi">Kunjungi</a>
+            <h3>Bidang Umum</h3>
+            <a href="{{ url('/satuan-kerja/kasubbag-umum') }}" class="btn-kunjungi">Kunjungi</a>
         </div>
     </div>
 
@@ -145,7 +159,7 @@
 
         <div class="division-content">
             <h3>Bidang Pencegahan dan<br>Pemberdayaan Masyarakat</h3>
-            <a href="#" class="btn-kunjungi">Kunjungi</a>
+            <a href="{{ url('/satuan-kerja/katim-bidang-pencegahan-dan-pemberdayaan-masyarakat') }}" class="btn-kunjungi">Kunjungi</a>
         </div>
     </div>
 
@@ -155,7 +169,7 @@
 
         <div class="division-content">
             <h3>Bidang Rehabilitasi</h3>
-            <a href="#" class="btn-kunjungi">Kunjungi</a>
+            <a href="{{ url('/satuan-kerja/katim-bidang-rehabilitasi') }}" class="btn-kunjungi">Kunjungi</a>
         </div>
     </div>
 
@@ -165,7 +179,7 @@
 
         <div class="division-content">
             <h3>Bidang Pemberantasan</h3>
-            <a href="#" class="btn-kunjungi">Kunjungi</a>
+            <a href="{{ url('/satuan-kerja/katim-bidang-pemberantasan') }}" class="btn-kunjungi">Kunjungi</a>
         </div>
     </div>
 

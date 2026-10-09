@@ -1,11 +1,11 @@
-@extends('layouts.main')
+@extends('layouts.master')
 
 @section('title', 'Laporan LHKPN BNN Kota Banjarmasin')
 
 @section('content')
-<div class="container mt-5 mb-5" style="padding-top: 68px;">
+<div class="container mt-5 mb-5" style="padding-top: 15px;">
     
-    @include('layouts.main-informasi-profil')
+    @include('layouts.main.navigation-bar.main-informasi-profil')
 
     @php
         $currentArticle = [
