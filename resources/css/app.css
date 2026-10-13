@@ -3328,7 +3328,7 @@ html.internal-nav .page-transition .transition-layer {
     top: 100%;
     right: -20px;
     left: auto;
-    width: 225px;
+    width: 220px;
     max-width: 90vw;
     background-color: #020202a5;
     box-shadow: -4px 8px 24px rgba(0,0,0,0.45);
@@ -4023,18 +4023,11 @@ input::-ms-clear {
     height: 0 !important;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Inter', sans-serif;
-}
-
-body, html {
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
+body.profile-page-body {
+    min-height: 100vh;
     background-color: #0d2847;
+    overflow-x: hidden;
+    font-family: 'Inter', sans-serif;
 }
 
 /* Fullscreen Background */
@@ -4265,7 +4258,7 @@ body, html {
 }
 
 /* Form Inputs */
-.field-label {
+.profile-center-container .field-label {
     display: block;
     font-size: 13.5px;
     font-weight: 600;
@@ -4274,7 +4267,7 @@ body, html {
     margin-top: 14px;
 }
 
-.field-label:first-of-type {
+.profile-center-container .field-label:first-of-type {
     margin-top: 0;
 }
 

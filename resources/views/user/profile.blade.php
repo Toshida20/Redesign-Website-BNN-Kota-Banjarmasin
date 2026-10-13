@@ -22,7 +22,7 @@
     </script>
 </head>
 
-<body>
+<body class="profile-page-body">
     <div class="page-transition {{ $errors->any() ? '' : 'initial-cover' }}">
         <div class="transition-layer layer-1"></div>
         <div class="transition-layer layer-2"></div>

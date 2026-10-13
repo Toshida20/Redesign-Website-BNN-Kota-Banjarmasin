@@ -1170,7 +1170,6 @@ function initProfileLogic() {
         });
     }
 
-    // Toggle password visibility (Global fallback)
     window.togglePassVisibility = function(inputId, btn) {
         let input = inputId ? document.getElementById(inputId) : null;
         let button = btn || (typeof event !== 'undefined' ? event?.currentTarget : null);
