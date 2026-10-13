@@ -5,7 +5,7 @@
 @section('content')
 <div class="container mt-5 mb-5" style="padding-top: 15px;">
     
-    @include('layouts.main.navigation-bar.main-informasi-profil')
+    @include('layouts.main.navigation-bar.main-media-social')
     
     @php
         $lhkpnTableData = [

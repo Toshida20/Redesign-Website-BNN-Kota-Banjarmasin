@@ -42,7 +42,7 @@
                     <label class="field-label">Nama Pengguna</label>
                     <div class="input-wrap {{ $errors->has('name') ? 'input-error' : '' }}">
                         <span class="icon">
-                            <i class="fa-solid fa-phone" style="transform: scaleX(-1);"></i>
+                            <i class="fa-solid fa-user"></i>
                         </span>
                         <input type="text" name="name" placeholder="Masukkan Nama Pengguna anda" value="{{ old('name') }}" autofocus>
                     </div>
@@ -50,7 +50,7 @@
                     <label class="field-label">Email</label>
                     <div class="input-wrap {{ $errors->has('email') ? 'input-error' : '' }}">
                         <span class="icon">
-                            <i class="fa-solid fa-phone" style="transform: scaleX(-1);"></i>
+                            <i class="fa-solid fa-envelope"></i>
                         </span>
                         <input type="email" name="email" autocomplete="off" placeholder="Masukkan Email anda" value="{{ old('email') }}">
                     </div>
@@ -58,7 +58,7 @@
                     <label class="field-label">Password</label>
                     <div class="input-wrap {{ $errors->has('password') ? 'input-error' : '' }}">
                         <span class="icon">
-                            <i class="fa-solid fa-phone" style="transform: scaleX(-1);"></i>
+                            <i class="fa-solid fa-lock"></i>
                         </span>
                         <input type="password" id="password" name="password" autocomplete="new-password" placeholder="Masukkan Password anda">
                         <button type="button" class="eye-btn">
@@ -69,7 +69,7 @@
                     <label class="field-label">Konfirmasi Password</label>
                     <div class="input-wrap {{ $errors->has('password_confirmation') ? 'input-error' : '' }}">
                         <span class="icon">
-                            <i class="fa-solid fa-phone" style="transform: scaleX(-1);"></i>
+                            <i class="fa-solid fa-lock"></i>
                         </span>
                         <input type="password" id="password_confirmation" name="password_confirmation" autocomplete="new-password" placeholder="Masukkan Password anda">
                         <button type="button" class="eye-btn">

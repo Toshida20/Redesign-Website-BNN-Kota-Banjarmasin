@@ -6,31 +6,26 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
-        // 1. Drop existing unused/replaced tables
         Schema::dropIfExists('article_tag');
         Schema::dropIfExists('tags');
         Schema::dropIfExists('reports');
 
-        // 2. Media Manager (Untuk menampung Foto / PDF dari modal Author/Editor)
         Schema::create('media', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('file_name');
             $table->string('file_path');
-            $table->string('file_type', 50)->nullable(); // image, pdf, document
+            $table->string('file_type', 50)->nullable();
             $table->string('mime_type')->nullable();
             $table->timestamps();
         });
 
-        // 3. Struktur Divisi & Karyawan (Sesuai foto 1)
         Schema::create('divisions', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // Contoh: Bidang Pencegahan dan Pemberdayaan Masyarakat
+            $table->string('name');
             $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->timestamps();
@@ -45,21 +40,19 @@ return new class extends Migration
             $table->string('jabatan')->nullable();
             $table->string('pendidikan')->nullable();
             $table->string('status_pegawai')->nullable();
-            $table->string('periode_tahun')->nullable(); // Contoh: "Juli 2026" / "2024"
+            $table->string('periode_tahun')->nullable();
             $table->timestamps();
         });
 
-        // Tambah relasi divisi ke kategori (Agar berita terkait otomatis muncul di page Divisi)
         Schema::table('categories', function (Blueprint $table) {
             $table->foreignId('division_id')->nullable()->constrained('divisions')->nullOnDelete();
         });
 
-        // 4. Struktur Laporan LHKPN & PPID (Tabel Dinamis + File) (Sesuai foto 2, 3, 4)
         Schema::create('report_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('type')->default('lhkpn'); // 'ppid' atau 'lhkpn'
+            $table->string('type')->default('lhkpn');
             $table->timestamps();
         });
 
@@ -76,7 +69,6 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // Bagian custom-report-table (Contoh: "1. Laporan data penggunaan narkotika Tahun 2024")
         Schema::create('publication_sections', function (Blueprint $table) {
             $table->id();
             $table->foreignId('publication_id')->constrained('publications')->onDelete('cascade');
@@ -85,7 +77,6 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // File-file (row) di dalam custom-report-table
         Schema::create('publication_files', function (Blueprint $table) {
             $table->id();
             $table->foreignId('publication_section_id')->constrained('publication_sections')->onDelete('cascade');
@@ -96,22 +87,18 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // 5. Fitur Konfigurasi Navbar Admin (Rencana / Opsional)
         Schema::create('navbar_menus', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('url')->nullable();
             $table->foreignId('parent_id')->nullable()->constrained('navbar_menus')->onDelete('cascade');
-            $table->string('position')->default('upper'); // 'upper' atau 'lower'
+            $table->string('position')->default('upper');
             $table->integer('sort_order')->default(0);
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('navbar_menus');
@@ -129,7 +116,6 @@ return new class extends Migration
         Schema::dropIfExists('divisions');
         Schema::dropIfExists('media');
 
-        // Untuk rollback, kita kembalikan table yang di drop (skeletonnya saja)
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
             $table->timestamps();

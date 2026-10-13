@@ -536,25 +536,29 @@ if (document.readyState === 'loading') {
     initMap();
 }
 
-// Logika toggle mata hide password dinamis (Bisa untuk Login & Register)
-document.addEventListener('DOMContentLoaded', function() {
-    const toggleButtons = document.querySelectorAll('.eye-btn');
-    
+// Logika toggle mata hide password dinamis (Login, Register & Profil Reset Password)
+function initPasswordToggles() {
+    const toggleButtons = document.querySelectorAll('.eye-btn, .eye-toggle-btn');
+
     toggleButtons.forEach(btn => {
-        btn.addEventListener('click', function() {
-            // Cari input di dalam container yang sama (.input-wrap)
-            const wrap = this.closest('.input-wrap');
-            if(!wrap) return;
-            
+        if (btn.dataset.toggleInitialized === 'true') return;
+        btn.dataset.toggleInitialized = 'true';
+
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Cari input di dalam container yang sama (.input-wrap atau .input-box)
+            const wrap = this.closest('.input-wrap') || this.closest('.input-box');
+            if (!wrap) return;
+
             const input = wrap.querySelector('input');
             const icon = this.querySelector('i');
-            
-            if(!input || !icon) return;
+
+            if (!input || !icon) return;
 
             const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
             input.setAttribute('type', type);
-            
-            if(type === 'password') {
+
+            if (type === 'password') {
                 icon.classList.remove('fa-eye-slash');
                 icon.classList.add('fa-eye');
             } else {
@@ -563,7 +567,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPasswordToggles);
+} else {
+    initPasswordToggles();
+}
 
 document.querySelectorAll('.input-wrap.input-error input').forEach(function(input) {
     input.addEventListener('focus', function() {
@@ -846,45 +856,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const profileDropdownIcon = document.getElementById('profileDropdownIcon');
 
     if (profileDropdownBtn && profileDropdownMenu) {
-        const loginArrow = profileDropdownBtn.querySelector('.login-arrow');
-        const loginText = profileDropdownBtn.querySelector('.login-text');
-
-        function alignWithDropdown() {
-
-            requestAnimationFrame(() => {
-                const dropdownRect = profileDropdownMenu.getBoundingClientRect();
-                const arrowRect = loginArrow.getBoundingClientRect();
-                const textRect = loginText.getBoundingClientRect();
-
-                const iconLeftEdge = dropdownRect.left + 22;
-
-                const arrowShift = iconLeftEdge - arrowRect.left;
-                loginArrow.style.transform = `translateX(${arrowShift}px)`;
-
-                const dropdownCenterX = dropdownRect.left + (dropdownRect.width / 2);
-                const textCenterX = textRect.left + (textRect.width / 2);
-                const textShift = dropdownCenterX - textCenterX;
-                loginText.style.transform = `translateX(${textShift}px)`;
-            });
-        }
-
-        function resetAlignment() {
-            loginArrow.style.transform = '';
-            loginText.style.transform = '';
-        }
-
         profileDropdownBtn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             profileDropdownMenu.classList.toggle('show');
             if (profileDropdownIcon) {
                 profileDropdownIcon.classList.toggle('rotate');
-            }
-
-            if (profileDropdownMenu.classList.contains('show')) {
-                alignWithDropdown();
-            } else {
-                resetAlignment();
             }
         });
 
@@ -894,7 +871,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (profileDropdownIcon) {
                     profileDropdownIcon.classList.remove('rotate');
                 }
-                resetAlignment();
             }
         });
     }
@@ -905,17 +881,11 @@ window.confirmLogout = function(e) {
     if(e) e.preventDefault();
     const modal = document.getElementById('logoutModal');
     if (modal) {
-
         const profileDropdownMenu = document.getElementById('profileDropdownMenu');
         const profileDropdownIcon = document.getElementById('profileDropdownIcon');
-        const loginArrow = document.querySelector('.login-arrow');
-        const loginText = document.querySelector('.login-user-header .login-text');
 
         if (profileDropdownMenu) profileDropdownMenu.classList.remove('show');
         if (profileDropdownIcon) profileDropdownIcon.classList.remove('rotate');
-
-        if (loginArrow) loginArrow.style.transform = '';
-        if (loginText) loginText.style.transform = '';
 
         modal.classList.add('show');
     }
@@ -1105,10 +1075,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-//tombol nav Informasi-Profil
+//tombol nav Informasi-Profil & Satuan Kerja
 document.addEventListener("DOMContentLoaded", () => {
     const navButtons = document.querySelectorAll(".profil-sidebar .btn-menu");
     const panels = document.querySelectorAll(".profil-content .profil-panel");
+    const headerTitles = document.querySelectorAll(".information-header-title[data-target]");
 
     if (!navButtons.length || !panels.length) return;
 
@@ -1133,6 +1104,14 @@ document.addEventListener("DOMContentLoaded", () => {
             button.classList.toggle("active", isActive);
             button.setAttribute("aria-selected", String(isActive));
         });
+
+        if (headerTitles.length > 0) {
+            headerTitles.forEach((title) => {
+                const isActive = title.dataset.target === targetId;
+                title.hidden = !isActive;
+                title.classList.toggle("active", isActive);
+            });
+        }
     }
 
     navButtons.forEach((button) => {
@@ -1141,15 +1120,346 @@ document.addEventListener("DOMContentLoaded", () => {
         
             const wrapper = document.querySelector(".profil-wrapper");
             if (wrapper) {
+                const navTab = document.querySelector(".navigation-tab");
+                const navHeight = navTab ? navTab.offsetHeight : 100;
+                const offsetTop = wrapper.getBoundingClientRect().top + window.scrollY - navHeight - 20;
 
-                const offsetTop = wrapper.getBoundingClientRect().top + window.scrollY - 130;
                 window.scrollTo({
-                    top: offsetTop,
+                    top: Math.max(0, offsetTop),
                     behavior: 'smooth'
                 });
             }
         });
     });
 
-    showPanel("sejarah");
+    const activeBtn = document.querySelector(".profil-sidebar .btn-menu.active") || navButtons[0];
+    const initialTarget = activeBtn ? activeBtn.dataset.target : (panels[0]?.id || "sejarah");
+    showPanel(initialTarget);
 });
+
+// 1. CARD FLIP EFFECT & PROFIL LOGIC
+function initProfileLogic() {
+    const cardFlipper = document.getElementById('cardFlipper');
+    const btnFlipToReset = document.getElementById('btnFlipToReset');
+    const btnFlipBack = document.getElementById('btnFlipBack');
+
+    function clearAlerts() {
+        const pAlert = document.getElementById('profileAlert');
+        const passAlert = document.getElementById('passwordAlert');
+        if (pAlert) {
+            pAlert.className = 'alert-box';
+            pAlert.style.display = 'none';
+        }
+        if (passAlert) {
+            passAlert.className = 'alert-box';
+            passAlert.style.display = 'none';
+        }
+    }
+
+    if (btnFlipToReset && cardFlipper) {
+        btnFlipToReset.addEventListener('click', () => {
+            cardFlipper.classList.add('is-flipped');
+            clearAlerts();
+        });
+    }
+
+    if (btnFlipBack && cardFlipper) {
+        btnFlipBack.addEventListener('click', () => {
+            cardFlipper.classList.remove('is-flipped');
+            clearAlerts();
+        });
+    }
+
+    // Toggle password visibility (Global fallback)
+    window.togglePassVisibility = function(inputId, btn) {
+        let input = inputId ? document.getElementById(inputId) : null;
+        let button = btn || (typeof event !== 'undefined' ? event?.currentTarget : null);
+        if (!input && button) {
+            const wrap = button.closest('.input-box') || button.closest('.input-wrap');
+            if (wrap) input = wrap.querySelector('input');
+        }
+        if (!input) return;
+
+        const icon = button ? button.querySelector('i') : null;
+        const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+        input.setAttribute('type', type);
+
+        if (icon) {
+            if (type === 'password') {
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            } else {
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            }
+        }
+    };
+
+    // 2. FOTO PROFIL MODAL LOGIC
+    const avatarPickerBtn = document.getElementById('avatarPickerBtn');
+    const photoSourceModal = document.getElementById('photoSourceModal');
+    const fileAvatarInput = document.getElementById('fileAvatarInput');
+    const cameraAvatarData = document.getElementById('cameraAvatarData');
+    const currentAvatarImg = document.getElementById('currentAvatarImg');
+
+    if (avatarPickerBtn && photoSourceModal) {
+        avatarPickerBtn.addEventListener('click', () => {
+            photoSourceModal.classList.add('active');
+        });
+    }
+
+    window.closePhotoModal = function() {
+        if (photoSourceModal) photoSourceModal.classList.remove('active');
+    };
+
+    window.chooseFromDevice = function() {
+        window.closePhotoModal();
+        if (fileAvatarInput) fileAvatarInput.click();
+    };
+
+    if (fileAvatarInput) {
+        fileAvatarInput.addEventListener('change', (e) => {
+            if (e.target.files && e.target.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(evt) {
+                    if (currentAvatarImg) currentAvatarImg.src = evt.target.result;
+                    if (cameraAvatarData) cameraAvatarData.value = ''; // Reset camera data jika ada file
+                };
+
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+    }
+
+    // 3. KAMERA LIVE WEBCAM LOGIC
+    const cameraModal = document.getElementById('cameraModal');
+    const cameraVideo = document.getElementById('cameraVideo');
+    const cameraCanvas = document.getElementById('cameraCanvas');
+    const btnCapturePhoto = document.getElementById('btnCapturePhoto');
+    const btnRetakePhoto = document.getElementById('btnRetakePhoto');
+    const btnUsePhoto = document.getElementById('btnUsePhoto');
+    let cameraStream = null;
+
+    window.openCameraModal = function() {
+        window.closePhotoModal();
+        if (!cameraModal) return;
+
+        cameraModal.classList.add('active');
+        if (cameraCanvas) cameraCanvas.style.display = 'none';
+        if (cameraVideo) cameraVideo.style.display = 'block';
+        if (btnCapturePhoto) btnCapturePhoto.style.display = 'inline-block';
+        if (btnRetakePhoto) btnRetakePhoto.style.display = 'none';
+        if (btnUsePhoto) btnUsePhoto.style.display = 'none';
+
+        navigator.mediaDevices.getUserMedia({ video: { width: 400, height: 400, facingMode: 'user' } })
+            .then(stream => {
+                cameraStream = stream;
+                if (cameraVideo) cameraVideo.srcObject = stream;
+            })
+            .catch(err => {
+                alert('Tidak dapat mengakses kamera: ' + err.message);
+                window.closeCameraModal();
+            });
+    };
+
+    window.closeCameraModal = function() {
+        if (cameraModal) cameraModal.classList.remove('active');
+
+        if (cameraStream) {
+            cameraStream.getTracks().forEach(track => track.stop());
+            cameraStream = null;
+        }
+    };
+
+    window.capturePhoto = function() {
+        if (!cameraCanvas || !cameraVideo) return;
+        cameraCanvas.width = cameraVideo.videoWidth || 400;
+        cameraCanvas.height = cameraVideo.videoHeight || 400;
+        const ctx = cameraCanvas.getContext('2d');
+        ctx.drawImage(cameraVideo, 0, 0, cameraCanvas.width, cameraCanvas.height);
+
+        cameraVideo.style.display = 'none';
+        cameraCanvas.style.display = 'block';
+
+        if (btnCapturePhoto) btnCapturePhoto.style.display = 'none';
+        if (btnRetakePhoto) btnRetakePhoto.style.display = 'inline-block';
+        if (btnUsePhoto) btnUsePhoto.style.display = 'inline-block';
+    };
+
+    window.retakePhoto = function() {
+        if (cameraCanvas) cameraCanvas.style.display = 'none';
+        if (cameraVideo) cameraVideo.style.display = 'block';
+        if (btnCapturePhoto) btnCapturePhoto.style.display = 'inline-block';
+        if (btnRetakePhoto) btnRetakePhoto.style.display = 'none';
+        if (btnUsePhoto) btnUsePhoto.style.display = 'none';
+    };
+
+    window.useCapturedPhoto = function() {
+        if (!cameraCanvas) return;
+        const dataUrl = cameraCanvas.toDataURL('image/jpeg', 0.9);
+        if (currentAvatarImg) currentAvatarImg.src = dataUrl;
+        if (cameraAvatarData) cameraAvatarData.value = dataUrl;
+        if (fileAvatarInput) fileAvatarInput.value = '';
+        window.closeCameraModal();
+    };
+
+    // 4. MODAL KONFIRMASI SIMPAN (WARNING)
+    const confirmSaveModal = document.getElementById('confirmSaveModal');
+    const btnPromptSave = document.getElementById('btnPromptSave');
+    const profileForm = document.getElementById('profileForm');
+    const profileAlert = document.getElementById('profileAlert');
+
+    if (btnPromptSave) {
+        btnPromptSave.addEventListener('click', function() {
+            const nameInput = document.getElementById('userNameInput');
+
+            if (!nameInput || !nameInput.value.trim()) {
+                if (nameInput) nameInput.focus();
+                if (profileAlert) {
+                    profileAlert.className = 'alert-box alert-error';
+                    profileAlert.innerText = 'Nama pengguna tidak boleh kosong.';
+                    profileAlert.style.display = 'block';
+                }
+                return;
+            }
+
+            if (confirmSaveModal) confirmSaveModal.classList.add('active');
+        });
+    }
+
+    window.closeConfirmModal = function() {
+        if (confirmSaveModal) confirmSaveModal.classList.remove('active');
+    };
+
+    window.executeSaveProfile = function() {
+        window.closeConfirmModal();
+        if (!profileForm) return;
+
+        if (btnPromptSave) {
+            btnPromptSave.disabled = true;
+            btnPromptSave.innerText = 'Menyimpan...';
+        }
+
+        const formData = new FormData(profileForm);
+        const postUrl = profileForm.action || window.location.href;
+
+        fetch(postUrl, {
+            method: "POST",
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (btnPromptSave) {
+                btnPromptSave.disabled = false;
+                btnPromptSave.innerText = 'Simpan';
+            }
+
+            if (data.success) {
+                if (profileAlert) {
+                    profileAlert.className = 'alert-box alert-success';
+                    profileAlert.innerText = data.message;
+                    profileAlert.style.display = 'block';
+                }
+
+                if (data.avatar && currentAvatarImg) {
+                    currentAvatarImg.src = data.avatar;
+                }
+            } else {
+                if (profileAlert) {
+                    profileAlert.className = 'alert-box alert-error';
+                    profileAlert.innerText = data.message || 'Gagal menyimpan profil.';
+                    profileAlert.style.display = 'block';
+                }
+            }
+        })
+        .catch(err => {
+            if (btnPromptSave) {
+                btnPromptSave.disabled = false;
+                btnPromptSave.innerText = 'Simpan';
+            }
+            if (profileAlert) {
+                profileAlert.className = 'alert-box alert-error';
+                profileAlert.innerText = 'Terjadi kesalahan sistem.';
+                profileAlert.style.display = 'block';
+            }
+        });
+    };
+
+    // 5. FORM RESET PASSWORD
+    const passwordForm = document.getElementById('passwordForm');
+    const passwordAlert = document.getElementById('passwordAlert');
+    const btnSubmitReset = document.getElementById('btnSubmitReset');
+
+    if (passwordForm) {
+        passwordForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (btnSubmitReset) {
+                btnSubmitReset.disabled = true;
+                btnSubmitReset.innerText = 'Memproses...';
+            }
+
+            const formData = new FormData(this);
+            const postUrl = this.action || window.location.href;
+
+            fetch(postUrl, {
+                method: "POST",
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: formData
+            })
+            .then(async res => {
+                const data = await res.json();
+                if (btnSubmitReset) {
+                    btnSubmitReset.disabled = false;
+                    btnSubmitReset.innerText = 'Reset Password';
+                }
+
+                if (res.ok && data.success) {
+                    if (passwordAlert) {
+                        passwordAlert.className = 'alert-box alert-success';
+                        passwordAlert.innerText = data.message;
+                        passwordAlert.style.display = 'block';
+                    }
+                    passwordForm.reset();
+
+                    setTimeout(() => {
+                        if (cardFlipper) cardFlipper.classList.remove('is-flipped');
+                        if (profileAlert) {
+                            profileAlert.className = 'alert-box alert-success';
+                            profileAlert.innerText = 'Password berhasil diubah!';
+                            profileAlert.style.display = 'block';
+                        }
+                    }, 1400);
+                } else {
+                    if (passwordAlert) {
+                        passwordAlert.className = 'alert-box alert-error';
+                        passwordAlert.innerText = data.message || 'Gagal memperbarui password.';
+                        passwordAlert.style.display = 'block';
+                    }
+                }
+            })
+            .catch(err => {
+                if (btnSubmitReset) {
+                    btnSubmitReset.disabled = false;
+                    btnSubmitReset.innerText = 'Reset Password';
+                }
+                if (passwordAlert) {
+                    passwordAlert.className = 'alert-box alert-error';
+                    passwordAlert.innerText = 'Password saat ini salah atau konfirmasi password tidak cocok.';
+                    passwordAlert.style.display = 'block';
+                }
+            });
+        });
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initProfileLogic);
+} else {
+    initProfileLogic();
+}

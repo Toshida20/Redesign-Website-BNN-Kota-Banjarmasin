@@ -43,9 +43,12 @@
 
         <main class="profil-content">
 
-            <section id="sejarah"
-                class="profil-panel active"
-                aria-hidden="false">
+            <section id="sejarah" class="profil-panel active" aria-hidden="false">
+
+                <div class="information-header-title">
+                    <h1>Sejarah BNN Kota Banjarmasin</h1>
+                </div>
+
                 <div class="content-sejarah mt-4">
                     <p>Badan Narkotika Nasional merupakan lembaga vertikal yang memiliki perwakilan di daerah yang disebut Badan Narkotika Nasional Kota. BNN Kota Banjarmasin merupakan perwakilan BNN yang berlokasi di Jl. Pangeran Hidayatullah Kelurahan Banua Anyar Kecamatan Banjarmasin Utara Kota Banjarmasin Kalimantan Selatan.</p>
 
@@ -68,10 +71,12 @@
                 </div>
             </section>
 
-            <section id="visi-misi"
-                class="profil-panel"
-                aria-hidden="true"
-                hidden>
+            <section id="visi-misi" class="profil-panel" aria-hidden="true" hidden>
+
+                <div class="information-header-title">
+                    <h1>Visi dan Misi BNN Kota Banjarmasin</h1>
+                </div>
+
                 <div class="content-sejarah mt-4 text-center">
                     <h3 class="fw-bold mb-4" style="color: #444;">Visi</h3>
                     <p style="text-align: justify; margin-bottom: 30px;">
@@ -93,12 +98,14 @@
                 </div>
             </section>
 
-            <section id="tugas-fungsi"
-                class="profil-panel"
-                aria-hidden="true"
-                hidden>
+            <section id="tugas-fungsi" class="profil-panel" aria-hidden="true" hidden>
+
+                <div class="information-header-title">
+                    <h1>Tugas Pokok dan Fungsi BNN Kota Banjarmasin</h1>
+                </div>
+
                 <div class="content-sejarah mt-4 text-center">
-                    <h2 class="fw-bold mb-4" style="color: #444;">Tugas Pokok dan Fungsi BNN Kota Banjarmasin</h2>
+                    
                     <h3 class="fw-bold mb-4" style="color: #444;">Kedudukan</h3>
                     <p style="text-align: justify; margin-bottom: 30px;">
                         Tugas dan Fungsi BNN Kota Banjarmasin, BNN merupakan sebuah lembaga Pemerintah Non Kementrian (LPKN) Indonesia yang melaksanakan tugas pemerintahan di bidang pencegahan, pemberantasan, Penyalahgunaan dan Peredaran gelap Psikotropika,Prekusor, dan bahan adiktif lainnya.

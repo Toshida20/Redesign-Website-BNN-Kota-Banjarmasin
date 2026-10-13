@@ -32,8 +32,8 @@
     
     <div class="logo-company">
         <img src="{{ asset('images/assets/public/logo/bnn-250x250.avif') }}" alt="Logo BNN">
-        <h1 class="title-company">Badan Narkotika Nasional</h1>
-        <h3 class="title-company-lower">Pejabat Pengelola Informasi Dan Dokumentasi</h3>
+        <h3 class="title-company" style="text-align: center; font-size: 30px; font-weight: bold; color: #333; margin-top: 15px;">Badan Narkotika Nasional</h3>
+        <p class="title-company-lower" style="text-align: center; font-weight: bold; font-size: 25px; color: #333; margin-bottom: 25px;">Pejabat Pengelola Informasi Dan Dokumentasi</p>
     </div>
 </div>
 

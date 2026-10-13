@@ -56,7 +56,7 @@
 
                     <div class="input-wrap {{ $errors->any() ? 'input-error' : '' }}">
                         <span class="icon">
-                            <i class="fa-solid fa-phone" style="transform: scaleX(-1);"></i>
+                            <i class="fa-solid fa-envelope"></i>
                         </span>
                         <input type="email" name="email" autocomplete="off" placeholder="Masukkan Email anda" value="{{ old('email') }}" {{ $errors->any() ? '' : 'autofocus' }}>
                     </div>
@@ -65,7 +65,7 @@
 
                    <div class="input-wrap {{ $errors->any() ? 'input-error' : '' }}">
                         <span class="icon">
-                            <i class="fa-solid fa-phone" style="transform: scaleX(-1);"></i>
+                            <i class="fa-solid fa-lock"></i>
                         </span>
                         <input type="password" id="password" name="password" autocomplete="old-password" placeholder="Masukkan password anda">
                         <button type="button" class="eye-btn" id="togglePassword">
@@ -88,7 +88,7 @@
 
                     <div class="remember-row">
                         <label><input type="checkbox" name="remember">Ingatkan Saya</label>
-                        <a href="#" class="link">Lupa Password?</a>
+                        <a href="{{ route('password.request') }}" class="link">Lupa Password?</a>
                     </div>
 
                     <button type="submit" class="btn-masuk">Masuk</button>

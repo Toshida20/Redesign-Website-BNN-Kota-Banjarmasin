@@ -1,4 +1,4 @@
-﻿<div class="navigation-tab">
+<div class="navigation-tab">
 <nav class="navbar navbar-dark" style="background-color: #174b83;">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ url('/') }}">
@@ -105,9 +105,15 @@
                 </div>
             </div>
 
-            <a href="#" class="menu-nav-2 {{ request()->is('ppid') ? 'active' : '' }}">
-                <span>PPID</span>
-            </a>
+            <div class="nav-item-dropdown">
+                <a href="{{ url('/ppid') }}" class="menu-nav-2 {{ request()->is('ppid') ? 'active' : '' }}">
+                    <span>PPID</span>
+                </a>
+                <div class="dropdown-content">
+                    <a href="{{ url('/ppid') }}">Informasi Publik (PPID)</a>
+                    <a href="{{ url('/lhkpn') }}">LHKPN</a>
+                </div>
+            </div>
 
             <div class="nav-item-dropdown">
                 <a href="#" class="menu-nav-2 lapor {{ request()->is('lapor') ? 'active' : '' }}">
@@ -147,7 +153,7 @@
                         </div>
                         <div class="login-text">
                             <small>Login Sebagai</small>
-                            <strong>{{ Auth::user()->name ?? 'Tamu' }}</strong>
+                            <strong title="{{ Auth::user()->name ?? 'Tamu' }}">{{ Auth::user()->name ?? 'Tamu' }}</strong>
                         </div>
                         <div class="user-icon">
                             @if(Auth::user()->avatar)
@@ -160,7 +166,7 @@
 
                     {{-- Dropdown Menu --}}
                     <div class="profile-dropdown-menu" id="profileDropdownMenu">
-                        <a href="#" class="dropdown-item">
+                        <a href="{{ route('user.profile') }}" class="dropdown-item">
                             <i class="fa-regular fa-circle-user"></i> Kelola Profil
                         </a>
                         <a href="#" class="dropdown-item">
