@@ -20,7 +20,7 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        return view('auth.register');
+        return view('auth.login', ['initialMode' => 'register']);
     }
 
     public function register(Request $request)

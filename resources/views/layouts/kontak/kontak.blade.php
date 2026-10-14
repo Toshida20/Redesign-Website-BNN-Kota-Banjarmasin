@@ -61,11 +61,11 @@
                                 @csrf
                                 <h2>Subyek</h2>
                                 <label>
-                                    <textarea rows="4" name="subyek" @guest disabled @endguest></textarea>
+                                    <textarea rows="4" name="subyek" placeholder="Tuliskan subyek..." @guest disabled @endguest></textarea>
                                 </label>
                                 <h2>Pesan</h2>
                                 <label>
-                                    <textarea rows="4" name="pesan" @guest disabled @endguest></textarea>
+                                    <textarea rows="4" name="pesan" placeholder="Tuliskan pesan..." @guest disabled @endguest></textarea>
                                 </label>
                                 @auth
                                     <div class="form-submit-wrapper">

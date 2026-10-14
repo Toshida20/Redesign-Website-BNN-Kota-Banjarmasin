@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="profile-html">
 
 <head>
     <meta charset="UTF-8">

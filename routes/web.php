@@ -163,5 +163,34 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::resource('users', App\Http\Controllers\Admin\UserManageController::class);
     Route::resource('pegawai', App\Http\Controllers\Admin\PegawaiController::class);
     Route::resource('landing-poster', App\Http\Controllers\Admin\LandingPosterController::class);
-    Route::get('/reports', [App\Http\Controllers\Admin\DashboardController::class, 'userReports'])->name('reports');
+
+    // Menu "Lihat Laporan" Admin
+    Route::prefix('reports')->name('reports')->group(function () {
+        Route::get('/', [App\Http\Controllers\Admin\ReportManageController::class, 'index']);
+        Route::get('/penyalahgunaan-narkoba', [App\Http\Controllers\Admin\ReportManageController::class, 'narkoba'])->name('.narkoba');
+        Route::get('/aspirasi-masyarakat', [App\Http\Controllers\Admin\ReportManageController::class, 'aspirasi'])->name('.aspirasi');
+        Route::get('/whistleblowing', [App\Http\Controllers\Admin\ReportManageController::class, 'whistleblowing'])->name('.whistleblowing');
+        Route::get('/pelaporan-gratifikasi', [App\Http\Controllers\Admin\ReportManageController::class, 'gratifikasi'])->name('.gratifikasi');
+        Route::get('/{id}', [App\Http\Controllers\Admin\ReportManageController::class, 'show'])->name('.show');
+        Route::patch('/{id}/status', [App\Http\Controllers\Admin\ReportManageController::class, 'updateStatus'])->name('.status');
+    });
+});
+
+/* MENU LAPOR MASYARAKAT */
+Route::prefix('lapor')->name('lapor.')->group(function () {
+    // 1. Aspirasi Masyarakat
+    Route::get('/aspirasi-masyarakat', [App\Http\Controllers\Lapor\AspirasiController::class, 'index'])->name('aspirasi');
+    Route::post('/aspirasi-masyarakat', [App\Http\Controllers\Lapor\AspirasiController::class, 'store'])->middleware('auth')->name('aspirasi.store');
+
+    // 2. Pengaduan BNN: Penyalahgunaan Narkoba (Bisa diakses publik dengan form blur untuk tamu, submit wajib login)
+    Route::get('/pengaduan/penyalahgunaan-narkoba', [App\Http\Controllers\Lapor\PengaduanNarkobaController::class, 'index'])->name('narkoba');
+    Route::post('/pengaduan/penyalahgunaan-narkoba', [App\Http\Controllers\Lapor\PengaduanNarkobaController::class, 'store'])->middleware('auth')->name('narkoba.store');
+
+    // 3. Pengaduan BNN: Whistleblowing & Pelayanan Publik
+    Route::get('/pengaduan/whistleblowing', [App\Http\Controllers\Lapor\WhistleblowingController::class, 'index'])->name('whistleblowing');
+    Route::post('/pengaduan/whistleblowing', [App\Http\Controllers\Lapor\WhistleblowingController::class, 'store'])->middleware('auth')->name('whistleblowing.store');
+
+    // 4. Pengaduan BNN: Pelaporan Gratifikasi
+    Route::get('/pengaduan/pelaporan-gratifikasi', [App\Http\Controllers\Lapor\GratifikasiController::class, 'index'])->name('gratifikasi');
+    Route::post('/pengaduan/pelaporan-gratifikasi', [App\Http\Controllers\Lapor\GratifikasiController::class, 'store'])->middleware('auth')->name('gratifikasi.store');
 });

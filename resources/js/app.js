@@ -581,11 +581,146 @@ document.querySelectorAll('.input-wrap.input-error input').forEach(function(inpu
     });
 });
 
+// ========================================================
+// ANIMASI SPLIT TRANSISI 5-FRAME (LOGIN <-> REGISTER)
+// ========================================================
+document.addEventListener('DOMContentLoaded', function () {
+    const container = document.getElementById('authSplitContainer');
+    if (!container) return;
+
+    const btnToRegister = document.getElementById('btnToRegister');
+    const btnToLogin = document.getElementById('btnToLogin');
+    const backBtn = document.getElementById('authBackBtn');
+    const loginCard = document.getElementById('loginCard');
+    const registerCard = document.getElementById('registerCard');
+    const pageTitle = document.getElementById('authPageTitle');
+
+    let isTransitioning = false;
+
+    function transitionToRegister() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+
+        // FRAME 1 -> FRAME 2:
+        // Layer 3 mulai meluncur ke kiri, disusul Layer 2 & 1, Gedung BNN bergerak ke kanan
+        container.classList.remove('animating-to-login', 'mode-login');
+        container.classList.add('animating-to-register');
+
+        // FRAME 3: Pada ~360ms saat Layer 3 tiba di bawah tombol back di kiri:
+        // - Tombol kembali menjadi hitam
+        // - Isi card bertransisi dari Login Form ke Register Form
+        setTimeout(function () {
+            if (backBtn) {
+                backBtn.classList.add('back-btn-dark');
+            }
+
+            if (loginCard) {
+                loginCard.classList.add('morph-out');
+            }
+
+            setTimeout(function () {
+                if (loginCard) {
+                    loginCard.style.display = 'none';
+                    loginCard.classList.remove('morph-out');
+                }
+                if (registerCard) {
+                    registerCard.style.display = 'block';
+                    registerCard.classList.add('morph-in');
+                    setTimeout(function () {
+                        registerCard.classList.remove('morph-in');
+                    }, 220);
+                }
+            }, 180);
+        }, 360);
+
+        // FRAME 4 -> FRAME 5: Pada ~1050ms, Layer 1 tiba di kiri, layer 2 & 3 menutup di bawahnya
+        setTimeout(function () {
+            container.classList.remove('animating-to-register');
+            container.classList.add('mode-register');
+
+            window.history.pushState({ mode: 'register' }, '', '/register');
+            if (pageTitle) pageTitle.textContent = 'Daftar - BNN Kota Banjarmasin';
+            document.title = 'Daftar - BNN Kota Banjarmasin';
+
+            isTransitioning = false;
+        }, 1050);
+    }
+
+    function transitionToLogin() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+
+        // FRAME 5 -> FRAME 1 (REVERSE):
+        container.classList.remove('animating-to-register', 'mode-register');
+        container.classList.add('animating-to-login');
+
+        // FRAME 3 REVERSE:
+        setTimeout(function () {
+            if (backBtn) {
+                backBtn.classList.remove('back-btn-dark');
+            }
+
+            if (registerCard) {
+                registerCard.classList.add('morph-out');
+            }
+
+            setTimeout(function () {
+                if (registerCard) {
+                    registerCard.style.display = 'none';
+                    registerCard.classList.remove('morph-out');
+                }
+                if (loginCard) {
+                    loginCard.style.display = 'block';
+                    loginCard.classList.add('morph-in');
+                    setTimeout(function () {
+                        loginCard.classList.remove('morph-in');
+                    }, 220);
+                }
+            }, 180);
+        }, 360);
+
+        setTimeout(function () {
+            container.classList.remove('animating-to-login');
+            container.classList.add('mode-login');
+
+            window.history.pushState({ mode: 'login' }, '', '/login');
+            if (pageTitle) pageTitle.textContent = 'Masuk - BNN Kota Banjarmasin';
+            document.title = 'Masuk - BNN Kota Banjarmasin';
+
+            isTransitioning = false;
+        }, 1050);
+    }
+
+    if (btnToRegister) {
+        btnToRegister.addEventListener('click', function (e) {
+            e.preventDefault();
+            transitionToRegister();
+        });
+    }
+
+    if (btnToLogin) {
+        btnToLogin.addEventListener('click', function (e) {
+            e.preventDefault();
+            transitionToLogin();
+        });
+    }
+
+    window.addEventListener('popstate', function () {
+        const isRegisterPath = window.location.pathname.includes('register');
+        if (isRegisterPath && !container.classList.contains('mode-register')) {
+            transitionToRegister();
+        } else if (!isRegisterPath && !container.classList.contains('mode-login')) {
+            transitionToLogin();
+        }
+    });
+});
+
 //Logika alert login page
 document.addEventListener('DOMContentLoaded', function () {
     const loginCard = document.querySelector('.login-card');
     const alertContainer = document.getElementById('alert-container');
     const loginForm = document.querySelector('.login-card form');
+    if (!loginCard || !loginForm) return;
 
     // Fungsi untuk menghilangkan alert setelah 5 detik
     function autoDismissAlert(alertEl) {
@@ -612,13 +747,13 @@ document.addEventListener('DOMContentLoaded', function () {
     loginForm.addEventListener('submit', function (e) {
         var emailInput = loginForm.querySelector('input[name="email"]');
         var passwordInput = loginForm.querySelector('input[name="password"]');
-        var emailVal = emailInput.value.trim();
-        var passwordVal = passwordInput.value.trim();
+        var emailVal = emailInput ? emailInput.value.trim() : '';
+        var passwordVal = passwordInput ? passwordInput.value.trim() : '';
 
         if (emailVal === '' && passwordVal === '') {
             e.preventDefault();
 
-            var existingAlert = alertContainer.querySelector('.alert-error');
+            var existingAlert = alertContainer ? alertContainer.querySelector('.alert-error') : null;
             if (existingAlert) {
                 existingAlert.remove();
             }
@@ -626,12 +761,12 @@ document.addEventListener('DOMContentLoaded', function () {
             var newAlert = document.createElement('div');
             newAlert.className = 'alert-error';
             newAlert.textContent = 'Isi email dan password untuk melanjutkan.';
-            alertContainer.appendChild(newAlert);
+            if (alertContainer) alertContainer.appendChild(newAlert);
 
             loginCard.classList.add('has-error');
 
-            emailInput.closest('.input-wrap').classList.add('input-error');
-            passwordInput.closest('.input-wrap').classList.add('input-error');
+            if (emailInput) emailInput.closest('.input-wrap').classList.add('input-error');
+            if (passwordInput) passwordInput.closest('.input-wrap').classList.add('input-error');
 
             void newAlert.offsetWidth;
             newAlert.classList.add('alert-visible');
@@ -641,14 +776,14 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-
 // Logika alert register page
 document.addEventListener('DOMContentLoaded', function () {
     const registerCard = document.querySelector('.register-card');
-    const alertContainer = document.getElementById('alert-container');
+    const alertContainer = document.getElementById('alert-container-reg') || document.getElementById('alert-container');
     if (!registerCard || !alertContainer) return;
 
     const registerForm = registerCard.querySelector('form');
+    if (!registerForm) return;
 
     function autoDismissAlert(alertEl) {
         if (registerCard.alertTimeout) {
@@ -1462,3 +1597,64 @@ if (document.readyState === 'loading') {
 } else {
     initProfileLogic();
 }
+
+// Page Form Penyalahangaan Narkoba
+// File upload preview
+function handleFileSelect(input, previewContainerId) {
+    const previewContainer = document.getElementById(previewContainerId);
+    previewContainer.innerHTML = '';
+    if (input.files && input.files.length > 0) {
+        const count = Math.min(input.files.length, 5);
+        for (let i = 0; i < count; i++) {
+            const badge = document.createElement('span');
+            badge.className = 'p4gn-file-preview-badge';
+            badge.innerHTML = '<i class="fa-solid fa-file-image me-1 text-primary"></i> ' + input.files[i].name;
+            previewContainer.appendChild(badge);
+        }
+    }
+}
+
+// Toggle Dynamic "Lainnya" Jenis Narkoba with Smooth Fade In / Fade Out
+function toggleJenisNarkobaLainnya(checkbox) {
+    const wrapper = document.getElementById('wrapperJenisNarkobaLainnya');
+    const input = document.getElementById('inputJenisNarkobaLainnya');
+    if (checkbox.checked) {
+        wrapper.classList.add('is-visible');
+        input.setAttribute('required', 'required');
+        input.focus();
+    } else {
+        wrapper.classList.remove('is-visible');
+        input.removeAttribute('required');
+        input.value = '';
+    }
+}
+
+// Toggle Dynamic "Lainnya" Peran Terlapor with Smooth Fade In / Fade Out
+function togglePeranTerlaporLainnya(select) {
+    const wrapper = document.getElementById('wrapperPeranTerlaporLainnya');
+    const input = document.getElementById('inputPeranTerlaporLainnya');
+    if (select.value === 'Lainnya') {
+        wrapper.classList.add('is-visible');
+        input.setAttribute('required', 'required');
+        input.focus();
+    } else {
+        wrapper.classList.remove('is-visible');
+        input.removeAttribute('required');
+        input.value = '';
+    }
+}
+
+// Initial check on page load (in case of validation error or back-navigation)
+document.addEventListener('DOMContentLoaded', function () {
+    const checkJenis = document.getElementById('checkJenisLainnya');
+    if (checkJenis && checkJenis.checked) {
+        const wrapper = document.getElementById('wrapperJenisNarkobaLainnya');
+        wrapper.classList.add('is-visible');
+    }
+
+    const selectPeran = document.getElementById('selectPeranTerlapor');
+    if (selectPeran && selectPeran.value === 'Lainnya') {
+        const wrapper = document.getElementById('wrapperPeranTerlaporLainnya');
+        wrapper.classList.add('is-visible');
+    }
+});

@@ -15,20 +15,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 
-<script>
-        if (sessionStorage.getItem('is_internal_nav') === 'true') {
-            document.documentElement.classList.add('internal-nav');
-        }
-    </script>
-</head>
-
-<body>
-    <div class="page-transition {{ $errors->any() ? '' : 'initial-cover' }}">
-        <div class="transition-layer layer-1"></div>
-        <div class="transition-layer layer-2"></div>
-        <div class="transition-layer layer-3"></div>
-    </div>
-
 <body>
     <div class="split">
         <div class="split__left">
