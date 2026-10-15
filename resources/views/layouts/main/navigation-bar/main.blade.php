@@ -1,4 +1,4 @@
-﻿<div class="navigation-tab">
+<div class="navigation-tab">
 <nav class="navbar navbar-dark" style="background-color: #174b83;">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ url('/') }}">
@@ -112,29 +112,6 @@
                 <div class="dropdown-content">
                     <a href="{{ url('/ppid') }}">Informasi Publik (PPID)</a>
                     <a href="{{ url('/lhkpn') }}">LHKPN</a>
-                </div>
-            </div>
-
-            <div class="nav-item-dropdown">
-                <a href="#" class="menu-nav-2 lapor {{ request()->is('lapor*') ? 'active' : '' }}">
-                    <span>LAPOR</span>
-                </a>
-                <div class="dropdown-content">
-                    <a href="{{ route('lapor.aspirasi') }}">Aspirasi Masyarakat</a>
-                    <div class="nav-item-dropdown-2">
-                        <a href="{{ route('lapor.narkoba') }}">
-                            <span>Pengaduan BNN</span>
-                            <img id="icon-dropdown" src="{{ asset('images/assets/public/button/right-arrow-white.png') }}" width="10" height="10">
-                        </a>
-                        <div class="dropdown-content-2">
-                            <a href="{{ route('lapor.narkoba') }}">Penyalahgunaan Narkoba</a>
-                            {{-- {{ route('lapor.whistleblowing') }} --}}
-                            <a href="#">Whistleblowing Dan Pengaduan Pelayanan Publik</a>
-                            {{-- {{ route('lapor.gratifikasi') }} --}}
-                            <a href="#">Pelaporan Gratifikasi</a>
-                        </div>
-                    </div>
-                    <a href="https://www.lapor.go.id/" target="_blank" rel="noopener noreferrer">LAPOR!</a>
                 </div>
             </div>
 

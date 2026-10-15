@@ -37,14 +37,6 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * Relasi ke laporan yang diajukan oleh user.
-     */
-    public function reports()
-    {
-        return $this->hasMany(\App\Models\Report::class, 'user_id');
-    }
-
-    /**
      * The attributes that should be hidden for serialization.
      *
      * @var list<string>
